@@ -3,7 +3,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 import java.util.Set;
 
 /**
- * Basic concrete implementation of a non-directed (and non weighted) graph. SimpleEdge<V>   
+ * Concrete implementation of a non-directed (and non weighted) graph. SimpleEdge<V>   
  * 
  * @author Matthew D. Jeffreys
  * @param <V> Type of Vertex
@@ -17,7 +17,7 @@ public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, S
 
 	
 	/**
-	 *  Overridden method creates returns an edge compatible with SimpleAdjacencyListGraph.java internal struction 
+	 *  Overridden method creates returns an edge compatible with SimpleAdjacencyListGraph.java internal structure. 
 	 */
 	
 	@Override

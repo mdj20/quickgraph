@@ -1,6 +1,6 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
-/** Class that connects 2 objects (V) designating one as the source and one as the sink. 
+/** Connects 2 objects (V) designating one as the source and one as the sink. 
  *  
  * @author Matthew D. Jeffreys
  *

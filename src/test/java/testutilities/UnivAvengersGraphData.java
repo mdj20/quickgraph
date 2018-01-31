@@ -37,7 +37,7 @@ public class UnivAvengersGraphData {
 	
 	private static List<com.mdj20.quickgraph.quickgraph.main.Edge<Integer>> chomp(BufferedReader bReader) throws IOException {
 	
-		LinkedList<Edge<Integer>> edgeList = new LinkedList<>();
+		LinkedList<Edge<Integer>> edgeList = new LinkedList<Edge<Integer>>();
 		String line;
 		while((line=bReader.readLine())!=null) {
 			if(line.charAt(0)==edgeLinePrefix) {

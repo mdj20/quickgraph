@@ -33,7 +33,7 @@ public class FastGraphBuilder {
 		if(edgeS.length != edgeS.length && edgeS.length != weights.length) {
 			throw new IllegalArgumentException("Lengths of edge and weight arrays, must equal");
 		}
-		WeightedAdjacencyListDiGraph<V,W> graph = new WeightedAdjacencyListDiGraph<>();
+		WeightedAdjacencyListDiGraph<V,W> graph = new WeightedAdjacencyListDiGraph<V,W>();
 		for(V c: vertex) {
 			graph.addVertex(c);
 		}
