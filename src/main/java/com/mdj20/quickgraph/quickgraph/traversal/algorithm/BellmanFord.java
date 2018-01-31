@@ -21,11 +21,11 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 
 public class BellmanFord {
 	
-	/**
+	/** Finds the distances in Integers, to all vertices on map. 
 	 * 
-	 * @param graph
-	 * @param source
-	 * @return 
+	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param source Starting vertex
+	 * @return Map<V,Integer> vertex mapped to their respective distances
 	 */
 
 	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Integer> findDistancesInt(WeightedGraph<V,E,W> graph, V source){
@@ -53,6 +53,13 @@ public class BellmanFord {
 		return distanceMap;
 	}
 	
+	/** Finds the distances in Doubles, to all vertices on map. 
+	 * 
+	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param source Starting vertex
+	 * @return Map<V,Double> vertex mapped to their respective distances
+	 */
+	
 	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Double> findDistancesDouble(WeightedGraph<V,E,W> graph, V source){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		int nVertex = vertices.size();
@@ -77,6 +84,16 @@ public class BellmanFord {
 		}
 		return distanceMap;
 	}
+	
+	/**	Finds the shortest path via the Bellman-Ford algorithm, between 2 vertices. 
+	 * The weight type in the graph must extend Number, and will calculate the weights as their Integer representation. 
+	 * 
+	 * 
+	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param source Starting vertex.
+	 * @param sink Target vertex.
+	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
+	 */
 	
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source,V sink){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
@@ -127,6 +144,15 @@ public class BellmanFord {
 		return pathEdgeList;
 	}
 	
+	/**	Finds the shortest path via the Bellman-Ford algorithm, between 2 vertices. 
+	 * The weight type in the graph must extend Number, and will calculate the weights as their Double representation. 
+	 * 
+	 * 
+	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param source Starting vertex.
+	 * @param sink Target vertex.
+	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
+	 */
 	
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source,V sink){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());

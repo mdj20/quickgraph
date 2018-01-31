@@ -1,7 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.traversal.algorithm;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-
+ 	
 class SimplePathChain<V, E extends Edge<V>, I extends Comparable<I>> implements Comparable<SimplePathChain<V,E,I>> {
 	
 	V vertex; // target vertex

@@ -14,7 +14,29 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 import testutilities.FastGraphBuilder;
 import testutilities.TestGraphData;
 
+/**
+ * Contains static methods related to the Bellman-Ford path/distance finding methods.
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ */
+
+
+
+
 public class Dikstras{
+	
+	/**	Finds the shortest path via the Dikstras algorithm, between 2 vertices. 
+	 * The weight type in the graph must extend Number, and will calculate the weights as their Integer representation. 
+	 * 
+	 * 
+	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param source Starting vertex.
+	 * @param sink Target vertex.
+	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
+	 */
+	
+	
 
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source, V sink){
 		// check graph contains source and sink
@@ -64,6 +86,16 @@ public class Dikstras{
 		Collections.reverse(edgePath);
 		return edgePath;
 	}
+	
+	/**	Finds the shortest path via the Dikstras algorithm, between 2 vertices. 
+	 * The weight type in the graph must extend Number, and will calculate the weights as their Double representation. 
+	 * 
+	 * 
+	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param source Starting vertex.
+	 * @param sink Target vertex.
+	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
+	 */
 	
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source, V sink){
 		// check graph contains source and sink
@@ -156,12 +188,5 @@ public class Dikstras{
 		}
 		return ret;
 	}
-
-	
-
-
-
-
-
 	
 }
