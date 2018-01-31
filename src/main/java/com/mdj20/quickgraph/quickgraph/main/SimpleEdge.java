@@ -1,6 +1,6 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
-/** Concrete implementation of 
+/** Concrete implementation of Edge.
  * 
  * @author Matthew D. Jeffreys
  * @param <V> Vertex type.

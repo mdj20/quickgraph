@@ -3,6 +3,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 /**
  * Standard implementation of a directional edge.
  * 
+ * Directional edge contains the methods getSource() and getSink(), which describe the direction/flow of the edge.
  * 
  * @author Matthew D. Jeffreys
  * @param <V> Vertex type

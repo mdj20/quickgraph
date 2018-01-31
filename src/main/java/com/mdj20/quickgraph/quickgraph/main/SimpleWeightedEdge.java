@@ -1,5 +1,14 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
+/**
+ * Concrete implementation of WeightedEdge
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ * @param <V> Vertex Type
+ * @param <W> Weight Type
+ */
+
 public class SimpleWeightedEdge<V,W> extends AbstractEdge<V> implements WeightedEdge<V,W>, Edge<V>, Weighted<W> {
 
 	private W weight;

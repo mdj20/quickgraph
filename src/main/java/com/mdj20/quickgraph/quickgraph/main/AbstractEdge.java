@@ -1,5 +1,6 @@
 package com.mdj20.quickgraph.quickgraph.main;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,17 +15,24 @@ import java.util.List;
 
 
 public abstract class AbstractEdge<V> implements Edge<V> {
-	ArrayList<V> v = new ArrayList<V>(2);
+	protected List<V> v = new ArrayList<V>(2);
 	AbstractEdge(V v0, V v1){
 		v.add(0, v0);
 		v.add(1, v1);
+		v = Collections.unmodifiableList(v);
 	}
+	
+	@Override
 	public List<V> getVertices() {
 		return v; 
 	}
+	
+	@Override
 	public V getVertex(int index){
 		return v.get(index);
 	}
+	
+	@Override
 	public V getOpposingVertex(V vertex) {
 		V ret = null;
 		if (v.get(0).equals(vertex)) {
@@ -35,6 +43,8 @@ public abstract class AbstractEdge<V> implements Edge<V> {
 		}
 		return ret;
 	}
+	
+	@Override
 	public boolean isReciprical(Edge<V> edge){
 		boolean ret = false;
 		List<V> verts = edge.getVertices();

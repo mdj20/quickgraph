@@ -1,5 +1,13 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
+/** Concreate Implementation of a directed and weighted graph
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ * @param <V> Vertex Type.
+ * @param <W> Weight Type.
+ */
+
 public class WeightedAdjacencyListDiGraph<V, W> extends AbstractAdjacencyListDiGraph<V,WeightedDirectionalEdge<V,W>> 
 	implements DiGraph<V,WeightedDirectionalEdge<V,W>>, WeightedGraph<V,WeightedDirectionalEdge<V,W>,W> {
 

@@ -3,7 +3,6 @@ package com.mdj20.quickgraph.quickgraph.traversal;
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
-import com.mdj20.quickgraph.quickgraph.traversal.algorithm.AlgorithmUtility;
 
 /**
  * 
@@ -20,13 +19,5 @@ public class WeightedPathBuilder<G extends WeightedGraph<V,E,W>, V, E extends We
 	public WeightedPathBuilder(G graph, V source) {
 		super(graph, source);
 	}
-	
-	public Path<V,E> dikstrasInt(V source, V sink){
-		Path<V,E> ret = null;
-		if(!AlgorithmUtility.hasNegativeEdge(graph)) {
-			
-		}
-		return ret;
-	}
-	
+
 }
