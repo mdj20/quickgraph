@@ -2,6 +2,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 
 import static org.junit.Assert.*;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -73,12 +74,21 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testGetVertices() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		Set<Integer> verts = graph.getVertices();
+		assertTrue(verts.size()==nVert);
+		for(int i = 0 ; i< nVert ; i++) {
+			assertTrue(verts.contains(i));
+		}
 	}
 
 	@Test
 	public void testGetEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		Set<Edge<Integer>> edeeList = graph.getEdges();
+		
 	}
 
 	@Test
