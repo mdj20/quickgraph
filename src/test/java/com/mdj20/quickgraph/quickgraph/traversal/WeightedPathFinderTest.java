@@ -18,29 +18,49 @@ public class WeightedPathFinderTest {
 	@Test
 	public void testBellmanFordIntPath() {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		Character source = TestGraphData.TestGraph0.getSource()[0];
+		Character sink = TestGraphData.TestGraph0.getSource()[2];
+		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
-		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath('A', 'C');
-		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasIntPath('A', 'C');
+		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath(source, sink);
+		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasIntPath(source, sink);
 		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 
 	@Test
 	public void testBellmanFordDoublePath() {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		Character source = TestGraphData.TestGraph0.getSource()[0];
+		Character sink = TestGraphData.TestGraph0.getSource()[2];
+		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
-		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath('A', 'C');
-		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasDoublePath('A', 'C');
+		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath(source, sink);
+		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasDoublePath(source, sink);
 		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 
 	@Test
 	public void testDikstrasIntPath() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
+		Character source = TestGraphData.TestGraph1.getSource()[0];
+		Character sink = TestGraphData.TestGraph1.getSource()[2];
+		
+		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
+		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath(source, sink);
+		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasIntPath(source, sink);
+		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 
 	@Test
 	public void testDikstrasDoublePath() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
+		Character source = TestGraphData.TestGraph1.getSource()[0];
+		Character sink = TestGraphData.TestGraph1.getSource()[2];
+		
+		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
+		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath(source, sink);
+		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasDoublePath(source, sink);
+		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 
 	@Test
