@@ -46,7 +46,7 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	@Override
 	public boolean addEdge(E edge) {
 		boolean ret = false;
-		if(checkVertices(edge.getVertices().get(0),edge.getVertices().get(1))) {
+		if(checkVertices(edge.getVertices().get(0),edge.getVertices().get(1)) && !edgeExist(edge)) {
 			addEdgeToGraph(edge.getVertices().get(0),edge);
 			addEdgeToGraph(edge.getVertices().get(1),edge);
 			edges.add(edge);
