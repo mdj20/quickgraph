@@ -139,7 +139,8 @@ public class WeightedAdjacencyListDiGraphTest {
 		assertTrue(!testGraph.getVertices().contains(nVerts-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVerts-1 ; i++) {
 			Set<Integer> neighbors = testGraph.getAdjacentVertices(i);
-			assertTrue(!neighbors.contains(nVerts-1));
+			//System.out.println(neighbors.contains(removedVertex));
+			assertTrue(!neighbors.contains(removedVertex));
 		}
 		Set<WeightedDirectionalEdge<Integer, Integer>> edgeList = testGraph.getEdges();
 		for(DirectionalEdge<Integer> de: edgeList){

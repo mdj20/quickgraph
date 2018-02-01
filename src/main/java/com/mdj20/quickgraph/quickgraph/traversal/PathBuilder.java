@@ -7,10 +7,9 @@ import java.util.Set;
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
+import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
+import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
-
-import testutilities.FastGraphBuilder;
-import testutilities.TestGraphData;
 
 /**
  * 

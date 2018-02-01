@@ -10,9 +10,8 @@ import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
-
-import testutilities.FastGraphBuilder;
-import testutilities.TestGraphData;
+import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
+import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
 /**
  * Contains static methods related to the Bellman-Ford path/distance finding methods.

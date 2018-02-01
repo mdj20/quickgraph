@@ -11,9 +11,8 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
-
-import testutilities.FastGraphBuilder;
-import testutilities.TestGraphData;
+import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
+import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
 public class BreadthFirst {
 	public static <V,E extends Edge<V>> List<E> breadthFirstSearch(Graph<V,E> graph, V source, V sink){

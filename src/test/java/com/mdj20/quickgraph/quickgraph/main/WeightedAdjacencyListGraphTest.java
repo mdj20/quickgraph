@@ -14,9 +14,8 @@ import org.junit.Test;
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-
-import testutilities.FastGraphBuilder;
-import testutilities.TestGraphData;
+import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
+import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
 public class WeightedAdjacencyListGraphTest {
 

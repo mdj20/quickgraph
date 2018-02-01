@@ -11,8 +11,7 @@ import org.junit.Test;
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
-
-import testutilities.FastGraphBuilder;
+import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 
 public class DikstrasTest {
 

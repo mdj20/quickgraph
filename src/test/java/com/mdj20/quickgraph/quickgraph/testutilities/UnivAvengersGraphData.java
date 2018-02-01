@@ -1,4 +1,4 @@
-package testutilities;
+package com.mdj20.quickgraph.quickgraph.testutilities;
 
 import java.io.BufferedReader;
 import java.io.IOException;

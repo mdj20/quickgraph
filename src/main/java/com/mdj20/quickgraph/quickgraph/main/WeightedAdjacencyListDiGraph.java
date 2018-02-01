@@ -25,7 +25,7 @@ public class WeightedAdjacencyListDiGraph<V, W> extends AbstractAdjacencyListDiG
 			edges.add(edge);
 			ret =true;
 		}
-		return true;
+		return ret;
 	}
 
 }
