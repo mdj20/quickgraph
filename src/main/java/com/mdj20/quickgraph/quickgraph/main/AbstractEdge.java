@@ -53,4 +53,9 @@ public abstract class AbstractEdge<V> implements Edge<V> {
 		}
 		return ret;
 	}
+	
+	@Override 
+	public boolean isParallel(Edge<V> edge){
+		return this.getVertex(0).equals(edge.getVertex(0)) && this.getVertex(1).equals(edge.getVertex(1));
+	}
 }

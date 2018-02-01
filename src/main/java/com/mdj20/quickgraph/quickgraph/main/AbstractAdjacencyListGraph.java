@@ -129,8 +129,15 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	
 	// checks if an edge or it's reciprocal exits.
 	private boolean edgeExist(E edge) {
-		Edge<V> reciprical = new SimpleEdge<V>(edge.getVertices().get(1),edge.getVertices().get(0));
-		return edges.contains(edge) || edges.contains(reciprical);
+		boolean ret = false;
+		Set<E> edgeSet = graph.get(edge.getVertex(0));
+		for(E e: edgeSet){
+			if(e.isReciprical(edge) || e.isParallel(edge) ){
+				ret = true;
+				break;
+			}
+		}
+		return ret;
 	}
 	
 	protected boolean checkVertices(E edge) {

@@ -137,14 +137,12 @@ public class SimpleAdjacencyListGraphTest {
 		HashMap<Integer,ArrayList<Integer>> endpointMap =  completeGraphEndpointMap(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
-			System.out.println(endpointMap.get(i).size()+" "+adjacent.size());
 			assertTrue(endpointMap.get(i).size()==adjacent.size());
 			
 			for(Edge<Integer> edge: adjacent){
 				assertTrue(endpointMap.get(i).contains(edge.getOpposingVertex(i)));
 				
 			}
-			
 		}
 	}
 
