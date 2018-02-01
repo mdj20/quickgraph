@@ -3,6 +3,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -139,7 +140,7 @@ public class WeightedAdjacencyListDiGraphTest {
 		assertTrue(!testGraph.getVertices().contains(nVerts-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVerts-1 ; i++) {
 			Set<Integer> neighbors = testGraph.getAdjacentVertices(i);
-			//System.out.println(neighbors.contains(removedVertex));
+		
 			assertTrue(!neighbors.contains(removedVertex));
 		}
 		Set<WeightedDirectionalEdge<Integer, Integer>> edgeList = testGraph.getEdges();
@@ -162,13 +163,23 @@ public class WeightedAdjacencyListDiGraphTest {
 	@Test
 	public void testGetEdges() {
 		int nVerts = 5;
-		int nEdges= 0;
-		for(int i = nVerts-1; i > 0; i--){
-			nEdges+=i;
-		}
-		nEdges*=2;
+		int nEdges = staturatedNEdges(nVerts);
+		HashMap<Integer,ArrayList<Integer>> connectedMap = saturatedGraphEndpointMap(nVerts);
 		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		System.out.println(testGraph.getEdges().size()+" "+nEdges);
 		assertTrue(testGraph.getEdges().size()==nEdges);
+		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edges 
+			= new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
+		for(WeightedDirectionalEdge<Integer,Integer> edge : edges){
+			ArrayList<Integer> tempSink = connectedMap.get(edge.getSource());
+			if(tempSink.contains(edge.getSink())){
+				assertTrue(tempSink.contains(edge.getSink()));
+				tempSink.remove(edge.getSink());
+			}
+			else{
+				fail("sink not found in connected map");
+			}
+		}
 	}
 
 	@Test
@@ -225,6 +236,35 @@ public class WeightedAdjacencyListDiGraphTest {
 			}
 		}
 		return graph;
+	}
+	
+	
+	// utility method returns HashMap<Source,ArrayList<Sink>> representation of all of the connections that are found in a saturated directed graph with nVert vertex;
+	protected static HashMap<Integer,ArrayList<Integer>> saturatedGraphEndpointMap(int nVert){
+		HashMap<Integer,ArrayList<Integer>> ret = new HashMap<Integer,ArrayList<Integer>>();
+		for(int i = 0 ; i < nVert ; i++){
+			ret.put(i,new ArrayList<Integer>());
+		}
+		for(Integer i : ret.keySet()){
+			for(int j = 0 ; j < nVert ; j++){
+				if(i!=j){
+					ArrayList<Integer> temp = ret.get(i);
+					temp.add(j);
+
+				}
+			}
+		}
+		return ret;
+	}
+	
+	
+	// returns the number of directed edges in a directed saturated graph of nVert number vertices 
+	protected int staturatedNEdges(int nVert){
+		int ret = nVert-1;
+		for(int i = nVert-2 ; i > 0 ; i-- ){
+			ret+=i;
+		}
+		return ret*2;
 	}
 	
 }
