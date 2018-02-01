@@ -2,6 +2,8 @@ package com.mdj20.quickgraph.quickgraph.testutilities;
 
 import java.util.Random;
 
+import com.mdj20.quickgraph.quickgraph.main.SimpleAdjacencyListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.SimpleAdjacencyListGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
 
@@ -26,7 +28,12 @@ public class FastGraphBuilder {
 	public static WeightedAdjacencyListGraph<Character,Integer> getWeightedGraph(TestGraphData testGraphData){
 		return buildWeightedGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink(),testGraphData.getWeights());
 	}
-
+	public static SimpleAdjacencyListDiGraph<Character> getSimpleDiGraph(TestGraphData testGraphData){
+		return buildSimpleDiGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink());
+	}
+	public static SimpleAdjacencyListGraph<Character> getSimpleGraph(TestGraphData testGraphData){
+		return buildSimpleGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink());
+	}
 	
 
 	public static <V,W extends Number & Comparable<W>> WeightedAdjacencyListDiGraph<V,W> buildWeightedDiGraph(V vertex[], V edgeS[], V edgeE[], W weights[]){
@@ -102,6 +109,33 @@ public class FastGraphBuilder {
 		}
 		for(int i=0;i<source.length;i++) {
 			graph.addEdge(source[i], sink[i], weight[i]);
+		}
+		return graph;
+	}
+	
+	public static <V> SimpleAdjacencyListGraph<V> buildSimpleGraph(V vert[], V source[], V sink[]){
+		if(source.length != sink.length) {
+			throw new IllegalArgumentException("Lengths of souce and sink arrays must equal");
+		}
+		SimpleAdjacencyListGraph<V> graph = new SimpleAdjacencyListGraph<V>();
+		for(V v: vert) {
+			graph.addVertex(v);
+		}
+		for(int i = 0 ; i<source.length; i++) {
+			graph.addEdge(source[i],sink[i]);
+		}
+		return graph;
+	}
+	public static <V> SimpleAdjacencyListDiGraph<V> buildSimpleDiGraph(V vert[], V source[], V sink[]){
+		if(source.length != sink.length) {
+			throw new IllegalArgumentException("Lengths of souce and sink arrays must equal");
+		}
+		SimpleAdjacencyListDiGraph<V> graph = new SimpleAdjacencyListDiGraph<V>();
+		for(V v: vert) {
+			graph.addVertex(v);
+		}
+		for(int i = 0 ; i<source.length; i++) {
+			graph.addEdge(source[i],sink[i]);
 		}
 		return graph;
 	}
