@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.junit.Before;
@@ -27,10 +28,13 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testAddVertex() {
+		int nVert =10 ;
 		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
 		graph.addVertex(testValues.get(0));
 		assertTrue(graph.getVertices().contains(0));
 		assertTrue(graph.getVertices().size()==1);
+		
+		
 	}
 
 	@Test
@@ -69,7 +73,24 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testRemoveEdge() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int nRemovedEdges = 3;
+		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		ArrayList<Edge<Integer>> removed = new ArrayList<Edge<Integer>>();
+		ArrayList<Edge<Integer>> edgeList = new ArrayList<Edge<Integer>>(graph.getEdges());
+		int nEdgeBefore = edgeList.size();
+		for(int i = 0 ; i < nRemovedEdges ; i++){
+			removed.add(edgeList.get(i));
+			graph.removeEdge(edgeList.get(i));
+		}
+		
+		for(Edge<Integer> edge: removed){
+			assertTrue(!graph.getEdges().contains(edge));  // check if edge is removed from graph edgeList
+
+			assertTrue(!graph.getConnectingEdges(edge.getVertex(0)).contains(edge)); // check if edge is removed from outgoing edge via edge.getConnectingEdges() 
+			assertTrue(!graph.getConnectingEdges(edge.getVertex(1)).contains(edge));
+		}
+		assertTrue(graph.getEdges().size()==nEdgeBefore-removed.size());
 	}
 
 	@Test
@@ -113,17 +134,17 @@ public class SimpleAdjacencyListGraphTest {
 	public void testGetConnectingEdges() {
 		int nVert = 10;
 		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		HashMap<Integer,ArrayList<Integer>> endpointMap =  completeGraphEndpointMap(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
-			for(int j = 0 ; j < nVert ; j++) {
-				if(i==j) {
-					assertTrue(!adjacent.contains(j));
-				}
-				else {
-					assertTrue(adjacent.contains(j));
-				}
+			System.out.println(endpointMap.get(i).size()+" "+adjacent.size());
+			assertTrue(endpointMap.get(i).size()==adjacent.size());
+			
+			for(Edge<Integer> edge: adjacent){
+				assertTrue(endpointMap.get(i).contains(edge.getOpposingVertex(i)));
 				
 			}
+			
 		}
 	}
 
@@ -172,12 +193,34 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testGetOutgoingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		Set<Edge<Integer>> edgeList = graph.getEdges();
+		for(int i = 0 ; i < nVert ; i++){
+			Set<Edge<Integer>> outgoing = graph.getOutgoingEdges(i);
+			Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
+			assertTrue(outgoing.size()==adjacent.size());
+			for(Edge<Integer> edge: outgoing){
+				assertTrue(adjacent.contains(edge));
+				assertTrue(edgeList.contains(edge));
+			}
+		}
 	}
 
 	@Test
 	public void testGetIncomingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		Set<Edge<Integer>> edgeList = graph.getEdges();
+		for(int i = 0 ; i < nVert ; i++){
+			Set<Edge<Integer>> incoming = graph.getIncomingEdges(i);
+			Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
+			assertTrue(incoming.size()==adjacent.size());
+			for(Edge<Integer> edge: incoming){
+				assertTrue(adjacent.contains(edge));
+				assertTrue(edgeList.contains(edge));
+			}
+		}
 	}
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 
@@ -195,6 +238,22 @@ public class SimpleAdjacencyListGraphTest {
 			}
 		}
 		return graph;
+	}
+	
+	protected static HashMap<Integer,ArrayList<Integer>> completeGraphEndpointMap(int nVert){
+		HashMap<Integer,ArrayList<Integer>> ret = new HashMap<Integer,ArrayList<Integer>>();
+		for(int i = 0 ; i < nVert ; i++){
+			ret.put(i,new ArrayList<Integer>());
+		}
+		for(Integer i : ret.keySet()){
+			for(int j = 0 ; j < nVert ; j++){
+				if(i!=j){
+					ArrayList<Integer> temp = ret.get(i);
+					temp.add(j);
+				}
+			}
+		}
+		return ret;
 	}
 	
 	// method provides a simple procedure for determining the vertices a edge will connect

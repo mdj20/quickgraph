@@ -57,7 +57,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	public void testRemoveVertex() {
 		int nVert = 10;
 		int removedVertex = nVert-1;
-		SimpleAdjacencyListDiGraph<Integer> graph = createSaturatedGraph(nVert);
+		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		graph.removeVertex(removedVertex);
 		assertTrue(!graph.getVertices().contains(nVert-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVert-1 ; i++) {
@@ -71,7 +71,7 @@ public class SimpleAdjacencyListDiGraphTest {
 		int nVert = 10;
 		int nRemovedEdges = 3;
 		ArrayList<DirectionalEdge<Integer>> removed = new ArrayList<DirectionalEdge<Integer>>();
-		SimpleAdjacencyListDiGraph<Integer> graph = createSaturatedGraph(nVert);
+		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		ArrayList<DirectionalEdge<Integer>> edgeList = new ArrayList<DirectionalEdge<Integer>>(graph.getEdges());
 		for(int i = 0 ; i < nRemovedEdges ; i++){
 			removed.add(edgeList.get(i));
@@ -89,8 +89,8 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testGetConnectingEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = createSaturatedGraph(nVert);
-		HashMap<Integer,ArrayList<Integer>> endPointMap = saturatedGraphEndpointMap(nVert);
+		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		HashMap<Integer,ArrayList<Integer>> endPointMap = completeGraphEndpointMap(nVert);
 		for(int i = 0 ; i < nVert ; i++) {
 			Set<DirectionalEdge<Integer>> adjacent = graph.getConnectingEdges(i);
 			for(DirectionalEdge<Integer> edge : adjacent) {
@@ -221,7 +221,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	public void testAddVertex() {
 		int nVert = 10;
 		int nVertUpper = 20; 
-		SimpleAdjacencyListDiGraph<Integer> graph = createSaturatedGraph(nVert);
+		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		for(int i = 0 ; i < nVertUpper ; i++) {
 			graph.addVertex(i);
 		}
@@ -235,7 +235,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testGetVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = createSaturatedGraph(nVert);
+		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		Set<Integer> vert = graph.getVertices();
 		assertTrue(vert.size()==nVert);
 		for(int i = 0 ; i < nVert ; i++) {
@@ -247,8 +247,8 @@ public class SimpleAdjacencyListDiGraphTest {
 	public void testGetEdges() {
 		int nVerts = 5;
 		int nEdges = completeNEdges(nVerts);
-		HashMap<Integer,ArrayList<Integer>> connectedMap = saturatedGraphEndpointMap(nVerts);
-		SimpleAdjacencyListDiGraph<Integer> testGraph = createSaturatedGraph(nVerts);
+		HashMap<Integer,ArrayList<Integer>> connectedMap = completeGraphEndpointMap(nVerts);
+		SimpleAdjacencyListDiGraph<Integer> testGraph = createCompleteGraph(nVerts);
 		System.out.println(testGraph.getEdges().size()+" "+nEdges);
 		assertTrue(testGraph.getEdges().size()==nEdges);
 		ArrayList<DirectionalEdge<Integer>> edges 
@@ -268,7 +268,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testGetAdjacentVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = createSaturatedGraph(nVert);
+		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getAdjacentVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -297,7 +297,7 @@ public class SimpleAdjacencyListDiGraphTest {
 				}
 			}
 		}
-		HashMap<Integer,ArrayList<Integer>> connectedMap =  saturatedGraphEndpointMap(nVert);
+		HashMap<Integer,ArrayList<Integer>> connectedMap =  completeGraphEndpointMap(nVert);
 		Set<DirectionalEdge<Integer>> edges = graph.getEdges();
 		assertTrue(graph.getEdges().size()==completeNEdges(nVert));
 		for(DirectionalEdge<Integer> edge : edges){
@@ -314,7 +314,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 
 	// The edge weights are determined by source - sink.
-	protected static SimpleAdjacencyListDiGraph<Integer> createSaturatedGraph(int nVertices){
+	protected static SimpleAdjacencyListDiGraph<Integer> createCompleteGraph(int nVertices){
 		SimpleAdjacencyListDiGraph<Integer > graph = new SimpleAdjacencyListDiGraph<Integer >();
 		for (int i = 0; i < nVertices ; i++) {
 			graph.addVertex(i);
@@ -331,7 +331,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	}
 	
 	// utility method returns HashMap<Source,ArrayList<Sink>> representation of all of the connections that are found in a saturated directed graph with nVert vertex;
-	protected static HashMap<Integer,ArrayList<Integer>> saturatedGraphEndpointMap(int nVert){
+	protected static HashMap<Integer,ArrayList<Integer>> completeGraphEndpointMap(int nVert){
 		HashMap<Integer,ArrayList<Integer>> ret = new HashMap<Integer,ArrayList<Integer>>();
 		for(int i = 0 ; i < nVert ; i++){
 			ret.put(i,new ArrayList<Integer>());
