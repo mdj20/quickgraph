@@ -11,11 +11,10 @@ package com.mdj20.quickgraph.quickgraph.main;
  * 
  */
 
-public class SimpleDirectionalEdge<V> extends AbstractEdge<V> implements DirectionalEdge<V>, Edge<V> {
+public class SimpleDirectionalEdge<V> extends SimpleEdge<V> implements DirectionalEdge<V>, Edge<V> {
 
 	SimpleDirectionalEdge(V source, V sink) {
 		super(source, sink);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -25,7 +24,6 @@ public class SimpleDirectionalEdge<V> extends AbstractEdge<V> implements Directi
 
 	@Override
 	public V getSink() {
-		// TODO Auto-generated method stub
 		return super.v.get(1);
 	}
 }
