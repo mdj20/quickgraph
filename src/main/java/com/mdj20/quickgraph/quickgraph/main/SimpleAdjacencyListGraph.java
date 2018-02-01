@@ -9,7 +9,7 @@ import java.util.Set;
  * @param <V> Type of Vertex
  */
 
-public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, SimpleEdge<V>> {
+public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, Edge<V>> {
 	
 	public SimpleAdjacencyListGraph() {
 		super(GraphType.WEIGHTED_DIRECTED);
@@ -21,7 +21,7 @@ public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, S
 	 */
 	
 	@Override
-	public SimpleEdge<V> createEdge(V vertex1, V vertex2) {
+	public Edge<V> createEdge(V vertex1, V vertex2) {
 		return new SimpleEdge<V>(vertex1, vertex2);
 	}
 
