@@ -29,6 +29,9 @@ public class BellmanFord {
 	 */
 
 	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Integer> findDistancesInt(WeightedGraph<V,E,W> graph, V source){
+
+		
+		
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		int nVertex = vertices.size();
 		HashMap<V,Integer>  distanceMap = new HashMap<V,Integer>();
@@ -96,6 +99,8 @@ public class BellmanFord {
 	 */
 	
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source,V sink){
+		checkArgument(graph, source, sink); // throws IllegalArgumentException
+		
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		ArrayList<E> pathEdgeList = new ArrayList<E>(); 
 		int nVertex = vertices.size();
@@ -155,6 +160,9 @@ public class BellmanFord {
 	 */
 	
 	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source,V sink){
+		checkArgument(graph, source, sink); // throws IllegalArgumentException
+		
+		
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		ArrayList<E> pathEdgeList = new ArrayList<E>(); 
 		int nVertex = vertices.size();
@@ -198,9 +206,27 @@ public class BellmanFord {
 		}
 	
 		// reverse edgeList
-		
 		Collections.reverse(pathEdgeList);
 		return pathEdgeList;
+	}
+	
+	private static <V> void checkSS(V source, V sink){
+		if (source.equals(sink))
+			throw new IllegalArgumentException("source and sink must not be equal");
+	}
+	private static <G extends WeightedGraph<V,?,?>,V> void checkVerts(G graph, V source, V sink){
+		if( ! (graph.getVertices().contains(source) && graph.getVertices().contains(sink)) )
+				throw new IllegalArgumentException("source and sink must be vertices in graph");
+	}
+	private static void checkNull(Object o1, Object o2){
+		if(o1==null || o2 == null){
+			throw new IllegalArgumentException("Argument can't be null");
+		}
+	}
+	private static <G extends WeightedGraph<V,?,?>,V> void checkArgument(G graph, V source, V sink){
+		checkSS(source,sink);
+		checkVerts(graph,source,sink);
+		checkNull(source,sink);
 	}
 	
 }
