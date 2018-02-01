@@ -17,8 +17,8 @@ public class WeightedPathFinderTest {
 	@Test
 	public void testBellmanFordIntPath() {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
-		Character source = TestGraphData.TestGraph0.getSource()[0];
-		Character sink = TestGraphData.TestGraph0.getSource()[2];
+		Character source = TestGraphData.TestGraph0.getVerticies()[0];
+		Character sink = TestGraphData.TestGraph0.getVerticies()[2];
 		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath(source, sink);
@@ -29,8 +29,8 @@ public class WeightedPathFinderTest {
 	@Test
 	public void testBellmanFordDoublePath() {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
-		Character source = TestGraphData.TestGraph0.getSource()[0];
-		Character sink = TestGraphData.TestGraph0.getSource()[2];
+		Character source = TestGraphData.TestGraph0.getVerticies()[0];
+		Character sink = TestGraphData.TestGraph0.getVerticies()[2];
 		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath(source, sink);
@@ -41,8 +41,8 @@ public class WeightedPathFinderTest {
 	@Test
 	public void testDikstrasIntPath() {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
-		Character source = TestGraphData.TestGraph1.getSource()[0];
-		Character sink = TestGraphData.TestGraph1.getSource()[2];
+		Character source = TestGraphData.TestGraph1.getVerticies()[0];
+		Character sink = TestGraphData.TestGraph1.getVerticies()[2];
 		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath(source, sink);
@@ -53,8 +53,8 @@ public class WeightedPathFinderTest {
 	@Test
 	public void testDikstrasDoublePath() {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
-		Character source = TestGraphData.TestGraph1.getSource()[0];
-		Character sink = TestGraphData.TestGraph1.getSource()[2];
+		Character source = TestGraphData.TestGraph1.getVerticies()[0];
+		Character sink = TestGraphData.TestGraph1.getVerticies()[2];
 		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath(source, sink);
