@@ -12,10 +12,9 @@ import java.util.Set;
 public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, Edge<V>> {
 	
 	public SimpleAdjacencyListGraph() {
-		super(GraphType.WEIGHTED_DIRECTED);
+		super(GraphType.SIMPLE);
 	}
 
-	
 	/**
 	 *  Overridden method creates returns an edge compatible with SimpleAdjacencyListGraph.java internal structure. 
 	 */
@@ -24,5 +23,8 @@ public class SimpleAdjacencyListGraph<V> extends AbstractAdjacencyListGraph<V, E
 	public Edge<V> createEdge(V vertex1, V vertex2) {
 		return new SimpleEdge<V>(vertex1, vertex2);
 	}
+	
+	
+
 
 }

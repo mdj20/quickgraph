@@ -45,7 +45,7 @@ public interface Edge<V> {
 	 * @param edge reference to edge who's reciprocity is to be determined.
 	 * @return true if passed edge is reciprocal of object edge.
 	 */
-	public boolean isReciprical(Edge<V> edge);
+	public boolean isReciprocal(Edge<V> edge);
 	
 	public boolean isParallel(Edge<V> edge);
 	

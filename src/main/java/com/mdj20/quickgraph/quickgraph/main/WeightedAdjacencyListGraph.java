@@ -16,5 +16,7 @@ public class WeightedAdjacencyListGraph<V, W> extends AbstractAdjacencyListGraph
 		WeightedEdge<V,W> edge = new SimpleWeightedEdge<V,W>(vertex1,vertex2,weight);
 		return super.addEdge(edge);
 	}
+	
+	
 
 }

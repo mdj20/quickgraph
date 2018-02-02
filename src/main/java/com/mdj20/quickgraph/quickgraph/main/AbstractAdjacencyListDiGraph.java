@@ -16,6 +16,10 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 	AbstractAdjacencyListDiGraph() {
 		super(GraphType.DIRECTED);
 	}
+	
+	AbstractAdjacencyListDiGraph(GraphParameters parameters){
+		super(parameters);
+	}
 
 	@Override
 	public boolean addEdge(E edge) {

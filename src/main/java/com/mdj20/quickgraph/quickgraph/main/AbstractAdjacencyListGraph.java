@@ -1,8 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.main;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -46,7 +45,7 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	@Override
 	public boolean addEdge(E edge) {
 		boolean ret = false;
-		if(checkVertices(edge.getVertices().get(0),edge.getVertices().get(1)) && !edgeExist(edge)) {
+		if(checkVertices(edge.getVertices().get(0),edge.getVertices().get(1))) {
 			addEdgeToGraph(edge.getVertices().get(0),edge);
 			addEdgeToGraph(edge.getVertices().get(1),edge);
 			edges.add(edge);
@@ -127,12 +126,12 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 	protected abstract E createEdge(V vertex1, V vertex2);
 
 	
-	// checks if an edge or it's reciprocal exits.
-	private boolean edgeExist(E edge) {
+	// checks if an edge or it's reciprocal already exists, in the graph.
+	protected boolean parallelOrReciprocalExists(E edge) {
 		boolean ret = false;
 		Set<E> edgeSet = graph.get(edge.getVertex(0));
 		for(E e: edgeSet){
-			if(e.isReciprical(edge) || e.isParallel(edge) ){
+			if(e.isReciprocal(edge) || e.isParallel(edge) ){
 				ret = true;
 				break;
 			}
@@ -140,6 +139,35 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 		return ret;
 	}
 	
+	protected boolean parallelExists(E edge) {
+		boolean ret = false;
+		if ( edges.contains(edge) ) {
+			ret = true;
+		}
+		else {
+			Set<E> edgeSet = graph.get(edge.getVertex(0));
+			for(E e : edgeSet) {
+				if(e.isParallel(e)) {
+					ret = true;
+					break;
+				}
+			}
+		}	
+		return ret;
+	}
+	
+	protected boolean reciprocalExists(E edge) {
+		boolean ret = false;
+		Set<E> edgeSet = graph.get(edge.getVertex(0));
+		for(E e : edgeSet) {
+			if(e.isReciprocal(e)) {
+				ret = true;
+				break;
+			}
+		}
+		return ret;
+	}
+
 	protected boolean checkVertices(E edge) {
 		return checkVertices(edge.getVertices().get(0),edge.getVertices().get(1));
 	}

@@ -95,7 +95,7 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 		boolean ret = false;
 		Set<E> edges = graph.getConnectingEdges(edgeSource);
 		for(E e:edges) {
-			if (e.isReciprical(edge)) 
+			if (e.isReciprocal(edge)) 
 				ret=true;
 				break;
 		}

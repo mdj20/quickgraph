@@ -299,6 +299,7 @@ public class SimpleAdjacencyListDiGraphTest {
 		}
 		HashMap<Integer,ArrayList<Integer>> connectedMap =  completeGraphEndpointMap(nVert);
 		Set<DirectionalEdge<Integer>> edges = graph.getEdges();
+		int edgeSize = edges.size();
 		assertTrue(graph.getEdges().size()==completeNEdges(nVert));
 		for(DirectionalEdge<Integer> edge : edges){
 			ArrayList<Integer> tempSink = connectedMap.get(edge.getSource());
@@ -310,6 +311,15 @@ public class SimpleAdjacencyListDiGraphTest {
 				fail("sink not found in connected map");
 			}
 		}
+		//testForDuplicate restriction
+		for(int i = 0 ; i < nVert ; i++){
+			for(int j = 0 ; j < nVert ; j++){
+				if(i!=j){
+					graph.addEdge(i, j);
+				}
+			}
+		}
+		assertTrue(graph.getVertices().size()==edgeSize);
 	}
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 

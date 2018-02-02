@@ -38,8 +38,8 @@ public class SimpleEdgeTest {
 		int  x = 0 , y = 1;
 		SimpleEdge<Integer> edge = new SimpleEdge<Integer>(x,y);
 		SimpleEdge<Integer> rec = new SimpleEdge<Integer>(y,x);
-		assertTrue(edge.isReciprical(rec));
-		assertTrue(!edge.isReciprical(edge));
+		assertTrue(edge.isReciprocal(rec));
+		assertTrue(!edge.isReciprocal(edge));
 	}
 
 	@Test

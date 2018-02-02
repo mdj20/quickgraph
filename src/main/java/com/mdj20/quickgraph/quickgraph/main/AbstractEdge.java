@@ -45,7 +45,7 @@ public abstract class AbstractEdge<V> implements Edge<V> {
 	}
 	
 	@Override
-	public boolean isReciprical(Edge<V> edge){
+	public boolean isReciprocal(Edge<V> edge){
 		boolean ret = false;
 		List<V> verts = edge.getVertices();
 		if(v.get(0).equals(verts.get(1)) && v.get(1).equals(verts.get(0))){
