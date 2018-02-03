@@ -25,7 +25,7 @@ extends AbstractPathFinder<WeightedGraph<V,E,W>, V, E> {
 	}
 	
 	// factory method infers type parameters, and returns appropriate object
-	public static <G extends WeightedGraph<V,E,W>, E extends WeightedEdge<V,W>, V, W extends Number & Comparable<W>> WeightedPathFinder<V,E, W> getWeightedPathFinder(G graph){
+	public static <G extends WeightedGraph<V,E,W>, E extends WeightedEdge<V,W>, V, W extends Number & Comparable<W>> WeightedPathFinder<V,E,W> getWeightedPathFinder(G graph){
 		return new WeightedPathFinder<V,E,W>(graph);
 	}
 	

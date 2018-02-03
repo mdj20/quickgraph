@@ -68,7 +68,9 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testDepthFirstEdgeList() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		WeightedPathFinder<Character,WeightedEdge<Character,Integer>,Integer> pf2 = WeightedPathFinder.getWeightedPathFinder(testGraph);
 	}
 
 	@Test
@@ -94,12 +96,8 @@ public class WeightedPathFinderTest {
 	// checks to paths and determines if the sume of their respective weights is equal.
 	private <V,E extends WeightedEdge<V,W>,W extends Number> boolean weightSumEqualInt(Path<V,E> A, Path<V,E> B){
 		int a=0, b=0;
-		for(WeightedEdge<V,W> edge: A.getEdgeList()){
-			a+=edge.getWeight().intValue();
-		}
-		for(WeightedEdge<V,W> edge: B.getEdgeList()){
-			b+=edge.getWeight().intValue();
-		}
+		a = pathWeightSumInt(A);
+		b = pathWeightSumInt(B);
 		return a==b;
 	}
 	
@@ -119,6 +117,14 @@ public class WeightedPathFinderTest {
 		// if not directly equal, check weight sums equality
 		if(!ret){
 			ret = weightSumEqualInt(A,B);
+		}
+		return ret;
+	}
+	
+	private <V,E extends WeightedEdge<V,W>,W extends Number> int pathWeightSumInt(Path<V,E> path){
+		int ret = 0;
+		for(E e: path.getEdgeList()){
+			ret += e.getWeight().intValue();
 		}
 		return ret;
 	}

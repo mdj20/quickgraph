@@ -45,6 +45,11 @@ public abstract class AbstractEdge<V> implements Edge<V> {
 	}
 	
 	@Override
+	public int indexOf(V vertex){
+		return v.indexOf(vertex);
+	}
+	
+	@Override
 	public boolean isReciprocal(Edge<V> edge){
 		boolean ret = false;
 		List<V> verts = edge.getVertices();
