@@ -24,15 +24,8 @@ public class WeightedPathFinderTest {
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath(source, sink);
 		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasIntPath(source, sink);
-		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 		
-		WeightedAdjacencyListDiGraph<Character,Integer> diGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
-	
-		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  Dipf = WeightedPathFinder.getWeightedPathFinder(diGraph);
-		Path<Character,WeightedDirectionalEdge<Character,Integer>> DibmPath = Dipf.bellmanFordIntPath(source, sink);
-		Path<Character,WeightedDirectionalEdge<Character,Integer>> DidPath = Dipf.dikstrasIntPath(source, sink);
-		assertTrue(weightedPathEqualorSum(DibmPath,DidPath));
-		
+		assertTrue(weightedPathEqualorSum(bmPath,dPath));		
 	}
 
 	@Test
@@ -40,10 +33,10 @@ public class WeightedPathFinderTest {
 		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		Character source = TestGraphData.TestGraph0.getVerticies()[0];
 		Character sink = TestGraphData.TestGraph0.getVerticies()[2];
-		
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath(source, sink);
 		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasDoublePath(source, sink);
+		
 		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 
@@ -56,6 +49,7 @@ public class WeightedPathFinderTest {
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordIntPath(source, sink);
 		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasIntPath(source, sink);
+		
 		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 
@@ -68,6 +62,7 @@ public class WeightedPathFinderTest {
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
 		Path<Character,WeightedEdge<Character,Integer>> bmPath = pf.bellmanFordDoublePath(source, sink);
 		Path<Character,WeightedEdge<Character,Integer>> dPath = pf.dikstrasDoublePath(source, sink);
+		
 		assertTrue(weightedPathEqualorSum(bmPath,dPath));
 	}
 

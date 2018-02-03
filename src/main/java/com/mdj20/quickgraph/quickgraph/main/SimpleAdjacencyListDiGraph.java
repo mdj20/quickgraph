@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class SimpleAdjacencyListDiGraph<V> extends AbstractAdjacencyListDiGraph<V,DirectionalEdge<V>> implements DiGraph<V,DirectionalEdge<V>> {
 
-	SimpleAdjacencyListDiGraph(){
+	public SimpleAdjacencyListDiGraph(){
 		super(GraphType.DIRECTED);
 	}
 	
