@@ -5,6 +5,14 @@ import java.util.List;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 
+/**
+ * Represents a walk through a graph. Contains a list of edges 
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ * @param <V> Vertex type 
+ * @param <E> Edge Type (E extends edge)
+ */
 
 
 public abstract class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{

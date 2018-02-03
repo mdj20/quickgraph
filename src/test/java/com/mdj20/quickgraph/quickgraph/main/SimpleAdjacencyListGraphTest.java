@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 
 import org.junit.Before;
@@ -58,7 +59,7 @@ public class SimpleAdjacencyListGraphTest {
 	public void testRemoveVertex() {
 		int nVert = 10;
 		int removedVertex = nVert-1;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		graph.removeVertex(removedVertex);
 		assertTrue(!graph.getVertices().contains(nVert-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVert-1 ; i++) {
@@ -69,13 +70,39 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testRemoveEdge() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int removedEdgeVertex = nVert-1;
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		Set<Edge<Integer>> removed = graph.getConnectingEdges(removedEdgeVertex);
+		for(Edge<Integer> e: removed){
+			graph.removeEdge(e);
+		}
+		for(int i = 0 ; i < nVert ; i++) {
+			if(i!=removedEdgeVertex){
+				Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
+				boolean[] actual = new boolean[nVert];
+				boolean[] expected = new boolean[nVert];
+				Arrays.fill(actual, false);
+				Arrays.fill(expected, true);
+				expected[i] = false;
+				expected[removedEdgeVertex] = false;
+				int nConnectingEdge = 0;
+				for(Edge<Integer> edge: adjacent){
+					int opposite = edge.getOpposingVertex(i);
+					actual[opposite] = true;
+					nConnectingEdge++;
+				}
+				assertArrayEquals(expected,actual);
+				assertTrue(nConnectingEdge==nVert-1);
+			}
+		}
+
 	}
 
 	@Test
 	public void testGetVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		Set<Integer> verts = graph.getVertices();
 		assertTrue(verts.size()==nVert);
 		for(int i = 0 ; i< nVert ; i++) {
@@ -86,7 +113,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		Set<Edge<Integer>> edeeList = graph.getEdges();
 		
 	}
@@ -94,7 +121,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetAdjacentVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getAdjacentVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -112,17 +139,25 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetConnectingEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
-			for(int j = 0 ; j < nVert ; j++) {
-				if(i==j) {
-					assertTrue(!adjacent.contains(j));
-				}
-				else {
-					assertTrue(adjacent.contains(j));
-				}
+			boolean[] actual = new boolean[nVert];
+			boolean[] expected = new boolean[nVert];
+			Arrays.fill(actual, false);
+			Arrays.fill(expected, true);
+			expected[i] = false;
+			int nConnectingEdge = 0;
+			for(Edge<Integer> edge: adjacent){
+				int opposite = edge.getOpposingVertex(i);
+				actual[opposite] = true;
+				nConnectingEdge++;
 			}
+			
+			assertArrayEquals(expected,actual);
+
+			System.out.println(adjacent.size()+" "+(nVert-1));
+			assertTrue(nConnectingEdge==nVert-1);
 		}
 	}
 
@@ -135,7 +170,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetOutgoingVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getOutgoingVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -154,7 +189,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetIncomingVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = createCompleteGraph(nVert);
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getIncomingVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -171,23 +206,63 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testGetOutgoingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		for(int i = 0 ; i < 10 ; i++) {
+			Set<Edge<Integer>> adjacent = graph.getOutgoingEdges(i);
+			boolean[] actual = new boolean[nVert];
+			boolean[] expected = new boolean[nVert];
+			Arrays.fill(actual, false);
+			Arrays.fill(expected, true);
+			expected[i] = false;
+			int nConnectingEdge = 0;
+			for(Edge<Integer> edge: adjacent){
+				int opposite = edge.getOpposingVertex(i);
+				actual[opposite] = true;
+				nConnectingEdge++;
+			}
+			
+			assertArrayEquals(expected,actual);
+
+			System.out.println(adjacent.size()+" "+(nVert-1));
+			assertTrue(nConnectingEdge==nVert-1);
+		}
 	}
 
 	@Test
 	public void testGetIncomingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		for(int i = 0 ; i < 10 ; i++) {
+			Set<Edge<Integer>> adjacent = graph.getIncomingEdges(i);
+			boolean[] actual = new boolean[nVert];
+			boolean[] expected = new boolean[nVert];
+			Arrays.fill(actual, false);
+			Arrays.fill(expected, true);
+			expected[i] = false;
+			int nConnectingEdge = 0;
+			for(Edge<Integer> edge: adjacent){
+				int opposite = edge.getOpposingVertex(i);
+				actual[opposite] = true;
+				nConnectingEdge++;
+			}
+			
+			assertArrayEquals(expected,actual);
+
+			System.out.println(adjacent.size()+" "+(nVert-1));
+			assertTrue(nConnectingEdge==nVert-1);
+		}
 	}
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 
 	// The edge weights are determined by source - sink.
-	protected static SimpleAdjacencyListGraph<Integer> createCompleteGraph(int nVertices){
+	protected static SimpleAdjacencyListGraph<Integer> completeSimpleIntegerGraph(int nVertices){
 		SimpleAdjacencyListGraph<Integer > graph = new SimpleAdjacencyListGraph<Integer >();
 		for (int i = 0; i < nVertices ; i++) {
 			graph.addVertex(i);
 		}
 		for (int i = 0; i < nVertices ; i++) {
-			for (int j = 0; j < nVertices ; j++) {
+			for (int j = i; j < nVertices ; j++) {
 				if(i!=j) {
 					graph.addEdge(i,j);
 				}

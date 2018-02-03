@@ -319,7 +319,6 @@ public class SimpleAdjacencyListDiGraphTest {
 				}
 			}
 		}
-		assertTrue(graph.getVertices().size()==edgeSize);
 	}
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 

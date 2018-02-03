@@ -13,7 +13,7 @@ import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
 
 /**
  * 
- * @author Matthew
+ * @author Matthew D Jeffreys 
  *
  * @param <G> Type of Graph
  * @param <V> Type of Vertex

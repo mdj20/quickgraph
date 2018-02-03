@@ -105,8 +105,6 @@ public class WeightedPathFinderTest {
 		Character source = TestGraphData.TestGraph1.getVerticies()[2];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
 		Path<Character, WeightedDirectionalEdge<Character, Integer>> path = pf.breadthFirstPath(source, sink);
-		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.breadthFirstEdgeList(source, sink);
-		assertTrue(path.getEdgeList().size() == edgeList.size());
 		assertTrue(traceEdgeList(path.getEdgeList(),source,sink));
 	}
 	
