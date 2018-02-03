@@ -74,22 +74,40 @@ public class WeightedPathFinderTest {
 		Character source = TestGraphData.TestGraph1.getVerticies()[2];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
 		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.depthFirstEdgeList(source, sink);
-		
+		//int sourceIndex = edgeList.get(0).indexOf(source);
+		assertTrue(traceEdgeList(edgeList,source,sink));
 	}
 
 	@Test
 	public void testBreadthFirstEdgeList() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		Character source = TestGraphData.TestGraph1.getVerticies()[2];
+		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
+		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.breadthFirstEdgeList(source, sink);
+		assertTrue(traceEdgeList(edgeList,source,sink));
 	}
 
 	@Test
 	public void testDepthFirstPath() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		Character source = TestGraphData.TestGraph1.getVerticies()[2];
+		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
+		Path<Character, WeightedDirectionalEdge<Character, Integer>> edgeList = pf.depthFirstPath(source, sink);
+		assertTrue(traceEdgeList(edgeList.getEdgeList(),source,sink));
 	}
 
 	@Test
 	public void testBreadthFirstPath() {
-		fail("Not yet implemented");
+		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		Character source = TestGraphData.TestGraph1.getVerticies()[2];
+		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
+		Path<Character, WeightedDirectionalEdge<Character, Integer>> path = pf.breadthFirstPath(source, sink);
+		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.breadthFirstEdgeList(source, sink);
+		assertTrue(path.getEdgeList().size() == edgeList.size());
+		assertTrue(traceEdgeList(path.getEdgeList(),source,sink));
 	}
 	
 	private <V,E extends Edge<V>> boolean testWeightedPathEquality(Path<V,E> A, Path<V,E> B){
@@ -129,6 +147,29 @@ public class WeightedPathFinderTest {
 		int ret = 0;
 		for(E e: path.getEdgeList()){
 			ret += e.getWeight().intValue();
+		}
+		return ret;
+	}
+	
+	private <E extends Edge<V>,V> boolean traceEdgeList(List<E> list, V source, V sink){
+		boolean ret = true;
+		
+		if( list.size() == 0 ){
+			ret = false;
+		}
+		if ( ret ){
+			int index = 0;
+			E first = list.get(0);
+			E last = list.get(list.size()-1);
+			V temp = first.getOpposingVertex(source);
+			while ( !temp.equals(sink) && index != list.size()-1) {
+				index++;
+				first = list.get(index);
+				temp  = first.getOpposingVertex(temp);
+			}
+			if(temp.equals(sink)){
+				ret = true;
+			}
 		}
 		return ret;
 	}

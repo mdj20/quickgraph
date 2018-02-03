@@ -44,7 +44,7 @@ extends AbstractPathFinder<WeightedGraph<V,E,W>, V, E> {
 		return ret;
 	}
 	
-	// bellmanford double
+	// bellman-ford double
 	public Path<V,E> bellmanFordDoublePath(V source, V sink){
 		Path<V,E> ret = null;
 		List<E> edgeList = BellmanFord.findShortestPathDouble(super.getGraph(), source, sink);
@@ -59,7 +59,7 @@ extends AbstractPathFinder<WeightedGraph<V,E,W>, V, E> {
 	}
 	
 	
-	// dikstras int 
+	// Dijkstra's int 
 	public Path<V,E> dikstrasIntPath(V source, V sink){
 		Path<V,E> ret = null;
 		List<E> edgeList = Dikstras.findShortestPathInt(super.getGraph(), source, sink);
@@ -73,7 +73,7 @@ extends AbstractPathFinder<WeightedGraph<V,E,W>, V, E> {
 		return ret;
 	}
 	
-	// dikstras double
+	// Dijkstra's double
 	public Path<V,E> dikstrasDoublePath(V source, V sink){
 		Path<V,E> ret = null;
 		List<E> edgeList = Dikstras.findShortestPathDouble(super.getGraph(), source, sink);

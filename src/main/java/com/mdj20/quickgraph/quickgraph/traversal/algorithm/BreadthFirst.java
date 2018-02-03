@@ -1,6 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.traversal.algorithm;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -49,6 +50,7 @@ public class BreadthFirst {
 			
 			if(!notFound) { // if sink was found.
 				ret = buildPathFromMeta(metaMap,source,sink);
+				Collections.reverse(ret);
 			}
 			
 		}
@@ -64,12 +66,13 @@ public class BreadthFirst {
 		if(!forward.equals(source)){
 			E currentEdge = current.edge;
 			V back = current.edge.getOpposingVertex(forward);
+			buildList.addLast(currentEdge);
 			while(!back.equals(source)){
-				buildList.addLast(currentEdge);
 				current = metaMap.get(back);
 				currentEdge = current.edge;
 				forward = current.vertex;
 				back = current.edge.getOpposingVertex(forward);
+				buildList.addLast(currentEdge);
 			}
 			ret.addAll(buildList);
 		}
@@ -78,22 +81,11 @@ public class BreadthFirst {
 	
 	// smoke test
 	public static void main(String args[]){
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
+		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
 		Random rando = new Random(System.nanoTime());
-		for(int i = 0 ; i < 25000 ; i++){
-			WeightedAdjacencyListDiGraph<Character,Integer> rGraph = FastGraphBuilder.buildRandomWeightedDiGraph(25, 45, 1, 15);
-			Character source = null, sink = null;
-			ArrayList<Character> verts =  new ArrayList<Character>(rGraph.getVertices());
-			while(source == null || sink == null || source.equals(sink)){
-				source = verts.get(rando.nextInt(25));
-				sink = verts.get(rando.nextInt(25));
-			}
-			List<WeightedDirectionalEdge<Character,Integer>> edgeList = breadthFirstSearch(rGraph,source,sink);
-			System.out.println("GRAPH :"+source+" -> "+sink+"\nEdge: "+edgeList.size());
-			for(WeightedDirectionalEdge<Character,Integer> wde: edgeList){
-				System.out.println(wde.getSource()+" "+wde.getSink());
-			}
-			System.out.println();
+		List<WeightedDirectionalEdge<Character, Integer>> edgeList = breadthFirstSearch(graph,'A','C');
+		for(WeightedDirectionalEdge<Character,Integer> edge : edgeList){
+			System.out.println(edge.getSource()+" "+edge.getSink());
 		}
 	}
 }

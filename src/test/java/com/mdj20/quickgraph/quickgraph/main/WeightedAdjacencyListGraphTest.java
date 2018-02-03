@@ -277,7 +277,6 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testIsWeighted() {
-
 		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
 		assertTrue(graph.isWeighted());
 	}
