@@ -73,8 +73,9 @@ public class SimpleAdjacencyListGraphTest {
 		int nVert = 10;
 		int removedEdgeVertex = nVert-1;
 		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
-		Set<Edge<Integer>> removed = graph.getConnectingEdges(removedEdgeVertex);
-		for(Edge<Integer> e: removed){
+		Set<Edge<Integer>> removedEdges = graph.getConnectingEdges(removedEdgeVertex);
+		
+		for(Edge<Integer> e: new ArrayList<Edge<Integer>>(removedEdges)){
 			graph.removeEdge(e);
 		}
 		for(int i = 0 ; i < nVert ; i++) {
@@ -86,14 +87,11 @@ public class SimpleAdjacencyListGraphTest {
 				Arrays.fill(expected, true);
 				expected[i] = false;
 				expected[removedEdgeVertex] = false;
-				int nConnectingEdge = 0;
 				for(Edge<Integer> edge: adjacent){
 					int opposite = edge.getOpposingVertex(i);
 					actual[opposite] = true;
-					nConnectingEdge++;
 				}
-				assertArrayEquals(expected,actual);
-				assertTrue(nConnectingEdge==nVert-1);
+				assertArrayEquals(expected,actual);	
 			}
 		}
 
@@ -155,15 +153,43 @@ public class SimpleAdjacencyListGraphTest {
 			}
 			
 			assertArrayEquals(expected,actual);
-
-			System.out.println(adjacent.size()+" "+(nVert-1));
 			assertTrue(nConnectingEdge==nVert-1);
 		}
 	}
 
 	@Test
 	public void testAddEdgeVV() {
-		fail("Not yet implemented");
+		int nVert = 5;
+		int nEdge = nVert;
+		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
+		ArrayList<Integer> sources = new ArrayList<Integer>();
+		ArrayList<Integer> sinks = new ArrayList<Integer>();
+		for(int i = 0 ; i < nVert ; i++){
+			graph.addVertex(i);
+		}
+		int j = nVert/2;
+		for(int i = 0 ; i < nVert;i++){
+			j = (j==nVert) ? j%nVert : j ;
+			sources.add(i);
+			sinks.add(j);
+			graph.addEdge(i,j);
+		}
+		ArrayList<Edge<Integer>> edges = new ArrayList<Edge<Integer>>(graph.getEdges());
+		boolean[] actual = new boolean[nEdge];
+		boolean[] expected = new boolean[nEdge];
+		Arrays.fill(actual, false);
+		Arrays.fill(expected, true);
+		for(int i = 0 ; i < edges.size() ; i++){
+			int source = edges.get(i).getVertex(0);
+			int sink = edges.get(i).getOpposingVertex(source);
+			for( j = 0 ; j < sources.size() ; j++ ){
+				if(sources.get(j).equals(source) && sinks.get(j).equals(sink)){
+					actual[i] = true;
+				}
+			}
+		}
+		assertTrue(nEdge==edges.size());
+		assertArrayEquals(actual,expected);	
 	}
 
 	// Note: getOutgoingVertices()  returns the same values as  testGetAdjacentVertices in a non directed graph
