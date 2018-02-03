@@ -11,6 +11,7 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
@@ -68,9 +69,12 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testDepthFirstEdgeList() {
-		WeightedAdjacencyListGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
-		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
-		WeightedPathFinder<Character,WeightedEdge<Character,Integer>,Integer> pf2 = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		Character source = TestGraphData.TestGraph1.getVerticies()[2];
+		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
+		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.depthFirstEdgeList(source, sink);
+		
 	}
 
 	@Test
