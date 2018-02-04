@@ -15,7 +15,7 @@ import com.mdj20.quickgraph.quickgraph.main.DefaultWeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 
-public class WeightedAdjacencyListDiGraphTest {
+public class WeightedAdjListDiGraphTest {
 
 	@Test
 	public void testAddEdgeVVW() {

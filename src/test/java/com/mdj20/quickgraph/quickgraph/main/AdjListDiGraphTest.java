@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class SimpleAdjacencyListDiGraphTest {
+public class AdjListDiGraphTest {
 
 	@Test
 	public void testCreateEdgeVV() {

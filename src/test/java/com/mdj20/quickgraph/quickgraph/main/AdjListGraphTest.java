@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import com.mdj20.quickgraph.quickgraph.main.AdjListGraph;
 
-public class SimpleAdjacencyListGraphTest {
+public class AdjListGraphTest {
 	
 	AdjListGraph<Integer> testGraph;
 	ArrayList<Integer> testValues;

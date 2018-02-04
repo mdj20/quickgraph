@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SimpleDirectionalEdgeTest extends SimpleEdgeTest {
+public class DefaultDirectedlEdgeTest extends DefaultEdgeTest {
 
 	@Test
 	public void testGetSource() {

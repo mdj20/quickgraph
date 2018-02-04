@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SimpleWeightedEdgeTest extends SimpleEdgeTest {
+public class SimpleWeightedEdgeTest extends DefaultEdgeTest {
 
 	@Test
 	public void testGetWeight() {

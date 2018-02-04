@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class SimpleEdgeTest {
+public class DefaultEdgeTest {
 
 	@Test
 	public void testGetVertices() {

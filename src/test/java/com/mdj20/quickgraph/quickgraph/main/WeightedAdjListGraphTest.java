@@ -17,7 +17,7 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
-public class WeightedAdjacencyListGraphTest {
+public class WeightedAdjListGraphTest {
 
 
 
