@@ -1,6 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.traversal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
@@ -25,7 +26,8 @@ public abstract class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 	protected AbstractPath(V source, V sink, List<E> edgeList ) {
 		this.source = source;
 		this.sink = sink;
-		this.edgeList = edgeList;
+		this.edgeList = Collections.unmodifiableList(edgeList);
+		vertexList =  Collections.unmodifiableList(inferVertexList());
 	}
 
 	@Override
@@ -47,6 +49,11 @@ public abstract class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 	public V getVertexAt(int i) {
 		return vertexList.get(i);
 	}
+	
+	@Override 
+	public int getNumVertices(){
+		return vertexList.size();
+	}
 
 	protected List<V> inferVertexList(){
 		ArrayList<V> list = new ArrayList<V>();
@@ -57,8 +64,7 @@ public abstract class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 			temp = e.getOpposingVertex(temp);
 		}
 		if(!list.get(0).equals(source)  || list.get(list.size()-1).equals(sink)){
-			// throw exception depending on caller requirements determined in the future.  
-			list = null;
+			throw new IllegalStateException("Unable to infer vertex list");
 		}
 		return list;
 	}

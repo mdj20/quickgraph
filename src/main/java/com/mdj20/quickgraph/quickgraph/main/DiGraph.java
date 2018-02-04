@@ -2,7 +2,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 import java.util.Set;
 
 /**
- * 	Directed graph 
+ * 	A directed graph.
  * 
  * @author Matthew D. Jeffreys
  *
