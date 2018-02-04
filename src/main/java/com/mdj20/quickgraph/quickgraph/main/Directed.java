@@ -8,7 +8,7 @@ package com.mdj20.quickgraph.quickgraph.main;
  */
 
 
-public interface Directional<V> {
+public interface Directed<V> {
 	/**
 	 * returns object V designated as source.
 	 * @return source

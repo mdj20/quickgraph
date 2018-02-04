@@ -11,13 +11,13 @@ import java.util.Set;
  * @param <E> Edge type
  */
 
-public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V>> extends AbstractAdjacencyListGraph<V,E> implements DiGraph<V,E> {
+public abstract class AbstractAdjListDiGraph<V,E extends DirectedEdge<V>> extends AbstractAdjListGraph<V,E> implements DiGraph<V,E> {
 
-	AbstractAdjacencyListDiGraph() {
+	AbstractAdjListDiGraph() {
 		super(GraphType.DIRECTED);
 	}
 	
-	AbstractAdjacencyListDiGraph(GraphParameters parameters){
+	AbstractAdjListDiGraph(GraphParameters parameters){
 		super(parameters);
 	}
 
@@ -69,7 +69,7 @@ public abstract class AbstractAdjacencyListDiGraph<V,E extends DirectionalEdge<V
 	public Set<V> getIncomingVertices(V vertex) {
 		HashSet<V> ret = new HashSet<V>();
 		if( graph.containsKey(vertex) ) {
-			for(DirectionalEdge<V> d: edges){
+			for(DirectedEdge<V> d: edges){
 				if(vertex.equals(d.getSink())) {
 					ret.add(d.getSource());
 				}

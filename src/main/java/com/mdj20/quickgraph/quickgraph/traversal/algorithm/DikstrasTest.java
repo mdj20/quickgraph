@@ -9,8 +9,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 
 public class DikstrasTest {
@@ -31,7 +31,7 @@ public class DikstrasTest {
 		for(int i = 0 ; i < nTestIterations ; i ++ ) {
 			
 			// create random graph, and pull a source and a sink for pathfinding searches
-			WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
+			WeightedAdjListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
 			ArrayList<Character> vertices = new ArrayList<Character>(graph.getVertices());
 			sourceIndex = rando.nextInt(vertices.size());
 			sinkIndex = rando.nextInt(vertices.size());
@@ -44,8 +44,8 @@ public class DikstrasTest {
 			sink = vertices.get(sinkIndex);
 			
 			// find paths
-			List<WeightedDirectionalEdge<Character,Integer>> dEdges = Dikstras.findShortestPathInt(graph, source, sink);
-			List<WeightedDirectionalEdge<Character,Integer>> bmEdges = BellmanFord.findShortestPathInt(graph, source, sink);
+			List<WeightedDirectedEdge<Character,Integer>> dEdges = Dikstras.findShortestPathInt(graph, source, sink);
+			List<WeightedDirectedEdge<Character,Integer>> bmEdges = BellmanFord.findShortestPathInt(graph, source, sink);
 			
 			// tests results
 			boolean exactMatch = checkEdgeListEquality(dEdges,bmEdges); // checks for and exact match
@@ -70,7 +70,7 @@ public class DikstrasTest {
 		for(int i = 0 ; i < nTestIterations ; i ++ ) {
 			
 			// create random graph, and pull a source and a sink for pathfinding searches
-			WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
+			WeightedAdjListDiGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedDiGraph(nVerts, nEdges, lowerBoundWeight, upperBoundWeight);
 			ArrayList<Character> vertices = new ArrayList<Character>(graph.getVertices());
 			sourceIndex = rando.nextInt(vertices.size());
 			sinkIndex = rando.nextInt(vertices.size());
@@ -83,8 +83,8 @@ public class DikstrasTest {
 			sink = vertices.get(sinkIndex);
 			
 			// find paths
-			List<WeightedDirectionalEdge<Character,Integer>> dEdges = Dikstras.findShortestPathDouble(graph, source, sink);
-			List<WeightedDirectionalEdge<Character,Integer>> bmEdges = BellmanFord.findShortestPathDouble(graph, source, sink);
+			List<WeightedDirectedEdge<Character,Integer>> dEdges = Dikstras.findShortestPathDouble(graph, source, sink);
+			List<WeightedDirectedEdge<Character,Integer>> bmEdges = BellmanFord.findShortestPathDouble(graph, source, sink);
 			
 			// tests results
 			boolean exactMatch = checkEdgeListEquality(dEdges,bmEdges); // checks for and exact match
@@ -98,7 +98,7 @@ public class DikstrasTest {
 	}
 	
 	// tests for List<WeightedDirectedEdge<Character,Integer>> equality returns true if equal
-	private boolean checkEdgeListEquality(List<WeightedDirectionalEdge<Character, Integer>> A, List<WeightedDirectionalEdge<Character, Integer>> B) {
+	private boolean checkEdgeListEquality(List<WeightedDirectedEdge<Character, Integer>> A, List<WeightedDirectedEdge<Character, Integer>> B) {
 		boolean ret = true;
 		if(A.size()!=B.size()) {
 			return false;
@@ -115,12 +115,12 @@ public class DikstrasTest {
 	
 	
 	// tests for edgeList integer sum equivalence  returns true if sums are equal.
-	private boolean checkEdgeListWeightIntTotal(List<WeightedDirectionalEdge<Character, Integer>> A, List<WeightedDirectionalEdge<Character, Integer>> B) {
+	private boolean checkEdgeListWeightIntTotal(List<WeightedDirectedEdge<Character, Integer>> A, List<WeightedDirectedEdge<Character, Integer>> B) {
 		int sumA = 0, sumB = 0;
-		for(WeightedDirectionalEdge<Character, Integer> wde: A) {
+		for(WeightedDirectedEdge<Character, Integer> wde: A) {
 			sumA += wde.getWeight();
 		}
-		for(WeightedDirectionalEdge<Character, Integer> wde: B) {
+		for(WeightedDirectedEdge<Character, Integer> wde: B) {
 			sumB += wde.getWeight();
 		}
 		return sumA == sumB;

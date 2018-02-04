@@ -14,20 +14,20 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testCreateEdgeVV() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = new SimpleAdjacencyListDiGraph<Integer>();
+		AdjListDiGraph<Integer> graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			graph.addVertex(i);
 		}
 		for(int i = 0 ; i < (nVert/2); i++) {
 			graph.addEdge(i, (nVert-1)-i);
 		}
-		Set<DirectionalEdge<Integer>> edgeSet = graph.getEdges();
+		Set<DirectedEdge<Integer>> edgeSet = graph.getEdges();
 		assertTrue(edgeSet.size()==nVert/2); // check number of edges
 		for(int i = 0 ; i < nVert/2 ; i++) {
 			if(i<nVert/2) {
-				Set<DirectionalEdge<Integer>> vertEdge = graph.getConnectingEdges(i);
+				Set<DirectedEdge<Integer>> vertEdge = graph.getConnectingEdges(i);
 				assertTrue(vertEdge.size()==1);  // check each vert has the right amount of edges.
-				DirectionalEdge<Integer> edge = vertEdge.iterator().next();
+				DirectedEdge<Integer> edge = vertEdge.iterator().next();
 				assertTrue((edge.getSource()==i)&&edge.getSink()==((nVert-1)-i));  // check that the edges are correct.
 			}
 		}
@@ -36,19 +36,19 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testAddEdgeE() {
 		int nVert = 10;
-		ArrayList<DirectionalEdge<Integer>> edgeList = new ArrayList<DirectionalEdge<Integer>>();
-		SimpleAdjacencyListDiGraph<Integer> graph = new SimpleAdjacencyListDiGraph<Integer>();
+		ArrayList<DirectedEdge<Integer>> edgeList = new ArrayList<DirectedEdge<Integer>>();
+		AdjListDiGraph<Integer> graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			graph.addVertex(i);
 		}
 		for(int i = 0 ; i < nVert/2; i++) {
 			edgeList.add(graph.createEdge(i, (nVert-1)-i));
 		}
-		for(DirectionalEdge<Integer> e: edgeList) {
+		for(DirectedEdge<Integer> e: edgeList) {
 			graph.addEdge(e);
 		}
-		Set<DirectionalEdge<Integer>> edgeSet = graph.getEdges();
-		for(DirectionalEdge<Integer> e: edgeList) {
+		Set<DirectedEdge<Integer>> edgeSet = graph.getEdges();
+		for(DirectedEdge<Integer> e: edgeList) {
 			assertTrue(edgeSet.contains(e));
 		}
 	}
@@ -57,7 +57,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	public void testRemoveVertex() {
 		int nVert = 10;
 		int removedVertex = nVert-1;
-		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		AdjListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		graph.removeVertex(removedVertex);
 		assertTrue(!graph.getVertices().contains(nVert-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVert-1 ; i++) {
@@ -70,15 +70,15 @@ public class SimpleAdjacencyListDiGraphTest {
 	public void testRemoveEdge() {
 		int nVert = 10;
 		int nRemovedEdges = 3;
-		ArrayList<DirectionalEdge<Integer>> removed = new ArrayList<DirectionalEdge<Integer>>();
-		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
-		ArrayList<DirectionalEdge<Integer>> edgeList = new ArrayList<DirectionalEdge<Integer>>(graph.getEdges());
+		ArrayList<DirectedEdge<Integer>> removed = new ArrayList<DirectedEdge<Integer>>();
+		AdjListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		ArrayList<DirectedEdge<Integer>> edgeList = new ArrayList<DirectedEdge<Integer>>(graph.getEdges());
 		for(int i = 0 ; i < nRemovedEdges ; i++){
 			removed.add(edgeList.get(i));
 			graph.removeEdge(edgeList.get(i));
 		}
 		
-		for(DirectionalEdge<Integer> edge: removed){
+		for(DirectedEdge<Integer> edge: removed){
 			assertTrue(!graph.getEdges().contains(edge));  // check if edge is removed from graph edgeList
 			assertTrue(!graph.getIncomingEdges(edge.getSink()).contains(edge)); // check if edge is removed from incoming edges via edge.sink.
 			assertTrue(!graph.getOutgoingEdges(edge.getSource()).contains(edge)); // check if edge is removed from outgoing edge via edge.source.
@@ -89,11 +89,11 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testGetConnectingEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		AdjListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		HashMap<Integer,ArrayList<Integer>> endPointMap = completeGraphEndpointMap(nVert);
 		for(int i = 0 ; i < nVert ; i++) {
-			Set<DirectionalEdge<Integer>> adjacent = graph.getConnectingEdges(i);
-			for(DirectionalEdge<Integer> edge : adjacent) {
+			Set<DirectedEdge<Integer>> adjacent = graph.getConnectingEdges(i);
+			for(DirectedEdge<Integer> edge : adjacent) {
 				if(edge.getSource().equals(i)){
 					assertTrue(endPointMap.get(i).contains(edge.getSink()));  // check if edge is outgoing
 				}
@@ -113,7 +113,7 @@ public class SimpleAdjacencyListDiGraphTest {
 
 		ArrayList<Integer> source = new ArrayList<Integer>();
 		ArrayList<Integer> sink = new ArrayList<Integer>();
-		SimpleAdjacencyListDiGraph<Integer> graph = new SimpleAdjacencyListDiGraph<Integer>();
+		AdjListDiGraph<Integer> graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			if(i < nVert/2) {
 				source.add(i);
@@ -140,7 +140,7 @@ public class SimpleAdjacencyListDiGraphTest {
 
 		ArrayList<Integer> source = new ArrayList<Integer>();
 		ArrayList<Integer> sink = new ArrayList<Integer>();
-		SimpleAdjacencyListDiGraph<Integer> graph = new SimpleAdjacencyListDiGraph<Integer>();
+		AdjListDiGraph<Integer> graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			if(i < nVert/2) {
 				source.add(i);
@@ -167,7 +167,7 @@ public class SimpleAdjacencyListDiGraphTest {
 
 		ArrayList<Integer> source = new ArrayList<Integer>();
 		ArrayList<Integer> sink = new ArrayList<Integer>();
-		SimpleAdjacencyListDiGraph<Integer> graph = new SimpleAdjacencyListDiGraph<Integer>();
+		AdjListDiGraph<Integer> graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			if(i < nVert/2) {
 				source.add(i);
@@ -182,7 +182,7 @@ public class SimpleAdjacencyListDiGraphTest {
 		}
 		
 		for(int  i = 0 ; i < nVert/2 ; i++) {
-			ArrayList<DirectionalEdge<Integer>> edgeList = new ArrayList<DirectionalEdge<Integer>>(graph.getOutgoingEdges(i));
+			ArrayList<DirectedEdge<Integer>> edgeList = new ArrayList<DirectedEdge<Integer>>(graph.getOutgoingEdges(i));
 			assertTrue(edgeList.size()==1); // check the right about of edges 
 			assertTrue(edgeList.get(0).getSink()==sink.get(i)); // check that the edge was formed correctly and 
 			
@@ -195,7 +195,7 @@ public class SimpleAdjacencyListDiGraphTest {
 
 		ArrayList<Integer> source = new ArrayList<Integer>();
 		ArrayList<Integer> sink = new ArrayList<Integer>();
-		SimpleAdjacencyListDiGraph<Integer> graph = new SimpleAdjacencyListDiGraph<Integer>();
+		AdjListDiGraph<Integer> graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			if(i < nVert/2) {
 				source.add(i);
@@ -211,7 +211,7 @@ public class SimpleAdjacencyListDiGraphTest {
 		}
 		
 		for(int  i = 0 ; i < nVert/2 ; i++) {
-			ArrayList<DirectionalEdge<Integer>> edgeList = new ArrayList<DirectionalEdge<Integer>>(graph.getOutgoingEdges(i));
+			ArrayList<DirectedEdge<Integer>> edgeList = new ArrayList<DirectedEdge<Integer>>(graph.getOutgoingEdges(i));
 			assertTrue(edgeList.size()==1); // check the right about of edges 
 			assertTrue(edgeList.get(0).getSink()==sink.get(i)); // check that the edge was formed correctly and 
 		}
@@ -221,7 +221,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	public void testAddVertex() {
 		int nVert = 10;
 		int nVertUpper = 20; 
-		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		AdjListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		for(int i = 0 ; i < nVertUpper ; i++) {
 			graph.addVertex(i);
 		}
@@ -235,7 +235,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testGetVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		AdjListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		Set<Integer> vert = graph.getVertices();
 		assertTrue(vert.size()==nVert);
 		for(int i = 0 ; i < nVert ; i++) {
@@ -248,12 +248,12 @@ public class SimpleAdjacencyListDiGraphTest {
 		int nVerts = 5;
 		int nEdges = completeNEdges(nVerts);
 		HashMap<Integer,ArrayList<Integer>> connectedMap = completeGraphEndpointMap(nVerts);
-		SimpleAdjacencyListDiGraph<Integer> testGraph = createCompleteGraph(nVerts);
+		AdjListDiGraph<Integer> testGraph = createCompleteGraph(nVerts);
 		System.out.println(testGraph.getEdges().size()+" "+nEdges);
 		assertTrue(testGraph.getEdges().size()==nEdges);
-		ArrayList<DirectionalEdge<Integer>> edges 
-			= new ArrayList<DirectionalEdge<Integer>>(testGraph.getEdges());
-		for(DirectionalEdge<Integer> edge : edges){
+		ArrayList<DirectedEdge<Integer>> edges 
+			= new ArrayList<DirectedEdge<Integer>>(testGraph.getEdges());
+		for(DirectedEdge<Integer> edge : edges){
 			ArrayList<Integer> tempSink = connectedMap.get(edge.getSource());
 			if(tempSink.contains(edge.getSink())){
 				assertTrue(tempSink.contains(edge.getSink()));
@@ -268,7 +268,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testGetAdjacentVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListDiGraph<Integer> graph = createCompleteGraph(nVert);
+		AdjListDiGraph<Integer> graph = createCompleteGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getAdjacentVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -286,7 +286,7 @@ public class SimpleAdjacencyListDiGraphTest {
 	@Test
 	public void testAddEdgeVV() {
 		int nVert = 5;
-		SimpleAdjacencyListDiGraph<Integer > graph = new SimpleAdjacencyListDiGraph<Integer>();
+		AdjListDiGraph<Integer > graph = new AdjListDiGraph<Integer>();
 		for(int i = 0 ; i < nVert ; i++){
 			graph.addVertex(i);
 		}
@@ -298,10 +298,10 @@ public class SimpleAdjacencyListDiGraphTest {
 			}
 		}
 		HashMap<Integer,ArrayList<Integer>> connectedMap =  completeGraphEndpointMap(nVert);
-		Set<DirectionalEdge<Integer>> edges = graph.getEdges();
+		Set<DirectedEdge<Integer>> edges = graph.getEdges();
 		int edgeSize = edges.size();
 		assertTrue(graph.getEdges().size()==completeNEdges(nVert));
-		for(DirectionalEdge<Integer> edge : edges){
+		for(DirectedEdge<Integer> edge : edges){
 			ArrayList<Integer> tempSink = connectedMap.get(edge.getSource());
 			if(tempSink.contains(edge.getSink())){
 				assertTrue(tempSink.contains(edge.getSink()));
@@ -323,8 +323,8 @@ public class SimpleAdjacencyListDiGraphTest {
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 
 	// The edge weights are determined by source - sink.
-	protected static SimpleAdjacencyListDiGraph<Integer> createCompleteGraph(int nVertices){
-		SimpleAdjacencyListDiGraph<Integer > graph = new SimpleAdjacencyListDiGraph<Integer >();
+	protected static AdjListDiGraph<Integer> createCompleteGraph(int nVertices){
+		AdjListDiGraph<Integer > graph = new AdjListDiGraph<Integer >();
 		for (int i = 0; i < nVertices ; i++) {
 			graph.addVertex(i);
 		}

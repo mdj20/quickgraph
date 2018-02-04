@@ -10,8 +10,8 @@ import java.util.Random;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
@@ -81,10 +81,10 @@ public class BreadthFirst {
 	
 	// smoke test
 	public static void main(String args[]){
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedAdjListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
 		Random rando = new Random(System.nanoTime());
-		List<WeightedDirectionalEdge<Character, Integer>> edgeList = breadthFirstSearch(graph,'A','C');
-		for(WeightedDirectionalEdge<Character,Integer> edge : edgeList){
+		List<WeightedDirectedEdge<Character, Integer>> edgeList = breadthFirstSearch(graph,'A','C');
+		for(WeightedDirectedEdge<Character,Integer> edge : edgeList){
 			System.out.println(edge.getSource()+" "+edge.getSink());
 		}
 	}

@@ -9,8 +9,8 @@ import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
@@ -76,19 +76,19 @@ public class DepthFirst {
 	
 	public static void main(String args[]){
 		// smoke test
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
+		WeightedAdjListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
 		Random rando = new Random(System.nanoTime());
 		for(int i = 0 ; i < 25000 ; i++){
-			WeightedAdjacencyListDiGraph<Character,Integer> rGraph = FastGraphBuilder.buildRandomWeightedDiGraph(25, 45, 1, 15);
+			WeightedAdjListDiGraph<Character,Integer> rGraph = FastGraphBuilder.buildRandomWeightedDiGraph(25, 45, 1, 15);
 			Character source = null, sink = null;
 			ArrayList<Character> verts =  new ArrayList<Character>(rGraph.getVertices());
 			while(source == null || sink == null || source.equals(sink)){
 				source = verts.get(rando.nextInt(25));
 				sink = verts.get(rando.nextInt(25));
 			}
-			List<WeightedDirectionalEdge<Character,Integer>> edgeList = depthFirstSearch(rGraph,source,sink);
+			List<WeightedDirectedEdge<Character,Integer>> edgeList = depthFirstSearch(rGraph,source,sink);
 			System.out.println("GRAPH :"+source+" -> "+sink+"\nEdge: "+edgeList.size());
-			for(WeightedDirectionalEdge<Character,Integer> wde: edgeList){
+			for(WeightedDirectedEdge<Character,Integer> wde: edgeList){
 				System.out.println(wde.getSource()+" "+wde.getSink());
 			}
 			System.out.println();

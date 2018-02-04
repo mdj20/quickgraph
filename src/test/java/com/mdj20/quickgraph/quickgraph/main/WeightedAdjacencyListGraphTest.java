@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
@@ -30,7 +30,7 @@ public class WeightedAdjacencyListGraphTest {
 		ArrayList<Character> sourceList = new ArrayList<Character>();
 		ArrayList<Character> sinkList = new ArrayList<Character>();
 		ArrayList<Integer> weightList = new ArrayList<Integer>();
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(10, 0, 0, 0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(10, 0, 0, 0);
 		ArrayList<Character> verts = new ArrayList<Character>(graph.getVertices());
 		Character source = null , sink = null;
 		int weight=0;
@@ -69,7 +69,7 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testAddVertex() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
+		WeightedAdjListGraph<Character,Integer> graph = new WeightedAdjListGraph<Character,Integer>(); 
 		HashSet<Character> refrence = new HashSet<Character>();
 		Random rando = new Random(System.nanoTime());
 		int nVerts = 15;
@@ -97,7 +97,7 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testRemoveVertex() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		Set<Character> verts = graph.getVertices();
 		Character removed = verts.iterator().next();
 		graph.removeVertex(removed);
@@ -113,7 +113,7 @@ public class WeightedAdjacencyListGraphTest {
 	@Test
 	public void testRemoveEdge() {
 		int nEdgesRemoved = 5;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		Set<WeightedEdge<Character,Integer>> edges = graph.getEdges();
 		ArrayList<WeightedEdge<Character,Integer>> removedList = new ArrayList<WeightedEdge<Character,Integer>>();
 		Iterator<WeightedEdge<Character,Integer>> itr = edges.iterator();
@@ -138,7 +138,7 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testGetVertices() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		for(Character c : TestGraphData.TestGraph0.getVerticies()) {
 			assertTrue(graph.getVertices().contains(c));
 		}
@@ -147,7 +147,7 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testGetEdges() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		Character source[] = TestGraphData.TestGraph0.getSource();
 		Character sink[] = TestGraphData.TestGraph0.getSink();
 		Integer weight[] = TestGraphData.TestGraph0.getWeights();
@@ -165,7 +165,7 @@ public class WeightedAdjacencyListGraphTest {
 		int nEdge = 35;
 		int lowerW = 1;
 		int upperW = 15;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
 		HashMap<Character,HashSet<Character>> map = new HashMap<Character,HashSet<Character>>();
 		for(Character c: graph.getVertices()) {
 			map.put(c, new HashSet<Character>(graph.getAdjacentVertices(c)));
@@ -184,7 +184,7 @@ public class WeightedAdjacencyListGraphTest {
 		int nEdge = 35;
 		int lowerW = 1;
 		int upperW = 15;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
 		HashMap<Character,HashSet<WeightedEdge<Character,Integer>>> map = new HashMap<Character,HashSet<WeightedEdge<Character,Integer>>>();
 		for(Character c: graph.getVertices()) {
 			map.put(c, new HashSet<WeightedEdge<Character,Integer>>(graph.getConnectingEdges(c)));
@@ -205,7 +205,7 @@ public class WeightedAdjacencyListGraphTest {
 		int nEdge = 35;
 		int lowerW = 1;
 		int upperW = 15;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
 		HashMap<Character,HashSet<Character>> map = new HashMap<Character,HashSet<Character>>();
 		for(Character c: graph.getVertices()) {
 			map.put(c, new HashSet<Character>(graph.getOutgoingVertices(c)));
@@ -224,7 +224,7 @@ public class WeightedAdjacencyListGraphTest {
 		int nEdge = 35;
 		int lowerW = 1;
 		int upperW = 15;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
 		HashMap<Character,HashSet<Character>> map = new HashMap<Character,HashSet<Character>>();
 		for(Character c: graph.getVertices()) {
 			map.put(c, new HashSet<Character>(graph.getIncomingVertices(c)));
@@ -243,7 +243,7 @@ public class WeightedAdjacencyListGraphTest {
 		int nEdge = 35;
 		int lowerW = 1;
 		int upperW = 15;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
 		HashMap<Character,HashSet<WeightedEdge<Character,Integer>>> map = new HashMap<Character,HashSet<WeightedEdge<Character,Integer>>>();
 		for(Character c: graph.getVertices()) {
 			map.put(c, new HashSet<WeightedEdge<Character,Integer>>(graph.getOutgoingEdges(c)));
@@ -262,7 +262,7 @@ public class WeightedAdjacencyListGraphTest {
 		int nEdge = 35;
 		int lowerW = 1;
 		int upperW = 15;
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.buildRandomWeightedGraph(nVert, nEdge, lowerW, upperW);
 		HashMap<Character,HashSet<WeightedEdge<Character,Integer>>> map = new HashMap<Character,HashSet<WeightedEdge<Character,Integer>>>();
 		for(Character c: graph.getVertices()) {
 			map.put(c, new HashSet<WeightedEdge<Character,Integer>>(graph.getIncomingEdges(c)));
@@ -277,13 +277,13 @@ public class WeightedAdjacencyListGraphTest {
 
 	@Test
 	public void testIsWeighted() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
+		WeightedAdjListGraph<Character,Integer> graph = new WeightedAdjListGraph<Character,Integer>(); 
 		assertTrue(graph.isWeighted());
 	}
 
 	@Test
 	public void testIsDirected() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>(); 
+		WeightedAdjListGraph<Character,Integer> graph = new WeightedAdjListGraph<Character,Integer>(); 
 		assertTrue(! graph.isDirected());
 	}
 

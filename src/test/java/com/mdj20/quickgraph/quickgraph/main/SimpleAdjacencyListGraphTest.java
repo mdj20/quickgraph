@@ -10,16 +10,16 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mdj20.quickgraph.quickgraph.main.SimpleAdjacencyListGraph;
+import com.mdj20.quickgraph.quickgraph.main.AdjListGraph;
 
 public class SimpleAdjacencyListGraphTest {
 	
-	SimpleAdjacencyListGraph<Integer> testGraph;
+	AdjListGraph<Integer> testGraph;
 	ArrayList<Integer> testValues;
 	int nTestValues = 500;
 	int nTestEdges = 100;
 	@Before public void initialize() {
-	      testGraph = new SimpleAdjacencyListGraph<Integer>();
+	      testGraph = new AdjListGraph<Integer>();
 	      testValues = new ArrayList<Integer> ();
 	      for(int i = 0 ; i < nTestValues ; i++) {
 	    	  testValues.add(i);
@@ -28,7 +28,7 @@ public class SimpleAdjacencyListGraphTest {
 
 	@Test
 	public void testAddVertex() {
-		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
+		AdjListGraph<Integer> graph = new AdjListGraph<Integer>();
 		graph.addVertex(testValues.get(0));
 		assertTrue(graph.getVertices().contains(0));
 		assertTrue(graph.getVertices().size()==1);
@@ -38,7 +38,7 @@ public class SimpleAdjacencyListGraphTest {
 	public void testAddEdgeE() {
 		int nVert = 10;
 		ArrayList<Edge<Integer>> edgeList = new ArrayList<Edge<Integer>>();
-		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
+		AdjListGraph<Integer> graph = new AdjListGraph<Integer>();
 		for(int i = 0 ; i < nVert; i++) {
 			graph.addVertex(i);
 		}
@@ -59,7 +59,7 @@ public class SimpleAdjacencyListGraphTest {
 	public void testRemoveVertex() {
 		int nVert = 10;
 		int removedVertex = nVert-1;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		graph.removeVertex(removedVertex);
 		assertTrue(!graph.getVertices().contains(nVert-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVert-1 ; i++) {
@@ -72,7 +72,7 @@ public class SimpleAdjacencyListGraphTest {
 	public void testRemoveEdge() {
 		int nVert = 10;
 		int removedEdgeVertex = nVert-1;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		Set<Edge<Integer>> removedEdges = graph.getConnectingEdges(removedEdgeVertex);
 		
 		for(Edge<Integer> e: new ArrayList<Edge<Integer>>(removedEdges)){
@@ -100,7 +100,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		Set<Integer> verts = graph.getVertices();
 		assertTrue(verts.size()==nVert);
 		for(int i = 0 ; i< nVert ; i++) {
@@ -111,7 +111,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		Set<Edge<Integer>> edeeList = graph.getEdges();
 		
 	}
@@ -119,7 +119,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetAdjacentVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getAdjacentVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -137,7 +137,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetConnectingEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Edge<Integer>> adjacent = graph.getConnectingEdges(i);
 			boolean[] actual = new boolean[nVert];
@@ -161,7 +161,7 @@ public class SimpleAdjacencyListGraphTest {
 	public void testAddEdgeVV() {
 		int nVert = 5;
 		int nEdge = nVert;
-		SimpleAdjacencyListGraph<Integer> graph = new SimpleAdjacencyListGraph<Integer>();
+		AdjListGraph<Integer> graph = new AdjListGraph<Integer>();
 		ArrayList<Integer> sources = new ArrayList<Integer>();
 		ArrayList<Integer> sinks = new ArrayList<Integer>();
 		for(int i = 0 ; i < nVert ; i++){
@@ -196,7 +196,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetOutgoingVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getOutgoingVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -215,7 +215,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetIncomingVertices() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Integer> adjacent = graph.getIncomingVertices(i);
 			for(int j = 0 ; j < nVert ; j++) {
@@ -233,7 +233,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetOutgoingEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Edge<Integer>> adjacent = graph.getOutgoingEdges(i);
 			boolean[] actual = new boolean[nVert];
@@ -258,7 +258,7 @@ public class SimpleAdjacencyListGraphTest {
 	@Test
 	public void testGetIncomingEdges() {
 		int nVert = 10;
-		SimpleAdjacencyListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
+		AdjListGraph<Integer> graph = completeSimpleIntegerGraph(nVert);
 		for(int i = 0 ; i < 10 ; i++) {
 			Set<Edge<Integer>> adjacent = graph.getIncomingEdges(i);
 			boolean[] actual = new boolean[nVert];
@@ -282,8 +282,8 @@ public class SimpleAdjacencyListGraphTest {
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 
 	// The edge weights are determined by source - sink.
-	protected static SimpleAdjacencyListGraph<Integer> completeSimpleIntegerGraph(int nVertices){
-		SimpleAdjacencyListGraph<Integer > graph = new SimpleAdjacencyListGraph<Integer >();
+	protected static AdjListGraph<Integer> completeSimpleIntegerGraph(int nVertices){
+		AdjListGraph<Integer > graph = new AdjListGraph<Integer >();
 		for (int i = 0; i < nVertices ; i++) {
 			graph.addVertex(i);
 		}

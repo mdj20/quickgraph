@@ -7,9 +7,9 @@ import java.util.List;
 import org.junit.Test;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
@@ -19,7 +19,7 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testBellmanFordIntPath() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		Character source = TestGraphData.TestGraph0.getVerticies()[0];
 		Character sink = TestGraphData.TestGraph0.getVerticies()[2];
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
@@ -31,7 +31,7 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testBellmanFordDoublePath() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph0);
 		Character source = TestGraphData.TestGraph0.getVerticies()[0];
 		Character sink = TestGraphData.TestGraph0.getVerticies()[2];
 		WeightedPathFinder<Character, WeightedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(graph);
@@ -43,7 +43,7 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testDikstrasIntPath() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
 		Character source = TestGraphData.TestGraph1.getVerticies()[0];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[2];
 		
@@ -56,7 +56,7 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testDikstrasDoublePath() {
-		WeightedAdjacencyListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
+		WeightedAdjListGraph<Character,Integer> graph = FastGraphBuilder.getWeightedGraph(TestGraphData.TestGraph1);
 		Character source = TestGraphData.TestGraph1.getVerticies()[0];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[2];
 		
@@ -69,42 +69,42 @@ public class WeightedPathFinderTest {
 
 	@Test
 	public void testDepthFirstEdgeList() {
-		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		WeightedAdjListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
 		Character source = TestGraphData.TestGraph1.getVerticies()[2];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
-		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.depthFirstEdgeList(source, sink);
+		List<WeightedDirectedEdge<Character,Integer>> edgeList = pf.depthFirstEdgeList(source, sink);
 		//int sourceIndex = edgeList.get(0).indexOf(source);
 		assertTrue(traceEdgeList(edgeList,source,sink));
 	}
 
 	@Test
 	public void testBreadthFirstEdgeList() {
-		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		WeightedAdjListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
 		Character source = TestGraphData.TestGraph1.getVerticies()[2];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
-		List<WeightedDirectionalEdge<Character,Integer>> edgeList = pf.breadthFirstEdgeList(source, sink);
+		List<WeightedDirectedEdge<Character,Integer>> edgeList = pf.breadthFirstEdgeList(source, sink);
 		assertTrue(traceEdgeList(edgeList,source,sink));
 	}
 
 	@Test
 	public void testDepthFirstPath() {
-		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		WeightedAdjListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
 		Character source = TestGraphData.TestGraph1.getVerticies()[2];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
-		Path<Character, WeightedDirectionalEdge<Character, Integer>> edgeList = pf.depthFirstPath(source, sink);
+		Path<Character, WeightedDirectedEdge<Character, Integer>> edgeList = pf.depthFirstPath(source, sink);
 		assertTrue(traceEdgeList(edgeList.getEdgeList(),source,sink));
 	}
 
 	@Test
 	public void testBreadthFirstPath() {
-		WeightedAdjacencyListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		WeightedPathFinder<Character, WeightedDirectionalEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
+		WeightedAdjListDiGraph<Character,Integer> testGraph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
+		WeightedPathFinder<Character, WeightedDirectedEdge<Character, Integer>, Integer>  pf = WeightedPathFinder.getWeightedPathFinder(testGraph);
 		Character source = TestGraphData.TestGraph1.getVerticies()[2];
 		Character sink = TestGraphData.TestGraph1.getVerticies()[0];
-		Path<Character, WeightedDirectionalEdge<Character, Integer>> path = pf.breadthFirstPath(source, sink);
+		Path<Character, WeightedDirectedEdge<Character, Integer>> path = pf.breadthFirstPath(source, sink);
 		assertTrue(traceEdgeList(path.getEdgeList(),source,sink));
 	}
 	
