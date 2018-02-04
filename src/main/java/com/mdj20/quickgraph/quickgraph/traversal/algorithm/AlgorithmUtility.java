@@ -3,6 +3,13 @@ package com.mdj20.quickgraph.quickgraph.traversal.algorithm;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 
+
+/** Contains a series of static utility methods used in graph traversal algorithms.
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ */
+
 public class AlgorithmUtility {
 	
 	/** Determines whether any of a weighted graph's edges are negative. 

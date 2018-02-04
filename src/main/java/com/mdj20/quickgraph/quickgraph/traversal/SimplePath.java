@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 
-
 /**
  * @author Matthew D. Jeffreys
+ *
+ * @param <V> Vertex Type 
+ * @param <E> Edge Type
  */
 
 
