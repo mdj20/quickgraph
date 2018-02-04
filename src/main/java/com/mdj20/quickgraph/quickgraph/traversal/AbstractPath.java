@@ -63,7 +63,7 @@ public abstract class AbstractPath<V, E extends Edge<V>> implements Path<V,E>{
 			list.add(e.getOpposingVertex(temp));
 			temp = e.getOpposingVertex(temp);
 		}
-		if(!list.get(0).equals(source)  || list.get(list.size()-1).equals(sink)){
+		if(!list.get(0).equals(source)  || ! list.get(list.size()-1).equals(sink)){
 			throw new IllegalStateException("Unable to infer vertex list");
 		}
 		return list;

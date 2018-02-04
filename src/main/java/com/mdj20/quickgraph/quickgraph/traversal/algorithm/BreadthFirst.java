@@ -15,7 +15,24 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
+/** Contains static methods related to the breadth first search algorithm.
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ */
+
 public class BreadthFirst {
+	
+	
+	/** Finds a path between two vertices via a breadth first search algorithm. Returns null if there is a path isn't found. 
+	 * 
+	 * @param graph the graph to be traversed 
+	 * @param source the source vertex
+	 * @param sink the target vertex
+	 * @return list of edges, an aggregation representing a path from the source to the sink/target vertex.
+	 */
+	
+	
 	public static <V,E extends Edge<V>> List<E> breadthFirstSearch(Graph<V,E> graph, V source, V sink){
 		
 		ArrayList<E> ret = new ArrayList<E>();
@@ -77,15 +94,5 @@ public class BreadthFirst {
 			ret.addAll(buildList);
 		}
 		return ret;
-	}
-	
-	// smoke test
-	public static void main(String args[]){
-		WeightedAdjListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph1);
-		Random rando = new Random(System.nanoTime());
-		List<WeightedDirectedEdge<Character, Integer>> edgeList = breadthFirstSearch(graph,'A','C');
-		for(WeightedDirectedEdge<Character,Integer> edge : edgeList){
-			System.out.println(edge.getSource()+" "+edge.getSink());
-		}
 	}
 }
