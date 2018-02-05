@@ -4,7 +4,6 @@ Created and developed by Matthew D. Jeffreys
 
 
 #### About:
-
 GraphLib is a free/MIT license Java library that provides lightweight implementations of various graphs. Graphs are implemented as simple abstract datatypes and can be modified and accessed without the use of builder/factory classes. 
 Vertices and weights c
 
