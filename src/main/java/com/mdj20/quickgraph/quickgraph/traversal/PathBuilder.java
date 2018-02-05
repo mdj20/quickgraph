@@ -6,9 +6,8 @@ import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
-import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
 
 /**
@@ -145,7 +144,7 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 
 	// Smoke test
 	public static void main() {
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
+		WeightedAdjListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph();
 		Dikstras.findShortestPathInt(graph, 'A', 'C');
 	}
 	

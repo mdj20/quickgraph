@@ -14,7 +14,7 @@ import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
 /**
- * Contains static methods related to the Bellman-Ford path/distance finding methods.
+ * Contains static methods related to the Bellman-Ford shortest path/distance finding algorithm.
  * 
  * @author Matthew D. Jeffreys
  *

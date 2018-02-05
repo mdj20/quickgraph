@@ -18,14 +18,14 @@ import java.util.Set;
 	 */
 
 
-public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements GraphParameters, Graph<V,E> {
+public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements GraphParameters, Graph<V,E> {
 	
 	protected HashMap<V, HashSet<E>> graph;
 	protected HashSet<E> edges;
 	protected HashSet<E> edgeNullObject;
 	protected GraphParameters graphParameters;
 	
-	protected AbstractAdjacencyListGraph(GraphParameters params){
+	protected AbstractAdjListGraph(GraphParameters params){
 		graphParameters = params;
 		graph = new HashMap<V,HashSet<E>>();
 		edges= new HashSet<E>();
@@ -115,9 +115,9 @@ public abstract class AbstractAdjacencyListGraph<V,E extends Edge<V>> implements
 
 	
 	/** 
-	 * Factory method must be overridden in any graph implementing class that inherits from AbstractAdjacencyListGraph.java
+	 * Factory method must be overridden in any graph implementing class that inherits from AbstractAdjListGraph.java
 	 * <p>
-	 * Method defines and constructs the type of edge connecting the edges within the graph. i.e. a directed graph would overide and return an Object of DirectionalEdge type.  
+	 * Method defines and constructs the type of edge connecting the edges within the graph. i.e. a directed graph would overide and return an Object of DirectedEdge type.  
 	 * @param vertex1 first connecting vertex
 	 * @param vertex2 second connecting vertex
 	 * @return E extends Edge

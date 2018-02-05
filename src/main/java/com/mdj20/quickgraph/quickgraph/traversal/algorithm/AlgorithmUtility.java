@@ -12,7 +12,7 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 
 public class AlgorithmUtility {
 	
-	/** Determines whether any of a weighted graph's edges are negative. 
+	/** Determines whether any of a weighted graph's edges have a negative. 
 	 * 
 	 * @param graph  
 	 * @return true if the graph has a negative edge

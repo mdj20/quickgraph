@@ -2,10 +2,10 @@ package com.mdj20.quickgraph.quickgraph.testutilities;
 
 import java.util.Random;
 
-import com.mdj20.quickgraph.quickgraph.main.SimpleAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.SimpleAdjacencyListGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
+import com.mdj20.quickgraph.quickgraph.main.AdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.AdjListGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListGraph;
 
 
 
@@ -16,31 +16,31 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListGraph;
 public class FastGraphBuilder {
 
 	
-	public static WeightedAdjacencyListDiGraph<Character,Integer> getWeightedDiGraph(){
+	public static WeightedAdjListDiGraph<Character,Integer> getWeightedDiGraph(){
 		return getWeightedDiGraph(TestGraphData.TestGraph0);
 	}
-	public static WeightedAdjacencyListGraph<Character,Integer> getWeightedGraph(){
+	public static WeightedAdjListGraph<Character,Integer> getWeightedGraph(){
 		return getWeightedGraph(TestGraphData.TestGraph0);
 	}
-	public static WeightedAdjacencyListDiGraph<Character,Integer> getWeightedDiGraph(TestGraphData testGraphData){
+	public static WeightedAdjListDiGraph<Character,Integer> getWeightedDiGraph(TestGraphData testGraphData){
 		return buildWeightedDiGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink(),testGraphData.getWeights());
 	}
-	public static WeightedAdjacencyListGraph<Character,Integer> getWeightedGraph(TestGraphData testGraphData){
+	public static WeightedAdjListGraph<Character,Integer> getWeightedGraph(TestGraphData testGraphData){
 		return buildWeightedGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink(),testGraphData.getWeights());
 	}
-	public static SimpleAdjacencyListDiGraph<Character> getSimpleDiGraph(TestGraphData testGraphData){
+	public static AdjListDiGraph<Character> getSimpleDiGraph(TestGraphData testGraphData){
 		return buildSimpleDiGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink());
 	}
-	public static SimpleAdjacencyListGraph<Character> getSimpleGraph(TestGraphData testGraphData){
+	public static AdjListGraph<Character> getSimpleGraph(TestGraphData testGraphData){
 		return buildSimpleGraph(testGraphData.getVerticies(),testGraphData.getSource(),testGraphData.getSink());
 	}
 	
 
-	public static <V,W extends Number & Comparable<W>> WeightedAdjacencyListDiGraph<V,W> buildWeightedDiGraph(V vertex[], V edgeS[], V edgeE[], W weights[]){
+	public static <V,W extends Number & Comparable<W>> WeightedAdjListDiGraph<V,W> buildWeightedDiGraph(V vertex[], V edgeS[], V edgeE[], W weights[]){
 		if(edgeS.length != edgeS.length && edgeS.length != weights.length) {
 			throw new IllegalArgumentException("Lengths of edge and weight arrays, must equal");
 		}
-		WeightedAdjacencyListDiGraph<V,W> graph = new WeightedAdjacencyListDiGraph<V,W>();
+		WeightedAdjListDiGraph<V,W> graph = new WeightedAdjListDiGraph<V,W>();
 		for(V c: vertex) {
 			graph.addVertex(c);
 		}
@@ -50,7 +50,7 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
-	public static WeightedAdjacencyListDiGraph<Character,Integer> buildRandomWeightedDiGraph(int v, int e, int lowerBoundWeight, int upperBoundWeight ){
+	public static WeightedAdjListDiGraph<Character,Integer> buildRandomWeightedDiGraph(int v, int e, int lowerBoundWeight, int upperBoundWeight ){
 		int range = 0,offset = 0;
 		if (lowerBoundWeight <= upperBoundWeight) {
 			range = upperBoundWeight-lowerBoundWeight;
@@ -61,7 +61,7 @@ public class FastGraphBuilder {
 			offset = upperBoundWeight;
 		}
 		
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = new WeightedAdjacencyListDiGraph<Character,Integer>();
+		WeightedAdjListDiGraph<Character,Integer> graph = new WeightedAdjListDiGraph<Character,Integer>();
 		Random rando = new Random(System.nanoTime());
 		for(int i = 0 ; i< v; i++ ) {
 			graph.addVertex(tc(i));
@@ -76,7 +76,7 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
-	public static WeightedAdjacencyListGraph<Character,Integer> buildRandomWeightedGraph(int numVetecies, int numEdges,  int lowerBoundWeight, int upperBoundWeight ) {
+	public static WeightedAdjListGraph<Character,Integer> buildRandomWeightedGraph(int numVetecies, int numEdges,  int lowerBoundWeight, int upperBoundWeight ) {
 		int range = 0,offset = 0;
 		if (lowerBoundWeight <= upperBoundWeight) {
 			range = upperBoundWeight-lowerBoundWeight;
@@ -87,7 +87,7 @@ public class FastGraphBuilder {
 			offset = upperBoundWeight;
 		}
 		
-		WeightedAdjacencyListGraph<Character,Integer> graph = new WeightedAdjacencyListGraph<Character,Integer>();
+		WeightedAdjListGraph<Character,Integer> graph = new WeightedAdjListGraph<Character,Integer>();
 		Random rando = new Random(System.nanoTime());
 		for(int i = 0 ; i< numVetecies; i++ ) {
 			graph.addVertex(tc(i));
@@ -102,8 +102,8 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
-	public static <V, W> WeightedAdjacencyListGraph<V,W> buildWeightedGraph(V vert[], V source[], V sink[], W weight[]){
-		WeightedAdjacencyListGraph<V,W> graph = new WeightedAdjacencyListGraph<V,W>();
+	public static <V, W> WeightedAdjListGraph<V,W> buildWeightedGraph(V vert[], V source[], V sink[], W weight[]){
+		WeightedAdjListGraph<V,W> graph = new WeightedAdjListGraph<V,W>();
 		for(V v:vert) {
 			graph.addVertex(v);
 		}
@@ -113,11 +113,11 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
-	public static <V> SimpleAdjacencyListGraph<V> buildSimpleGraph(V vert[], V source[], V sink[]){
+	public static <V> AdjListGraph<V> buildSimpleGraph(V vert[], V source[], V sink[]){
 		if(source.length != sink.length) {
 			throw new IllegalArgumentException("Lengths of souce and sink arrays must equal");
 		}
-		SimpleAdjacencyListGraph<V> graph = new SimpleAdjacencyListGraph<V>();
+		AdjListGraph<V> graph = new AdjListGraph<V>();
 		for(V v: vert) {
 			graph.addVertex(v);
 		}
@@ -126,11 +126,11 @@ public class FastGraphBuilder {
 		}
 		return graph;
 	}
-	public static <V> SimpleAdjacencyListDiGraph<V> buildSimpleDiGraph(V vert[], V source[], V sink[]){
+	public static <V> AdjListDiGraph<V> buildSimpleDiGraph(V vert[], V source[], V sink[]){
 		if(source.length != sink.length) {
 			throw new IllegalArgumentException("Lengths of souce and sink arrays must equal");
 		}
-		SimpleAdjacencyListDiGraph<V> graph = new SimpleAdjacencyListDiGraph<V>();
+		AdjListDiGraph<V> graph = new AdjListDiGraph<V>();
 		for(V v: vert) {
 			graph.addVertex(v);
 		}

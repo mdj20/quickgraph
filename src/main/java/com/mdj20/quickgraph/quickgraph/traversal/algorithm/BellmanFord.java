@@ -21,11 +21,13 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 
 public class BellmanFord {
 	
-	/** Finds the distances in Integers, to all vertices on map. 
+	/** Finds the distance to from the argument vertex to all vertices that are connected to the source vertex.
+	 *<p>
+	 * This will work for any type of weight that extends number. The algorithm will treat every weight as it's integer representation.
 	 * 
 	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
-	 * @param source Starting vertex
-	 * @return Map<V,Integer> vertex mapped to their respective distances
+	 * @param source Starting/source vertex
+	 * @return Map<V,Integer> vertices mapped to their respective distances
 	 */
 
 	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Integer> findDistancesInt(WeightedGraph<V,E,W> graph, V source){
@@ -56,7 +58,9 @@ public class BellmanFord {
 		return distanceMap;
 	}
 	
-	/** Finds the distances in Doubles, to all vertices on map. 
+	/** Finds the distance to from the argument vertex to all vertices that are connected to the source vertex.
+	 *<p>
+	 * The weight type in the graph must extend Number, The algorithm will treat every weight as it's double representation.
 	 * 
 	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting vertex
@@ -209,6 +213,8 @@ public class BellmanFord {
 		Collections.reverse(pathEdgeList);
 		return pathEdgeList;
 	}
+	
+	
 	
 	private static <V> void checkSS(V source, V sink){
 		if (source.equals(sink))

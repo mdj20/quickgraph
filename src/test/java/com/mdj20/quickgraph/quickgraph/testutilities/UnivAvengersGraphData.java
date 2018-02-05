@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-import com.mdj20.quickgraph.quickgraph.main.SimpleEdge;
+import com.mdj20.quickgraph.quickgraph.main.DefaultEdge;
 
 
 
@@ -42,7 +42,7 @@ public class UnivAvengersGraphData {
 		while((line=bReader.readLine())!=null) {
 			if(line.charAt(0)==edgeLinePrefix) {
 				String splitLine[] =line.split(" ");
-				edgeList.add(new SimpleEdge<Integer>(Integer.valueOf(splitLine[1]),Integer.valueOf(splitLine[2])));
+				edgeList.add(new DefaultEdge<Integer>(Integer.valueOf(splitLine[1]),Integer.valueOf(splitLine[2])));
 			}
 		}
 		return edgeList;

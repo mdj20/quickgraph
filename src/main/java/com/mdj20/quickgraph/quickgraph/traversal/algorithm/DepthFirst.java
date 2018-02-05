@@ -9,12 +9,26 @@ import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
+/** Contains static methods relating to the depth fist search algorithm.
+ *  
+ * @author Matthew D. Jeffreys
+ *
+ */
+
 public class DepthFirst {
+	
+	/**
+	 * 
+	 * @param graph the graph to be traversed
+	 * @param source the starting/ source vertex
+	 * @param sink the target/sink vertex
+	 * @return list of edges, an aggregation representing a path from the source to the sink/target vertex.
+	 */
 
 	public static <V,E extends Edge<V>> List<E> depthFirstSearch(Graph<V,E> graph, V source, V sink){
 		List<E> ret = new ArrayList<E>();
@@ -71,27 +85,5 @@ public class DepthFirst {
 			edgeList.add(pc.edge);
 		}
 		return edgeList;
-	}
-	
-	
-	public static void main(String args[]){
-		// smoke test
-		WeightedAdjacencyListDiGraph<Character,Integer> graph = FastGraphBuilder.getWeightedDiGraph(TestGraphData.TestGraph0);
-		Random rando = new Random(System.nanoTime());
-		for(int i = 0 ; i < 25000 ; i++){
-			WeightedAdjacencyListDiGraph<Character,Integer> rGraph = FastGraphBuilder.buildRandomWeightedDiGraph(25, 45, 1, 15);
-			Character source = null, sink = null;
-			ArrayList<Character> verts =  new ArrayList<Character>(rGraph.getVertices());
-			while(source == null || sink == null || source.equals(sink)){
-				source = verts.get(rando.nextInt(25));
-				sink = verts.get(rando.nextInt(25));
-			}
-			List<WeightedDirectionalEdge<Character,Integer>> edgeList = depthFirstSearch(rGraph,source,sink);
-			System.out.println("GRAPH :"+source+" -> "+sink+"\nEdge: "+edgeList.size());
-			for(WeightedDirectionalEdge<Character,Integer> wde: edgeList){
-				System.out.println(wde.getSource()+" "+wde.getSink());
-			}
-			System.out.println();
-		}
 	}
 }

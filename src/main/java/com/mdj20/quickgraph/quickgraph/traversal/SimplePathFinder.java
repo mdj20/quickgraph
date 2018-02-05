@@ -3,7 +3,7 @@ package com.mdj20.quickgraph.quickgraph.traversal;
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
+
 
 public class SimplePathFinder<V,E extends Edge<V>> extends AbstractPathFinder<Graph<V,E>, V, E> {
 

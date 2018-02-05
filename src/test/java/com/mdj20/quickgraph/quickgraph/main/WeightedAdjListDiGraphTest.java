@@ -10,23 +10,23 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.mdj20.quickgraph.quickgraph.main.DirectionalEdge;
-import com.mdj20.quickgraph.quickgraph.main.SimpleWeightedDirectionalEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedAdjacencyListDiGraph;
-import com.mdj20.quickgraph.quickgraph.main.WeightedDirectionalEdge;
+import com.mdj20.quickgraph.quickgraph.main.DirectedEdge;
+import com.mdj20.quickgraph.quickgraph.main.DefaultWeightedDirectedEdge;
+import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 
-public class WeightedAdjacencyListDiGraphTest {
+public class WeightedAdjListDiGraphTest {
 
 	@Test
 	public void testAddEdgeVVW() {
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = new WeightedAdjacencyListDiGraph<Integer,Integer>();
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = new WeightedAdjListDiGraph<Integer,Integer>();
 		testGraph.addVertex(0);  
 		testGraph.addVertex(1);
 		testGraph.addEdge(0,1,1);
-		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
-		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
-		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
-		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
+		Set<WeightedDirectedEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
+		Set<WeightedDirectedEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
+		Set<WeightedDirectedEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
+		ArrayList<WeightedDirectedEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
 		assertTrue(edgeSet.size()==1);  // check edges size == 0
 		assertTrue(edgeSetAdjacent0.contains(edgeList.get(0)));  // check vertex 0 
 		assertTrue(edgeSetAdjacent1.contains(edgeList.get(0))); // check vertex 1
@@ -34,14 +34,14 @@ public class WeightedAdjacencyListDiGraphTest {
 
 	@Test
 	public void testAddEdgeE() {
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = new WeightedAdjacencyListDiGraph<Integer,Integer>();
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = new WeightedAdjListDiGraph<Integer,Integer>();
 		testGraph.addVertex(0);  
 		testGraph.addVertex(1);
-		testGraph.addEdge(new SimpleWeightedDirectionalEdge<Integer,Integer>(0,1,1));
-		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
-		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
-		Set<WeightedDirectionalEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
-		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
+		testGraph.addEdge(new DefaultWeightedDirectedEdge<Integer,Integer>(0,1,1));
+		Set<WeightedDirectedEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
+		Set<WeightedDirectedEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
+		Set<WeightedDirectedEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
+		ArrayList<WeightedDirectedEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
 		assertTrue(edgeSet.size()==1);  // check edges size == 0
 		assertTrue(edgeSetAdjacent0.contains(edgeList.get(0)));  // check vertex 0 
 		assertTrue(edgeSetAdjacent1.contains(edgeList.get(0))); // check vertex 1
@@ -49,8 +49,8 @@ public class WeightedAdjacencyListDiGraphTest {
 
 	@Test
 	public void testRemoveEdge() {
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(4);
-		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(4);
+		ArrayList<WeightedDirectedEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
 		assertTrue(testGraph.getEdges().contains(edgeList.get(0)));
 		testGraph.removeEdge(edgeList.get(0));
 		assertTrue(!testGraph.getEdges().contains(edgeList.get(0)));
@@ -58,12 +58,12 @@ public class WeightedAdjacencyListDiGraphTest {
 
 	@Test
 	public void testGetOutgoingVertices() {
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(4);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(4);
 		Set<Integer> expected = new HashSet<Integer>();
 		expected.add(1);
 		expected.add(2);
 		expected.add(3);
-		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
+		ArrayList<WeightedDirectedEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
 		Set<Integer> verts0 = testGraph.getOutgoingVertices(0);
 		for(Integer i: expected) {
 			assertTrue(verts0.contains(i));
@@ -73,12 +73,12 @@ public class WeightedAdjacencyListDiGraphTest {
 
 	@Test
 	public void testGetIncomingVertices() {
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(4);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(4);
 		Set<Integer> expected = new HashSet<Integer>();
 		expected.add(1);
 		expected.add(2);
 		expected.add(3);
-		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
+		ArrayList<WeightedDirectedEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
 		Set<Integer> verts0 = testGraph.getIncomingVertices(0);
 		for(Integer i: expected) {
 			assertTrue(verts0.contains(i));
@@ -89,11 +89,11 @@ public class WeightedAdjacencyListDiGraphTest {
 	@Test
 	public void testGetOutgoingEdges() {
 		int nVerts = 4;
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
-		Set<WeightedDirectionalEdge<Integer,Integer>> outgoing0 = testGraph.getOutgoingEdges(0);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		Set<WeightedDirectedEdge<Integer,Integer>> outgoing0 = testGraph.getOutgoingEdges(0);
 		for(int i = 0 ; i<nVerts;i++) {
 			assertTrue(testGraph.getOutgoingEdges(i).size()==nVerts-1); // checks size of edges
-			for(WeightedDirectionalEdge<Integer,Integer> wde: testGraph.getOutgoingEdges(i)) {
+			for(WeightedDirectedEdge<Integer,Integer> wde: testGraph.getOutgoingEdges(i)) {
 				assertTrue(i-wde.getSink() == wde.getWeight()); // checks weight	
 				assertTrue(i == wde.getSource());
 			}
@@ -103,11 +103,11 @@ public class WeightedAdjacencyListDiGraphTest {
 	@Test
 	public void testGetIncomingEdges() {
 		int nVerts = 4;
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
-		Set<WeightedDirectionalEdge<Integer,Integer>> incoming0 = testGraph.getIncomingEdges(0);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		Set<WeightedDirectedEdge<Integer,Integer>> incoming0 = testGraph.getIncomingEdges(0);
 		for(int i = 0 ; i<nVerts;i++) {
 			assertTrue(testGraph.getIncomingEdges(i).size()==nVerts-1); // checks size of edges
-			for(WeightedDirectionalEdge<Integer,Integer> wde: testGraph.getIncomingEdges(i)) {
+			for(WeightedDirectedEdge<Integer,Integer> wde: testGraph.getIncomingEdges(i)) {
 				assertTrue(wde.getSource()-i == wde.getWeight()); // checks weight	
 				assertTrue(i == wde.getSink());  // checks edge endpoint
 			}
@@ -116,7 +116,7 @@ public class WeightedAdjacencyListDiGraphTest {
 
 	@Test
 	public void testAddVertex() {
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = new WeightedAdjacencyListDiGraph<Integer,Integer>();
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = new WeightedAdjListDiGraph<Integer,Integer>();
 		int n = 100;
 		Random rando = new Random(System.nanoTime());
 		Set<Integer> expected = new HashSet<Integer>();
@@ -135,7 +135,7 @@ public class WeightedAdjacencyListDiGraphTest {
 	public void testRemoveVertex() {
 		int nVerts = 4;
 		int removedVertex = nVerts-1;
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
 		testGraph.removeVertex(nVerts-1);
 		assertTrue(!testGraph.getVertices().contains(nVerts-1)); // test if vertex is removed...
 		for(int i = 0 ; i <nVerts-1 ; i++) {
@@ -143,8 +143,8 @@ public class WeightedAdjacencyListDiGraphTest {
 		
 			assertTrue(!neighbors.contains(removedVertex));
 		}
-		Set<WeightedDirectionalEdge<Integer, Integer>> edgeList = testGraph.getEdges();
-		for(DirectionalEdge<Integer> de: edgeList){
+		Set<WeightedDirectedEdge<Integer, Integer>> edgeList = testGraph.getEdges();
+		for(DirectedEdge<Integer> de: edgeList){
 			assertTrue(!(de.getSource().equals(nVerts-1)||de.getSink().equals(nVerts-1)));
 		}
 	}
@@ -152,7 +152,7 @@ public class WeightedAdjacencyListDiGraphTest {
 	@Test
 	public void testGetVertices() {
 		int nVerts = 10;
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
 		Set<Integer> vertices = testGraph.getVertices();
 		assertTrue(vertices.size()==nVerts);
 		for(int i = 0 ; i < nVerts;i++){
@@ -165,12 +165,12 @@ public class WeightedAdjacencyListDiGraphTest {
 		int nVerts = 5;
 		int nEdges = staturatedNEdges(nVerts);
 		HashMap<Integer,ArrayList<Integer>> connectedMap = saturatedGraphEndpointMap(nVerts);
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
 		System.out.println(testGraph.getEdges().size()+" "+nEdges);
 		assertTrue(testGraph.getEdges().size()==nEdges);
-		ArrayList<WeightedDirectionalEdge<Integer,Integer>> edges 
-			= new ArrayList<WeightedDirectionalEdge<Integer,Integer>>(testGraph.getEdges());
-		for(WeightedDirectionalEdge<Integer,Integer> edge : edges){
+		ArrayList<WeightedDirectedEdge<Integer,Integer>> edges 
+			= new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
+		for(WeightedDirectedEdge<Integer,Integer> edge : edges){
 			ArrayList<Integer> tempSink = connectedMap.get(edge.getSource());
 			if(tempSink.contains(edge.getSink())){
 				assertTrue(tempSink.contains(edge.getSink()));
@@ -185,7 +185,7 @@ public class WeightedAdjacencyListDiGraphTest {
 	@Test
 	public void testGetAdjacentVertices() {
 		int nVerts = 5;
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
 		for(int i = 0 ; i < nVerts; i++){
 			Set<Integer> adjVerts = testGraph.getAdjacentVertices(i);
 			for(int j = 0 ; j < nVerts; j++){
@@ -202,10 +202,10 @@ public class WeightedAdjacencyListDiGraphTest {
 	@Test
 	public void testGetConnectingEdges() {
 		int nVerts = 5;
-		WeightedAdjacencyListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
+		WeightedAdjListDiGraph<Integer,Integer> testGraph = createSaturatedGraph(nVerts);
 		for(int i = 0 ; i < nVerts; i++){
-			Set<WeightedDirectionalEdge<Integer, Integer>> connEdge = testGraph.getConnectingEdges(i);
-			for(WeightedDirectionalEdge<Integer, Integer> wde: connEdge){
+			Set<WeightedDirectedEdge<Integer, Integer>> connEdge = testGraph.getConnectingEdges(i);
+			for(WeightedDirectedEdge<Integer, Integer> wde: connEdge){
 				if(wde.getSource().equals(i)){
 					assertTrue(wde.getWeight()==i-wde.getSink());
 				}
@@ -222,8 +222,8 @@ public class WeightedAdjacencyListDiGraphTest {
 	
 	// Utility method that creates a saturated test graph according to a specified number of vertices. 
 	// The edge weights are determined by source - sink.
-	protected static WeightedAdjacencyListDiGraph<Integer,Integer> createSaturatedGraph(int nVertices){
-		WeightedAdjacencyListDiGraph<Integer,Integer> graph = new WeightedAdjacencyListDiGraph<Integer,Integer>();
+	protected static WeightedAdjListDiGraph<Integer,Integer> createSaturatedGraph(int nVertices){
+		WeightedAdjListDiGraph<Integer,Integer> graph = new WeightedAdjListDiGraph<Integer,Integer>();
 		for (int i = 0; i < nVertices ; i++) {
 			graph.addVertex(i);
 		}
