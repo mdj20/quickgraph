@@ -11,7 +11,7 @@ import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
  * 
  * @author Matthew D. Jeffreys
  *
- * @param <G> Graph type.
+ * @param <G> BaseGraph type.
  * @param <E> Edge type.
  * @param <V> Vertex type.
  * @param <W> Weight type extends Number & Comparable<W>

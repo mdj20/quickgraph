@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-import com.mdj20.quickgraph.quickgraph.main.Graph;
+import com.mdj20.quickgraph.quickgraph.main.BaseGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
@@ -14,7 +14,7 @@ import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
  * 
  * @author Matthew D Jeffreys 
  *
- * @param <G> Type of Graph
+ * @param <G> Type of BaseGraph
  * @param <V> Type of Vertex
  * @param <E> Type of Edge
  */
@@ -23,7 +23,7 @@ import com.mdj20.quickgraph.quickgraph.traversal.algorithm.Dikstras;
 	 * Constructs Path Objects, with verification 
 	 */
 
-public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
+public class PathBuilder<G extends BaseGraph<V,E>,V,E extends Edge<V>> {
 	
 	protected List<E> edgeList;
 	protected G graph;
@@ -138,7 +138,7 @@ public class PathBuilder<G extends Graph<V,E>,V,E extends Edge<V>> {
 	
 	
 	
-	public static <G extends Graph<V,E>,V,E extends Edge<V>> PathBuilder<G,V,E> getPathBuilder(G graph, V source){
+	public static <G extends BaseGraph<V,E>,V,E extends Edge<V>> PathBuilder<G,V,E> getPathBuilder(G graph, V source){
 		return new PathBuilder<G,V,E>(graph,source);
 	}
 

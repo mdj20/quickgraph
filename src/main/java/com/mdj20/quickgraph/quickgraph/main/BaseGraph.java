@@ -9,11 +9,12 @@ import java.util.Set;
  * @param <E> Type of edge must extend Edge<V>
  */
 
-public interface Graph<V,E extends Edge<V>> {
+public interface BaseGraph<V,E extends Edge<V>> {
 	/**
 	 * Adds vertex V to set of vertices.
 	 * 
 	 *  @param vertex Object to be added
+	 *  @return true on success.
 	 */
 	public boolean addVertex(V vertex);
 	

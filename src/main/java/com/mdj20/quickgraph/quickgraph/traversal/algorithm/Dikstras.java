@@ -41,7 +41,7 @@ public class Dikstras{
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
-			throw new IllegalArgumentException("Graph must contain both source and sink");
+			throw new IllegalArgumentException("BaseGraph must contain both source and sink");
 		}
 		
 		PriorityQueue<WeightedPathChain<V,E,W,Integer>> pq = new PriorityQueue<WeightedPathChain<V,E,W,Integer>>(); 
@@ -100,7 +100,7 @@ public class Dikstras{
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
-			throw new IllegalArgumentException("Graph must contain both source and sink");
+			throw new IllegalArgumentException("BaseGraph must contain both source and sink");
 		}
 		
 		PriorityQueue<WeightedPathChain<V,E,W,Double>> pq = new PriorityQueue<WeightedPathChain<V,E,W,Double>>(); 

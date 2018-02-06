@@ -9,7 +9,7 @@ import java.util.Set;
  * @param <V> Vertex type.
  */
 
-public class AdjListDiGraph<V> extends AbstractAdjListDiGraph<V,DirectedEdge<V>> implements DiGraph<V,DirectedEdge<V>> {
+public class AdjListDiGraph<V> extends AbstractAdjListDiGraph<V,DirectedEdge<V>> implements UserDiGraph<V>, DiGraph<V,DirectedEdge<V>> {
 
 	public AdjListDiGraph(){
 		super(GraphType.DIRECTED);

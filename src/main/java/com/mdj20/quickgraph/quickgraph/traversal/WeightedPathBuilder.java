@@ -8,7 +8,7 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
  * 
  * @author Matthew D. Jeffreys
  *
- * @param <G> Graph type.
+ * @param <G> BaseGraph type.
  * @param <V> Vertex type.
  * @param <E> Edge type.
  * @param <W> Weight type.

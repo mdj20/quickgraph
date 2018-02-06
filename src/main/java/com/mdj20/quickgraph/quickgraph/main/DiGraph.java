@@ -10,7 +10,7 @@ import java.util.Set;
  * @param <E> Edge Type extends DirectedEdge<V>
  */
 
-public interface DiGraph<V,E extends DirectedEdge<V>> extends Graph<V,E> {
+public interface DiGraph<V,E extends DirectedEdge<V>> extends BaseGraph<V,E> {
 	public Set<V> getOutgoingVertices(V vertex);
 	public Set<V> getIncomingVertices(V vertex);
 	public Set<E> getOutgoingEdges(V vertex);

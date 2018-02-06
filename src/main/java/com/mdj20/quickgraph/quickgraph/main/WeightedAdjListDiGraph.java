@@ -9,7 +9,7 @@ package com.mdj20.quickgraph.quickgraph.main;
  */
 
 public class WeightedAdjListDiGraph<V, W> extends AbstractAdjListDiGraph<V,WeightedDirectedEdge<V,W>> 
-	implements DiGraph<V,WeightedDirectedEdge<V,W>>, WeightedGraph<V,WeightedDirectedEdge<V,W>,W> {
+	implements UserWeightedDiGraph<V,W>, DiGraph<V,WeightedDirectedEdge<V,W>>, WeightedGraph<V,WeightedDirectedEdge<V,W>,W> {
 
 	@Override
 	public WeightedDirectedEdge<V, W> createEdge(V vertex1, V vertex2) {

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-import com.mdj20.quickgraph.quickgraph.main.Graph;
+import com.mdj20.quickgraph.quickgraph.main.BaseGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
@@ -33,7 +33,7 @@ public class BreadthFirst {
 	 */
 	
 	
-	public static <V,E extends Edge<V>> List<E> breadthFirstSearch(Graph<V,E> graph, V source, V sink){
+	public static <V,E extends Edge<V>> List<E> breadthFirstSearch(BaseGraph<V,E> graph, V source, V sink){
 		
 		ArrayList<E> ret = new ArrayList<E>();
 		LinkedList<SimplePathChain<V,E,?>> fifo = new LinkedList<SimplePathChain<V,E,?>>();

@@ -11,7 +11,7 @@ package com.mdj20.quickgraph.quickgraph.main;
  */
 
 
-public interface WeightedGraph<V,E extends WeightedEdge<V,W>, W> extends Graph<V,E> {
+public interface WeightedGraph<V, E extends WeightedEdge<V,W>, W> extends BaseGraph<V,E> {
 
 	/**
 	 * Creates and adds edge with the weight specified by weight.

@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-import com.mdj20.quickgraph.quickgraph.main.Graph;
+import com.mdj20.quickgraph.quickgraph.main.BaseGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
@@ -30,7 +30,7 @@ public class DepthFirst {
 	 * @return list of edges, an aggregation representing a path from the source to the sink/target vertex.
 	 */
 
-	public static <V,E extends Edge<V>> List<E> depthFirstSearch(Graph<V,E> graph, V source, V sink){
+	public static <V,E extends Edge<V>> List<E> depthFirstSearch(BaseGraph<V,E> graph, V source, V sink){
 		List<E> ret = new ArrayList<E>();
 		if(graph.getVertices().contains(source)&&graph.getVertices().contains(sink)) {
 			LinkedList<SimplePathChain<V,E,?>> pathChain = new LinkedList<SimplePathChain<V,E,?>>();
@@ -48,7 +48,7 @@ public class DepthFirst {
 	
 	
 	private static <V,E extends Edge<V>> boolean 
-	DepthFirstRecursive(Graph<V,E> graph, V source, V sink, LinkedList<SimplePathChain<V,E,?>> pathChain, HashSet<V> checked ) {
+	DepthFirstRecursive(BaseGraph<V,E> graph, V source, V sink, LinkedList<SimplePathChain<V,E,?>> pathChain, HashSet<V> checked ) {
 		boolean ret = false;
 		if(pathChain.peekLast()!=null) {
 			V current =  pathChain.peekLast().vertex;
