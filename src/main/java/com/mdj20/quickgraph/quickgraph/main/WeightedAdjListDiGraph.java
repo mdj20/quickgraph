@@ -1,6 +1,6 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
-/** Concreate Implementation of a directed and weighted graph
+/** Concrete implementation of a directed and weighted graph
  * 
  * @author Matthew D. Jeffreys
  *
