@@ -31,7 +31,7 @@ public interface BaseGraph<V,E extends Edge<V>> {
 	 * @param vertex1 first vertex of the created edge.
 	 * @param vertex2 second vertex of the created edge. 
 	 */
-	public boolean addEdge(V vertex1, V vertex2);
+	public E addEdge(V vertex1, V vertex2);
 	
 	/** 
 	 * Removes vertex and and connecting edges associated with vertex, from the graph.

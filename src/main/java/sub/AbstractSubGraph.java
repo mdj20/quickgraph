@@ -44,16 +44,26 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 
 	@Override
 	public boolean addEdge(E edge) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean ret = false;
+		if(  ! subEdge.contains(edge) ) {
+			if(! parentGraph.getEdges().contains(edge) ) {
+				ret = parentGraph.addEdge(edge);
+			}	
+			if( ret ) {
+				subEdge.add(edge);
+			}
+		}
+		return ret;
 	}
 
-	// this is going to be a problem... how to determine weather to add an edge to a list or not...
-	
 	@Override
-	public boolean addEdge(V vertex1, V vertex2) {
-		// TODO Auto-generated method stub
-		return false;
+	public E addEdge(V vertex1, V vertex2) {
+		E ret = null;
+		ret = parentGraph.addEdge(vertex1,vertex2);
+		if(ret!=null) {
+			subEdge.add(ret);
+		}
+		return ret;
 	}
 
 	@Override
@@ -67,8 +77,12 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 
 	@Override
 	public void removeEdge(E edge) {
-		// TODO Auto-generated method stub
-		
+		if(subEdge.contains(edge)) {
+		   if(parentGraph.getEdges().contains(edge)) {
+			   parentGraph.removeEdge(edge);
+			   subEdge.remove(edge);
+		   } 
+		}
 	}
 
 	@Override
@@ -143,6 +157,8 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 	}
 	
 	
+	
+	// takes a set of vertices and removes any that aren't in subVetex.
 	protected Set<V> trimVert(Set<V> verts){
 		Set<V> ret = new HashSet<V>();
 		for(V v: verts) {
@@ -151,7 +167,9 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 		}
 		return ret;
 	}
+
 	
+	// takes a set of edges and removes any that aren't in subEdges.
 	protected Set<E> trimEdge(Set<E> edges)	{
 		Set<E> ret = new HashSet<E>();
 		for(E e: edges) {
@@ -161,6 +179,7 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 		return ret;
 	}
 	
+	// removes all edges from subEdge that connect to vertex v.
 	protected void removeAssociatedSubEdge(V v) {
 		Set<E> removed = new HashSet<E>();
 		for(E e : subEdge) {
@@ -170,6 +189,8 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 		}
 		subEdge.removeAll(removed);
 	}
+	
+	// removes all edges from subEdge that connect to vertex v1 or v2.
 	protected void removedAssociatedSubEdge(V v1, V v2) {
 		Set<E> removed = new HashSet<E>();
 		for(E e : subEdge) {

@@ -104,14 +104,17 @@ public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements Graph
 	}
 
 	@Override
-	public boolean addEdge(V vertex1, V vertex2) {
-		boolean ret =false;
+	public E addEdge(V vertex1, V vertex2) {
+		E ret =null;
 		if(checkVertices(vertex1,vertex2)){
-			addEdge(createEdge(vertex1,vertex2));
-			ret = true;
+			E temp = createEdge(vertex1,vertex2);
+			if(addEdge(temp)){
+				ret = temp;
+			}
+				
 		}
 		return ret;
-	}
+	}	
 
 	
 	/** 
