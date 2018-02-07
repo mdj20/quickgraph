@@ -6,6 +6,17 @@ import java.util.Set;
 import com.mdj20.quickgraph.quickgraph.main.BaseGraph;
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 
+
+/**
+ * Sub Graph decorator.
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ * @param <G> type of BaseGraph
+ * @param <V> type of Vertex
+ * @param <E> type of Edge
+ */
+
 public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> implements BaseGraph<V,E>{
 
 	protected G parentGraph;
@@ -14,8 +25,20 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 	protected Set<E> subEdge;
 	protected Set<E> unmodifiableEdge;
 
+	// adds vertex to subgraph and adds vertex to parent graph if it isn't already a member.
 	@Override
 	public boolean addVertex(V vertex) {
+		boolean ret = false;
+		if(!parentGraph.getVertices().contains(vertex)) {
+			ret = parentGraph.addVertex(vertex);
+			if (ret) {
+				subVertex.add(vertex);
+			}
+		}
+		else if (!subVertex.contains(vertex)) {
+			subVertex.add(vertex);
+			ret = true;
+		}
 		return false;
 	}
 
@@ -25,6 +48,8 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 		return false;
 	}
 
+	// this is going to be a problem... how to determine weather to add an edge to a list or not...
+	
 	@Override
 	public boolean addEdge(V vertex1, V vertex2) {
 		// TODO Auto-generated method stub
@@ -33,7 +58,10 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 
 	@Override
 	public void removeVertex(V vertex) {
-		// TODO Auto-generated method stub
+		if(checkSubVert(vertex)){
+			subVertex.remove(vertex);
+			removeAssociatedSubEdge(vertex);
+		}
 		
 	}
 
@@ -133,4 +161,22 @@ public class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> impl
 		return ret;
 	}
 	
+	protected void removeAssociatedSubEdge(V v) {
+		Set<E> removed = new HashSet<E>();
+		for(E e : subEdge) {
+			if(e.getVertices().contains(v)) {
+				removed.add(e);
+			}
+		}
+		subEdge.removeAll(removed);
+	}
+	protected void removedAssociatedSubEdge(V v1, V v2) {
+		Set<E> removed = new HashSet<E>();
+		for(E e : subEdge) {
+			if(e.getVertices().contains(v1) || e.getVertices().contains(v2)) {
+				removed.add(e);
+			}
+		}
+		subEdge.removeAll(removed);		
+	}
 }
