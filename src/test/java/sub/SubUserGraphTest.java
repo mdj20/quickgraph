@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.mdj20.quickgraph.quickgraph.main.AdjListGraph;
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 
-public class AdjListSubGraphTest {
+public class SubUserGraphTest {
 
 	@Test
 	public void testAddVertex() {
@@ -20,7 +20,7 @@ public class AdjListSubGraphTest {
 		for(int i = 0 ; i < nVert/2 ; i++){
 			subSet.add(i);
 		}
-		AdjListSubGraph<Integer> subGraph = new AdjListSubGraph<Integer>(graph,subSet);
+		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subSet);
 		for(Integer i : subGraph.getVertices()){
 			System.out.println(i);
 		}
