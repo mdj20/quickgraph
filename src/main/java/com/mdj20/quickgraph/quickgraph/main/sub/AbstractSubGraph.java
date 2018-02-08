@@ -1,4 +1,4 @@
-package sub;
+package com.mdj20.quickgraph.quickgraph.main.sub;
 
 import java.util.Collections;
 import java.util.HashSet;
