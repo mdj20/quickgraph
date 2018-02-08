@@ -25,8 +25,8 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	protected G parentGraph;
 	protected Set<V> subVertex;
 	protected Set<V> unmodifiableVertex;
-	protected Set<E> subEdge;
-	protected Set<E> unmodifiableEdge;
+	//protected Set<E> subEdge;  //remove subEdge
+	//protected Set<E> unmodifiableEdge;
 	
 	
 	protected AbstractSubGraph(G baseGraph, Set<V> vertices, Set<E> edges){
@@ -38,9 +38,9 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		}
 		parentGraph = baseGraph;
 		subVertex = checkVertexList(baseGraph.getVertices(),vertices);
-		subEdge = buildEdgeList(subVertex,baseGraph.getEdges());
+		//subEdge = buildEdgeList(subVertex,baseGraph.getEdges());
 		unmodifiableVertex = Collections.unmodifiableSet(subVertex);
-		unmodifiableEdge = Collections.unmodifiableSet(subEdge);
+		//unmodifiableEdge = Collections.unmodifiableSet(subEdge);
 	}
 	
 	
@@ -65,13 +65,8 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	@Override
 	public boolean addEdge(E edge) {
 		boolean ret = false;
-		if(  ! subEdge.contains(edge) ) {
-			if(! parentGraph.getEdges().contains(edge) ) {
-				ret = parentGraph.addEdge(edge);
-			}	
-			if( ret ) {
-				subEdge.add(edge);
-			}
+		if(checkVertices(edge.getVertex(0),edge.getVertex(1))) {
+			ret = parentGraph.addEdge(edge);
 		}
 		return ret;
 	}
@@ -79,9 +74,8 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	@Override
 	public E addEdge(V vertex1, V vertex2) {
 		E ret = null;
-		ret = parentGraph.addEdge(vertex1,vertex2);
-		if(ret!=null) {
-			subEdge.add(ret);
+		if(checkVertices(vertex1,vertex2)) {
+			ret = parentGraph.addEdge(vertex1, vertex2);
 		}
 		return ret;
 	}
@@ -90,18 +84,15 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	public void removeVertex(V vertex) {
 		if(checkSubVert(vertex)){
 			subVertex.remove(vertex);
-			removeAssociatedSubEdge(vertex);
+			parentGraph.removeVertex(vertex);
 		}
 		
 	}
 
 	@Override
 	public void removeEdge(E edge) {
-		if(subEdge.contains(edge)) {
-		   if(parentGraph.getEdges().contains(edge)) {
-			   parentGraph.removeEdge(edge);
-			   subEdge.remove(edge);
-		   } 
+		if ( checkVertices(edge.getVertex(0),edge.getVertex(1)) ){
+			parentGraph.removeEdge(edge);
 		}
 	}
 
@@ -112,7 +103,9 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 
 	@Override
 	public Set<E> getEdges() {
-		return unmodifiableEdge;
+		Set<E> ret = new HashSet<E>();
+		ret = buildEdgeList(subVertex,parentGraph.getEdges());
+		return ret;
 	}
 
 	@Override
@@ -128,7 +121,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	public Set<E> getConnectingEdges(V targetVertex) {
 		Set<E> ret = null;
 		if(checkSubVert(targetVertex)) {
-			ret  = trimEdge(parentGraph.getConnectingEdges(targetVertex));
+			ret  = buildEdgeList(subVertex,parentGraph.getConnectingEdges(targetVertex));
 		}
 		return ret;
 	}
@@ -155,7 +148,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	public Set<E> getOutgoingEdges(V targetVertex) {
 		Set<E> ret = null;
 		if(checkSubVert(targetVertex)) {
-			ret  = trimEdge(parentGraph.getOutgoingEdges(targetVertex));
+			ret  = buildEdgeList(subVertex,parentGraph.getOutgoingEdges(targetVertex));
 		}
 		return ret;
 	}
@@ -164,7 +157,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	public Set<E> getIncomingEdges(V targetVertex) {
 		Set<E> ret = null;
 		if(checkSubVert(targetVertex)) {
-			ret  = trimEdge(parentGraph.getIncomingEdges(targetVertex));
+			ret  = buildEdgeList(subVertex,parentGraph.getIncomingEdges(targetVertex));
 		}
 		return ret;
 	}
@@ -180,15 +173,15 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	
 	// takes a set of vertices and removes any that aren't in subVetex.
 	protected Set<V> trimVert(Set<V> verts){
-		Set<V> ret = new HashSet<V>();
-		for(V v: verts) {
-			if (subVertex.contains(v))
-				ret.add(v);
-		}
-		return ret;
+		verts.retainAll(subVertex);
+		return  verts;
 	}
+		
 
 	
+	// REMOVED HELPER METHODS BELOW, 
+	
+	/*
 	// takes a set of edges and removes any that aren't in subEdges.
 	protected Set<E> trimEdge(Set<E> edges)	{
 		Set<E> ret = new HashSet<E>();
@@ -198,6 +191,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		}
 		return ret;
 	}
+	
 	
 	// removes all edges from subEdge that connect to vertex v.
 	protected void removeAssociatedSubEdge(V v) {
@@ -210,6 +204,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		subEdge.removeAll(removed);
 	}
 	
+	
 	// removes all edges from subEdge that connect to vertex v1 or v2.
 	protected void removedAssociatedSubEdge(V v1, V v2) {
 		Set<E> removed = new HashSet<E>();
@@ -220,12 +215,13 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		}
 		subEdge.removeAll(removed);		
 	}
+	*/
 	
 	// creates aggregate set of edges in that are connected on both ends to vertices that exits in baseVertex set. 
 	protected Set<E> buildEdgeList(Set<V> vertices, Set<E> edges){
 		HashSet<E> aggregateEdges = new HashSet<E>();
 		for(E e: edges) {
-			if(vertices.contains(e.getVertex(0)) && vertices.contains(e.getVertex(1)) ) {
+			if( vertices.contains(e.getVertex(0)) && vertices.contains(e.getVertex(1)) ) {
 				aggregateEdges.add(e);
 			}
 		}
@@ -234,12 +230,12 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	
 	//returns set<V> of all tested that are contained in valid.
 	protected Set<V> checkVertexList(Set<V> valid, Set<V> tested){
-		HashSet<V> checked = new HashSet<V>();
-		for(V v : tested) {
-			if(valid.contains(v)) {
-				checked.add(v);
-			}
-		}
+		tested.retainAll(valid);
+		HashSet<V> checked = new HashSet<V>(tested);
 		return checked;
 	}
+	protected boolean checkVertices(V v1 , V v2) {
+		return subVertex.contains(v1) && subVertex.contains(v2);
+	}
+	
 }
