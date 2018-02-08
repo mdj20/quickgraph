@@ -1,5 +1,6 @@
 package sub;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,9 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
 
 
 /**
- * Sub Graph decorator.
+ * Sub Graph decorator. 
+ * 
+ * 
  * 
  * @author Matthew D. Jeffreys
  *
@@ -24,6 +27,23 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	protected Set<V> unmodifiableVertex;
 	protected Set<E> subEdge;
 	protected Set<E> unmodifiableEdge;
+	
+	
+	protected AbstractSubGraph(G baseGraph, Set<V> vertices, Set<E> edges){
+		throw new UnsupportedOperationException("Construtor not supported...");
+	}
+	protected AbstractSubGraph(G baseGraph, Set<V> vertices) {
+		if(baseGraph == null || vertices == null) {
+			throw new NullPointerException(" Neither baseGraph or vertices can be null. ");
+		}
+		parentGraph = baseGraph;
+		subVertex = checkVertexList(baseGraph.getVertices(),vertices);
+		subEdge = buildEdgeList(subVertex,baseGraph.getEdges());
+		unmodifiableVertex = Collections.unmodifiableSet(subVertex);
+		unmodifiableEdge = Collections.unmodifiableSet(subEdge);
+	}
+	
+	
 
 	// adds vertex to subgraph and adds vertex to parent graph if it isn't already a member.
 	@Override
@@ -199,5 +219,27 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 			}
 		}
 		subEdge.removeAll(removed);		
+	}
+	
+	// creates aggregate set of edges in that are connected on both ends to vertices that exits in baseVertex set. 
+	protected Set<E> buildEdgeList(Set<V> vertices, Set<E> edges){
+		HashSet<E> aggregateEdges = new HashSet<E>();
+		for(E e: edges) {
+			if(vertices.contains(e.getVertex(0)) && vertices.contains(e.getVertex(1)) ) {
+				aggregateEdges.add(e);
+			}
+		}
+		return aggregateEdges;	
+	}
+	
+	//returns set<V> of all tested that are contained in valid.
+	protected Set<V> checkVertexList(Set<V> valid, Set<V> tested){
+		HashSet<V> checked = new HashSet<V>();
+		for(V v : tested) {
+			if(valid.contains(v)) {
+				checked.add(v);
+			}
+		}
+		return checked;
 	}
 }
