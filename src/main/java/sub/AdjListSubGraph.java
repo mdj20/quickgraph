@@ -2,7 +2,6 @@ package sub;
 
 import java.util.Set;
 
-import com.mdj20.quickgraph.quickgraph.main.AdjListGraph;
 import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.UserGraph;
 
