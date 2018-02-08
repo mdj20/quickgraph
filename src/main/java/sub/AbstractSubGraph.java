@@ -170,7 +170,6 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	}
 	
 	
-	
 	// takes a set of vertices and removes any that aren't in subVetex.
 	protected Set<V> trimVert(Set<V> verts){
 		verts.retainAll(subVertex);
