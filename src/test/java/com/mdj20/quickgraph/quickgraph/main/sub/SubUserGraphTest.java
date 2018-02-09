@@ -85,9 +85,7 @@ public class SubUserGraphTest {
 		Set<Edge<Integer>> edgeSet = subGraph.getEdges();
 		Set<Edge<Integer>> superEdgeSet = graph.getEdges();
 		assertTrue(edgeSet.contains(edge));
-		assertTrue(superEdgeSet.contains(edge));
-
-		
+		assertTrue(superEdgeSet.contains(edge));	
 	}
 
 	@Test
@@ -108,14 +106,14 @@ public class SubUserGraphTest {
 		assertTrue(!  (vertSet.contains(removed) || superVertSet.contains(removed)) );
 		Set<Edge<Integer>> superEdgeSet = graph.getEdges();
 		for (Edge<Integer> e : superEdgeSet) {
-			assert(!e.getVertices().contains(removed));
+			assertTrue(!e.getVertices().contains(removed));
 		}
 		
 	}
 
 	@Test
 	public void testRemoveEdge() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -138,7 +136,7 @@ public class SubUserGraphTest {
 
 	@Test
 	public void testGetEdges() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -146,18 +144,22 @@ public class SubUserGraphTest {
 		// setup
 		int nVert = 10;
 		int subVertexLimit = nVert/2;
-		int removed = 0;
+		int tested = 0;
 		Set<Integer> subVertex = new HashSet<Integer>();
 		for(int i = 0 ; i < subVertexLimit ; i++) {
 			subVertex.add(i);
 		}
 		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
 		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
-		subGraph.removeVertex(removed);
-		Set<Integer> vertSet = subGraph.getVertices();
+		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		Arrays.fill(actual, false);
+		Set<Integer> vertSet = subGraph.getAdjacentVertices(tested);
 		for(Integer i : vertSet) {
-			assertTrue(subVertex.contains(i));
+			actual[i] = true;
 		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
@@ -165,38 +167,114 @@ public class SubUserGraphTest {
 		// setup
 		int nVert = 10;
 		int subVertexLimit = nVert/2;
-		int removed = 0;
+		int tested = 0;
 		Set<Integer> subVertex = new HashSet<Integer>();
 		for(int i = 0 ; i < subVertexLimit ; i++) {
 			subVertex.add(i);
 		}
 		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
 		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
-		subGraph.removeVertex(removed);
-		Set<Integer> vertSet = subGraph.getVertices();
-		for(Integer i : vertSet) {
-			assertTrue(subVertex.contains(i));
+		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		Arrays.fill(actual, false);
+		Set<Edge<Integer>> edgeSet = subGraph.getConnectingEdges(tested);
+		for(Edge<Integer> e : edgeSet) {
+			actual[e.getOpposingVertex(tested)] = true;
 		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
 	public void testGetOutgoingVertices() {
-		fail("Not yet implemented");
+		// setup
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = 0;
+		Set<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
+		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		Arrays.fill(actual, false);
+		Set<Integer> vertSet = subGraph.getOutgoingVertices(tested);
+		for(Integer i : vertSet) {
+			actual[i] = true;
+		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
 	public void testGetIncomingVertices() {
-		fail("Not yet implemented");
+		// setup
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = 0;
+		Set<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
+		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		Arrays.fill(actual, false);
+		Set<Integer> vertSet = subGraph.getIncomingVertices(tested);
+		for(Integer i : vertSet) {
+			actual[i] = true;
+		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
 	public void testGetOutgoingEdges() {
-		fail("Not yet implemented");
+		// setup
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = 0;
+		Set<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
+		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		Arrays.fill(actual, false);
+		Set<Edge<Integer>> edgeSet = subGraph.getOutgoingEdges(tested);
+		for(Edge<Integer> e : edgeSet) {
+			actual[e.getOpposingVertex(tested)] = true;
+		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
 	public void testGetIncomingEdges() {
-		fail("Not yet implemented");
+		// setup
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = 0;
+		Set<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
+		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		Arrays.fill(actual, false);
+		Set<Edge<Integer>> edgeSet = subGraph.getIncomingEdges(tested);
+		for(Edge<Integer> e : edgeSet) {
+			actual[e.getOpposingVertex(tested)] = true;
+		}
+		assertArrayEquals(expected,actual);
 	}
 
 }
