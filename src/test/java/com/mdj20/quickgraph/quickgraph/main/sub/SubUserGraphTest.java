@@ -2,6 +2,7 @@ package com.mdj20.quickgraph.quickgraph.main.sub;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -113,10 +114,22 @@ public class SubUserGraphTest {
 
 	@Test
 	public void testRemoveEdge() {
-		    
-		// needs finished
-		
-		
+		// setup
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		Set<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		UserGraph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
+		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		ArrayList<Edge<Integer>> edgeList = new ArrayList<Edge<Integer>>(subGraph.getEdges());
+		Edge<Integer> removed = edgeList.get(0);
+		subGraph.removeEdge(removed);
+		edgeList = new ArrayList<Edge<Integer>>(subGraph.getEdges());
+		ArrayList<Edge<Integer>> superEdgeList = new ArrayList<Edge<Integer>>(graph.getEdges());
+		assertTrue(!edgeList.contains(removed));
+		assertTrue(!superEdgeList.contains(removed));
 	}
 
 	@Test
