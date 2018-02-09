@@ -185,4 +185,22 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
+	// Utility method that creates a saturated test graph according to a specified number of vertices. 
+	// The edge weights are determined by source - sink.
+	public static WeightedAdjListGraph<Integer,Integer> createSaturatedWeightedGraph(int nVertices){
+		WeightedAdjListGraph<Integer,Integer> graph = new WeightedAdjListGraph<Integer,Integer>();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = i; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j,i-j);
+				}
+			}
+		}
+		return graph;
+	}
+	
 }

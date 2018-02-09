@@ -63,7 +63,6 @@ public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements Graph
 				removeEdgeFromGraph(e.getVertices().get(0),e);
 				removeEdgeFromGraph(e.getVertices().get(1),e);
 			}
-		
 			graph.remove(vertex);
 		}
 	}
