@@ -13,7 +13,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 
 public class DefaultDirectedEdge<V> extends DefaultEdge<V> implements DirectedEdge<V>, Edge<V> {
 
-	DefaultDirectedEdge(V source, V sink) {
+	public DefaultDirectedEdge(V source, V sink) {
 		super(source, sink);
 	}
 

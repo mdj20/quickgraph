@@ -203,4 +203,22 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
+	// Utility method that creates a saturated test graph according to a specified number of vertices. 
+	// The edge weights are determined by source - sink.
+	public static AdjListDiGraph<Integer> createCompleteDiGraph(int nVertices){
+		AdjListDiGraph<Integer > graph = new AdjListDiGraph<Integer >();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = 0; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j);
+					
+				}
+			}
+		}
+		return graph;
+	}
+	
 }
