@@ -38,9 +38,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		}
 		parentGraph = baseGraph;
 		subVertex = checkVertexList(baseGraph.getVertices(),vertices);
-		//subEdge = buildEdgeList(subVertex,baseGraph.getEdges());
 		unmodifiableVertex = Collections.unmodifiableSet(subVertex);
-		//unmodifiableEdge = Collections.unmodifiableSet(subEdge);
 	}
 	
 	
@@ -176,45 +174,6 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		return  verts;
 	}
 		
-
-	
-	// REMOVED HELPER METHODS BELOW, 
-	
-	/*
-	// takes a set of edges and removes any that aren't in subEdges.
-	protected Set<E> trimEdge(Set<E> edges)	{
-		Set<E> ret = new HashSet<E>();
-		for(E e: edges) {
-			if (subEdge.contains(e))
-				ret.add(e);
-		}
-		return ret;
-	}
-	
-	
-	// removes all edges from subEdge that connect to vertex v.
-	protected void removeAssociatedSubEdge(V v) {
-		Set<E> removed = new HashSet<E>();
-		for(E e : subEdge) {
-			if(e.getVertices().contains(v)) {
-				removed.add(e);
-			}
-		}
-		subEdge.removeAll(removed);
-	}
-	
-	
-	// removes all edges from subEdge that connect to vertex v1 or v2.
-	protected void removedAssociatedSubEdge(V v1, V v2) {
-		Set<E> removed = new HashSet<E>();
-		for(E e : subEdge) {
-			if(e.getVertices().contains(v1) || e.getVertices().contains(v2)) {
-				removed.add(e);
-			}
-		}
-		subEdge.removeAll(removed);		
-	}
-	*/
 	
 	// creates aggregate set of edges in that are connected on both ends to vertices that exits in baseVertex set. 
 	protected Set<E> buildEdgeList(Set<V> vertices, Set<E> edges){
