@@ -8,9 +8,11 @@ package com.mdj20.quickgraph.quickgraph.main;
  * @param <W> Weight Type.
  */
 
-public class WeightedAdjListDiGraph<V, W> extends AbstractWeightedAdjListGraph<V,WeightedDirectedEdge<V,W>,W> 
+public class WeightedAdjListDiGraph<V, W> extends AbstractAdjListDiGraph<V,WeightedDirectedEdge<V,W>> 
 	implements WeightedDiGraph<V,W>, BaseDiGraph<V,WeightedDirectedEdge<V,W>>, BaseWeightedGraph<V,WeightedDirectedEdge<V,W>,W> {
 
+	protected W defaultWeight = null;
+	
 	public WeightedAdjListDiGraph() {
 		super(GraphType.WEIGHTED_DIRECTED);
 	}
@@ -33,6 +35,16 @@ public class WeightedAdjListDiGraph<V, W> extends AbstractWeightedAdjListGraph<V
 			ret = edge;
 		}
 		return ret;
+	}
+	@Override
+	public W setDefaultWeight(W weight) {
+		W temp = defaultWeight;
+		defaultWeight = weight;
+		return temp;
+	}
+	@Override
+	public W getDefaultWeight() {
+		return defaultWeight;
 	}
 
 }
