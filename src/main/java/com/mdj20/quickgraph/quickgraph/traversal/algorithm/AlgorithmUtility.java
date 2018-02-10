@@ -1,7 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.traversal.algorithm;
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
+import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 
 
 /** Contains a series of static utility methods used in graph traversal algorithms.
@@ -19,7 +19,7 @@ public class AlgorithmUtility {
 	 */
 	
 	
-	public static <V,E extends WeightedEdge<V,W>, W extends Number> boolean hasNegativeEdge(WeightedGraph<V,E,W> graph){
+	public static <V,E extends WeightedEdge<V,W>, W extends Number> boolean hasNegativeEdge(BaseWeightedGraph<V,E,W> graph){
 		boolean ret = false;
 		Double zero = Double.valueOf(0);
 		for(WeightedEdge<V,W> we: graph.getEdges()) {

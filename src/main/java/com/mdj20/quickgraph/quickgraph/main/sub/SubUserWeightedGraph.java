@@ -4,22 +4,45 @@ import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.UserWeightedGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
+import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 
 public class SubUserWeightedGraph<V,W> extends AbstractSubGraph<UserWeightedGraph<V,W>, V, WeightedEdge<V,W>> 
 implements UserWeightedGraph<V,W> {
+	
+	protected W subDefaultWeight;
 
 	protected SubUserWeightedGraph(UserWeightedGraph<V, W> baseGraph, Set<V> vertices) {
 		super(baseGraph, vertices);
+		subDefaultWeight = baseGraph.getDefaultWeight();
 	}
 
+	
 	@Override
-	public boolean addEdge(V vertex1, V vertex2, W weight) {
-		boolean  ret = false; 
+	public WeightedEdge<V, W> addEdge(V vertex1, V vertex2, W weight) {
+		WeightedEdge<V, W>  ret = null;
 		if(checkVertices(vertex1,vertex2)) {
 			ret = parentGraph.addEdge(vertex1, vertex2, weight);
 		}
 		return ret;
 	}
+
+	@Override
+	public W setDefaultWeight(W weight) {
+		W temp = subDefaultWeight;
+		subDefaultWeight = weight;
+		return temp;
+	}
+
+	@Override
+	public W getDefaultWeight() {
+		return subDefaultWeight;
+	}
+
+	@Override
+	public WeightedEdge<V, W> addEdge(V vertex1, V vertex2) {
+		return addEdge(vertex1,vertex2,subDefaultWeight);
+	}
+	
+	
 
 }

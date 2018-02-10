@@ -39,7 +39,7 @@ public class WeightedAdjListGraphTest {
 			source = verts.get(rando.nextInt(verts.size()));
 			sink = verts.get(rando.nextInt(verts.size()));
 			weight = rando.nextInt(25);
-			if(graph.addEdge(source, sink, weight)) {
+			if(graph.addEdge(source, sink, weight)!=null) {
 				sourceList.add(source);
 				sinkList.add(sink);
 				weightList.add(weight);
