@@ -22,10 +22,11 @@ public class WeightedAdjListDiGraphTest {
 		WeightedAdjListDiGraph<Integer,Integer> testGraph = new WeightedAdjListDiGraph<Integer,Integer>();
 		testGraph.addVertex(0);  
 		testGraph.addVertex(1);
-		testGraph.addEdge(0,1,1);
+		WeightedDirectedEdge<Integer,Integer> edge = testGraph.addEdge(0,1,1);
 		Set<WeightedDirectedEdge<Integer,Integer>> edgeSet =  testGraph.getEdges();
 		Set<WeightedDirectedEdge<Integer,Integer>> edgeSetAdjacent0 =  testGraph.getConnectingEdges(0);
 		Set<WeightedDirectedEdge<Integer,Integer>> edgeSetAdjacent1 =  testGraph.getConnectingEdges(1);
+		
 		ArrayList<WeightedDirectedEdge<Integer,Integer>> edgeList = new ArrayList<WeightedDirectedEdge<Integer,Integer>>(testGraph.getEdges());
 		assertTrue(edgeSet.size()==1);  // check edges size == 0
 		assertTrue(edgeSetAdjacent0.contains(edgeList.get(0)));  // check vertex 0 
