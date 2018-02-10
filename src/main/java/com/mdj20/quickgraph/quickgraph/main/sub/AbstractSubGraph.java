@@ -10,6 +10,9 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
 
 /**
  * Sub Graph decorator. 
+ * <p>
+ * Will act as any section of a graph defined by a subset of vertices of said graph.
+ * 
  * 
  * 
  * 
@@ -25,8 +28,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	protected G parentGraph;
 	protected Set<V> subVertex;
 	protected Set<V> unmodifiableVertex;
-	//protected Set<E> subEdge;  //remove subEdge
-	//protected Set<E> unmodifiableEdge;
+
 	
 	
 	protected AbstractSubGraph(G baseGraph, Set<V> vertices, Set<E> edges){
@@ -42,8 +44,11 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	}
 	
 	
+	/**
+	 *  Adds a vertex to the SubGraph if the vertex doesn't exist in the parent graph, it will also add the vertex to the parent graph.
+	 */
+	
 
-	// adds vertex to subgraph and adds vertex to parent graph if it isn't already a member.
 	@Override
 	public boolean addVertex(V vertex) {
 		boolean ret = false;
@@ -59,6 +64,10 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		}
 		return false;
 	}
+	
+	/** Adds edge to the Sub Graph and parent graph.
+	 * 
+	 */
 
 	@Override
 	public boolean addEdge(E edge) {
@@ -78,6 +87,10 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		return ret;
 	}
 
+	/** Removes vertex from the sub graph and super graph.
+	 *  
+	 */
+	
 	@Override
 	public void removeVertex(V vertex) {
 		if(checkSubVert(vertex)){
@@ -86,6 +99,10 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		}
 		
 	}
+	
+	/**
+	 * Removes edge from the subgraph and super graph.
+	 */
 
 	@Override
 	public void removeEdge(E edge) {
@@ -93,12 +110,20 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 			parentGraph.removeEdge(edge);
 		}
 	}
+	
+	/** Returns set of vertices defined in the subgraph.
+	 *  
+	 */
 
 	@Override
 	public Set<V> getVertices() {
 		return unmodifiableVertex;
 	}
 
+	/**
+	 * 
+	 */
+	
 	@Override
 	public Set<E> getEdges() {
 		Set<E> ret = new HashSet<E>();
