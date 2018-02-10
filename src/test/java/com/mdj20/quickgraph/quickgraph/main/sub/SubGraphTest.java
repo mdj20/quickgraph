@@ -15,7 +15,7 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
 import com.mdj20.quickgraph.quickgraph.main.Graph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 
-public class SubUserGraphTest {
+public class SubGraphTest {
 
 	@Test
 	public void testAddVertex() {
@@ -28,7 +28,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		
 		// addVertex that exists in super Graph
 		subGraph.addVertex(added);
@@ -62,7 +62,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		Edge<Integer> edge = new DefaultEdge<Integer>(0,subVertexLimit-1);
 		subGraph.addEdge(edge);
 		Set<Edge<Integer>> edgeSet = subGraph.getEdges();
@@ -81,7 +81,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		Edge<Integer> edge = subGraph.addEdge(0,subVertexLimit-1);
 		Set<Edge<Integer>> edgeSet = subGraph.getEdges();
 		Set<Edge<Integer>> superEdgeSet = graph.getEdges();
@@ -100,7 +100,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		subGraph.removeVertex(removed);
 		Set<Integer> vertSet = subGraph.getVertices();
 		Set<Integer> superVertSet = graph.getVertices();
@@ -122,7 +122,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		ArrayList<Edge<Integer>> edgeList = new ArrayList<Edge<Integer>>(subGraph.getEdges());
 		Edge<Integer> removed = edgeList.get(0);
 		subGraph.removeEdge(removed);
@@ -142,7 +142,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		Set<Integer> vertSet = subGraph.getVertices();
 		for(Integer i : vertSet) {
 			assertTrue(subVertex.contains(i));
@@ -168,7 +168,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
 		Arrays.fill(expected, true);
 		expected[tested] = false;
@@ -191,7 +191,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
 		Arrays.fill(expected, true);
 		expected[tested] = false;
@@ -214,7 +214,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
 		Arrays.fill(expected, true);
 		expected[tested] = false;
@@ -237,7 +237,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
 		Arrays.fill(expected, true);
 		expected[tested] = false;
@@ -260,7 +260,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
 		Arrays.fill(expected, true);
 		expected[tested] = false;
@@ -283,7 +283,7 @@ public class SubUserGraphTest {
 			subVertex.add(i);
 		}
 		Graph<Integer> graph = FastGraphBuilder.completeSimpleIntegerGraph(nVert);
-		SubUserGraph<Integer> subGraph = new SubUserGraph<Integer>(graph,subVertex);
+		SubGraph<Integer> subGraph = new SubGraph<Integer>(graph,subVertex);
 		boolean[] expected = new boolean[subVertexLimit], actual = new boolean[subVertexLimit];
 		Arrays.fill(expected, true);
 		expected[tested] = false;

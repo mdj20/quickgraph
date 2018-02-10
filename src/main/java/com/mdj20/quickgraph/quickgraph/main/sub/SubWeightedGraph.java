@@ -6,12 +6,12 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 
-public class SubUserWeightedGraph<V,W> extends AbstractSubGraph<WeightedGraph<V,W>, V, WeightedEdge<V,W>> 
+public class SubWeightedGraph<V,W> extends AbstractSubGraph<WeightedGraph<V,W>, V, WeightedEdge<V,W>> 
 implements WeightedGraph<V,W> {
 	
 	protected W subDefaultWeight;
 
-	protected SubUserWeightedGraph(WeightedGraph<V, W> baseGraph, Set<V> vertices) {
+	protected SubWeightedGraph(WeightedGraph<V, W> baseGraph, Set<V> vertices) {
 		super(baseGraph, vertices);
 		subDefaultWeight = baseGraph.getDefaultWeight();
 	}

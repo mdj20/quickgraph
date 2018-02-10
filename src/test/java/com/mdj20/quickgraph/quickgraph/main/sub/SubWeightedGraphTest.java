@@ -13,7 +13,7 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 
-public class SubUserWeightedGraphTest {
+public class SubWeightedGraphTest {
 
 	@Test
 	public void testAddEdgeVVW() {
@@ -30,7 +30,7 @@ public class SubUserWeightedGraphTest {
 		for(int i = 0 ; i < subVertexLimit ; i++) {
 			subVertex.add(i);
 		}
-		SubUserWeightedGraph<Integer, Integer> subGraph = new SubUserWeightedGraph<Integer,Integer>(graph,subVertex);
+		SubWeightedGraph<Integer, Integer> subGraph = new SubWeightedGraph<Integer,Integer>(graph,subVertex);
 		
 		// Add vertex
 		subGraph.addVertex(added);
