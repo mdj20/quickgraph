@@ -9,7 +9,7 @@ package com.mdj20.quickgraph.quickgraph.main;
  */
 
 public class WeightedAdjListDiGraph<V, W> extends AbstractWeightedAdjListGraph<V,WeightedDirectedEdge<V,W>,W> 
-	implements UserWeightedDiGraph<V,W>, DiGraph<V,WeightedDirectedEdge<V,W>>, BaseWeightedGraph<V,WeightedDirectedEdge<V,W>,W> {
+	implements WeightedDiGraph<V,W>, BaseDiGraph<V,WeightedDirectedEdge<V,W>>, BaseWeightedGraph<V,WeightedDirectedEdge<V,W>,W> {
 
 	public WeightedAdjListDiGraph() {
 		super(GraphType.WEIGHTED_DIRECTED);

@@ -2,16 +2,16 @@ package com.mdj20.quickgraph.quickgraph.main.sub;
 
 import java.util.Set;
 
-import com.mdj20.quickgraph.quickgraph.main.UserWeightedGraph;
+import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
 import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 
-public class SubUserWeightedGraph<V,W> extends AbstractSubGraph<UserWeightedGraph<V,W>, V, WeightedEdge<V,W>> 
-implements UserWeightedGraph<V,W> {
+public class SubUserWeightedGraph<V,W> extends AbstractSubGraph<WeightedGraph<V,W>, V, WeightedEdge<V,W>> 
+implements WeightedGraph<V,W> {
 	
 	protected W subDefaultWeight;
 
-	protected SubUserWeightedGraph(UserWeightedGraph<V, W> baseGraph, Set<V> vertices) {
+	protected SubUserWeightedGraph(WeightedGraph<V, W> baseGraph, Set<V> vertices) {
 		super(baseGraph, vertices);
 		subDefaultWeight = baseGraph.getDefaultWeight();
 	}

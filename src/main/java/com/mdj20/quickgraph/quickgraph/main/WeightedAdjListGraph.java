@@ -1,6 +1,6 @@
 	package com.mdj20.quickgraph.quickgraph.main;
 
-public class WeightedAdjListGraph<V, W> extends AbstractWeightedAdjListGraph<V,WeightedEdge<V,W>,W> implements UserWeightedGraph<V,W> {
+public class WeightedAdjListGraph<V, W> extends AbstractWeightedAdjListGraph<V,WeightedEdge<V,W>,W> implements WeightedGraph<V,W> {
 
 	public WeightedAdjListGraph() {
 		super(GraphType.WEIGHTED);

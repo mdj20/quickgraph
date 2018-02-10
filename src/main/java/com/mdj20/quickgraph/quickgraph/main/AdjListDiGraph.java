@@ -2,14 +2,14 @@ package com.mdj20.quickgraph.quickgraph.main;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Concrete implementation of DiGraph
+/** Concrete implementation of BaseDiGraph
  *  
  * @author Matthew D. Jeffreys
  *
  * @param <V> Vertex type.
  */
 
-public class AdjListDiGraph<V> extends AbstractAdjListDiGraph<V,DirectedEdge<V>> implements UserDiGraph<V>, DiGraph<V,DirectedEdge<V>> {
+public class AdjListDiGraph<V> extends AbstractAdjListDiGraph<V,DirectedEdge<V>> implements DiGraph<V>, BaseDiGraph<V,DirectedEdge<V>> {
 
 	public AdjListDiGraph(){
 		super(GraphType.DIRECTED);

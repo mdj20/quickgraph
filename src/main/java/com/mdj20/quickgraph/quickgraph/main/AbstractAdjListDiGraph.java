@@ -2,7 +2,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 import java.util.HashSet;
 import java.util.Set;
 
-/**Abstract base class used in the DiGraph object hierarchy.
+/**Abstract base class used in the BaseDiGraph object hierarchy.
  * <p>
  * 
  * @author Matthew D. Jeffreys
@@ -11,7 +11,7 @@ import java.util.Set;
  * @param <E> Edge type
  */
 
-public abstract class AbstractAdjListDiGraph<V,E extends DirectedEdge<V>> extends AbstractAdjListGraph<V,E> implements DiGraph<V,E> {
+public abstract class AbstractAdjListDiGraph<V,E extends DirectedEdge<V>> extends AbstractAdjListGraph<V,E> implements BaseDiGraph<V,E> {
 
 	AbstractAdjListDiGraph() {
 		super(GraphType.DIRECTED);
@@ -41,7 +41,7 @@ public abstract class AbstractAdjListDiGraph<V,E extends DirectedEdge<V>> extend
 		}
 	}
 	
-	// Override is necessary to remove incoming edges in DiGraph implementations 
+	// Override is necessary to remove incoming edges in BaseDiGraph implementations 
 	@Override 
 	public void removeVertex(V vertex) {
 		if(graph.containsKey(vertex)) {
