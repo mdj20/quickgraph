@@ -167,27 +167,151 @@ public class SubDiGraphTest {
 
 	@Test
 	public void testGetConnectingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = subVertexLimit-1;
+		DiGraph<Integer> graph = FastGraphBuilder.createCompleteDiGraph(nVert);
+		HashSet<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		SubDiGraph<Integer> subGraph = new SubDiGraph<Integer>(graph,subVertex); 
+		Set<DirectedEdge<Integer>> connected = subGraph.getConnectingEdges(tested);
+		boolean expectedIn[] = new boolean[subVertexLimit],  actualIn[] = new boolean[subVertexLimit];
+		boolean expectedOut[] = new boolean[subVertexLimit],  actualOut[] = new boolean[subVertexLimit];
+		Arrays.fill(actualIn, false);
+		Arrays.fill(expectedIn, true);
+		expectedIn[tested] = false;
+		Arrays.fill(actualOut, false);
+		Arrays.fill(expectedOut, true);
+		expectedOut[tested] = false;
+		for(DirectedEdge<Integer> edge : connected){
+			if(edge.getSource().equals(tested)) {
+				actualOut[edge.getSink()]=true;
+			}
+			else if (edge.getSink().equals(tested)) {
+				actualIn[edge.getSource()] = true;
+			}
+			else {
+				fail("Edge is not related to tested vertex");
+			}
+		}
+		assertArrayEquals(expectedIn,actualIn);
+		assertArrayEquals(expectedOut,actualOut);
 	}
 
 	@Test
 	public void testGetOutgoingVertices() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = subVertexLimit-1;
+		DiGraph<Integer> graph = FastGraphBuilder.createCompleteDiGraph(nVert);
+		HashSet<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		SubDiGraph<Integer> subGraph = new SubDiGraph<Integer>(graph,subVertex); 
+		Set<Integer> adjacent = subGraph.getOutgoingVertices(tested);
+		boolean expected[] = new boolean[subVertexLimit],  actual[] = new boolean[subVertexLimit];
+		Arrays.fill(actual, false);
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		for(Integer i : adjacent){
+			actual[i]=true;
+		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
 	public void testGetIncomingVertices() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = subVertexLimit-1;
+		DiGraph<Integer> graph = FastGraphBuilder.createCompleteDiGraph(nVert);
+		HashSet<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		SubDiGraph<Integer> subGraph = new SubDiGraph<Integer>(graph,subVertex); 
+		Set<Integer> adjacent = subGraph.getOutgoingVertices(tested);
+		boolean expected[] = new boolean[subVertexLimit],  actual[] = new boolean[subVertexLimit];
+		Arrays.fill(actual, false);
+		Arrays.fill(expected, true);
+		expected[tested] = false;
+		for(Integer i : adjacent){
+			actual[i]=true;
+		}
+		assertArrayEquals(expected,actual);
 	}
 
 	@Test
 	public void testGetOutgoingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = subVertexLimit-1;
+		DiGraph<Integer> graph = FastGraphBuilder.createCompleteDiGraph(nVert);
+		HashSet<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		SubDiGraph<Integer> subGraph = new SubDiGraph<Integer>(graph,subVertex); 
+		Set<DirectedEdge<Integer>> connected = subGraph.getOutgoingEdges(tested);
+		boolean expectedIn[] = new boolean[subVertexLimit],  actualIn[] = new boolean[subVertexLimit];
+		boolean expectedOut[] = new boolean[subVertexLimit],  actualOut[] = new boolean[subVertexLimit];
+		Arrays.fill(actualIn, false);
+		Arrays.fill(expectedIn, false);
+		expectedIn[tested] = false;
+		Arrays.fill(actualOut, false);
+		Arrays.fill(expectedOut, true);
+		expectedOut[tested] = false;
+		for(DirectedEdge<Integer> edge : connected){
+			if(edge.getSource().equals(tested)) {
+				actualOut[edge.getSink()]=true;
+			}
+			else if (edge.getSink().equals(tested)) {
+				actualIn[edge.getSource()] = true;
+			}
+			else {
+				fail("Edge is not related to tested vertex");
+			}
+		}
+		assertArrayEquals(expectedIn,actualIn);
+		assertArrayEquals(expectedOut,actualOut);
 	}
 
 	@Test
 	public void testGetIncomingEdges() {
-		fail("Not yet implemented");
+		int nVert = 10;
+		int subVertexLimit = nVert/2;
+		int tested = subVertexLimit-1;
+		DiGraph<Integer> graph = FastGraphBuilder.createCompleteDiGraph(nVert);
+		HashSet<Integer> subVertex = new HashSet<Integer>();
+		for(int i = 0 ; i < subVertexLimit ; i++) {
+			subVertex.add(i);
+		}
+		SubDiGraph<Integer> subGraph = new SubDiGraph<Integer>(graph,subVertex); 
+		Set<DirectedEdge<Integer>> connected = subGraph.getIncomingEdges(tested);
+		boolean expectedIn[] = new boolean[subVertexLimit],  actualIn[] = new boolean[subVertexLimit];
+		boolean expectedOut[] = new boolean[subVertexLimit],  actualOut[] = new boolean[subVertexLimit];
+		Arrays.fill(actualIn, false);
+		Arrays.fill(expectedIn, true);
+		expectedIn[tested] = false;
+		Arrays.fill(actualOut, false);
+		Arrays.fill(expectedOut, false);
+		expectedOut[tested] = false;
+		for(DirectedEdge<Integer> edge : connected){
+			if(edge.getSource().equals(tested)) {
+				actualOut[edge.getSink()]=true;
+			}
+			else if (edge.getSink().equals(tested)) {
+				actualIn[edge.getSource()] = true;
+			}
+			else {
+				fail("Edge is not related to tested vertex");
+			}
+		}
+		assertArrayEquals(expectedIn,actualIn);
+		assertArrayEquals(expectedOut,actualOut);
 	}
 
 }
