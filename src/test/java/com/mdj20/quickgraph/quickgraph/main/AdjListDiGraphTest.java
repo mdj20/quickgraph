@@ -249,7 +249,6 @@ public class AdjListDiGraphTest {
 		int nEdges = completeNEdges(nVerts);
 		HashMap<Integer,ArrayList<Integer>> connectedMap = completeGraphEndpointMap(nVerts);
 		AdjListDiGraph<Integer> testGraph = createCompleteGraph(nVerts);
-		//System.out.println(testGraph.getEdges().size()+" "+nEdges);
 		assertTrue(testGraph.getEdges().size()==nEdges);
 		ArrayList<DirectedEdge<Integer>> edges 
 			= new ArrayList<DirectedEdge<Integer>>(testGraph.getEdges());
