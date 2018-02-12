@@ -221,4 +221,22 @@ public class FastGraphBuilder {
 		return graph;
 	}
 	
+	// The edge weights are determined by source - sink.
+	public static WeightedAdjListDiGraph<Integer,Integer> createSaturatedWeightedDiGraph(int nVertices){
+		WeightedAdjListDiGraph<Integer,Integer> graph = new WeightedAdjListDiGraph<Integer,Integer>();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = 0; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j,i-j);
+				}
+			}
+		}
+		return graph;
+	}
+	
+	
 }
