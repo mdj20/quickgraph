@@ -11,7 +11,7 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
 /**
  * Sub Graph decorator. 
  * <p>
- * Will act as any section of a graph defined by a subset of vertices of said graph.
+ * Will act as any section of a graph defined by a subset of vertices of said graph. 
  * 
  * 
  * 
@@ -45,7 +45,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 	
 	
 	/**
-	 *  Adds a vertex to the SubGraph if the vertex doesn't exist in the parent graph, it will also add the vertex to the parent graph.
+	 *  Adds a vertex to the SubGraph, if the vertex doesn't exist in the parent graph, it will also add the vertex to the parent graph.
 	 */
 	
 
@@ -217,7 +217,7 @@ abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> im
 		HashSet<V> checked = new HashSet<V>(tested);
 		return checked;
 	}
-	protected boolean checkVertices(V v1 , V v2) {
+	protected boolean checkVertices(V v1, V v2) {
 		return subVertex.contains(v1) && subVertex.contains(v2);
 	}
 	
