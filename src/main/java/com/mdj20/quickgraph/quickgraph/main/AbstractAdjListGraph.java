@@ -18,7 +18,7 @@ import java.util.Set;
 	 */
 
 
-public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements GraphParameters, Graph<V,E> {
+public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements GraphParameters, BaseGraph<V,E> {
 	
 	protected HashMap<V, HashSet<E>> graph;
 	protected HashSet<E> edges;
@@ -63,7 +63,6 @@ public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements Graph
 				removeEdgeFromGraph(e.getVertices().get(0),e);
 				removeEdgeFromGraph(e.getVertices().get(1),e);
 			}
-		
 			graph.remove(vertex);
 		}
 	}
@@ -104,20 +103,23 @@ public abstract class AbstractAdjListGraph<V,E extends Edge<V>> implements Graph
 	}
 
 	@Override
-	public boolean addEdge(V vertex1, V vertex2) {
-		boolean ret =false;
+	public E addEdge(V vertex1, V vertex2) {
+		E ret =null;
 		if(checkVertices(vertex1,vertex2)){
-			addEdge(createEdge(vertex1,vertex2));
-			ret = true;
+			E temp = createEdge(vertex1,vertex2);
+			if(addEdge(temp)){
+				ret = temp;
+			}
+				
 		}
 		return ret;
-	}
+	}	
 
 	
 	/** 
-	 * Factory method must be overridden in any graph implementing class that inherits from AbstractAdjListGraph.java
+	 * Factory method must be overridden in any BaseGraph implementing class that inherits from AbstractAdjListGraph.java
 	 * <p>
-	 * Method defines and constructs the type of edge connecting the edges within the graph. i.e. a directed graph would overide and return an Object of DirectedEdge type.  
+	 * Method defines and constructs the type of edge connecting the edges within the graph. i.e. a directed graph would override and return an Object of DirectedEdge type.  
 	 * @param vertex1 first connecting vertex
 	 * @param vertex2 second connecting vertex
 	 * @return E extends Edge

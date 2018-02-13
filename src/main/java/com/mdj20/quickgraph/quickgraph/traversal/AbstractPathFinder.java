@@ -2,11 +2,11 @@ package com.mdj20.quickgraph.quickgraph.traversal;
 import java.util.List;
 
 import com.mdj20.quickgraph.quickgraph.main.Edge;
-import com.mdj20.quickgraph.quickgraph.main.Graph;
+import com.mdj20.quickgraph.quickgraph.main.BaseGraph;
 import com.mdj20.quickgraph.quickgraph.traversal.algorithm.BreadthFirst;
 import com.mdj20.quickgraph.quickgraph.traversal.algorithm.DepthFirst;
 
-public abstract class AbstractPathFinder<G extends Graph<V,E>,V,E extends Edge<V>> {
+public abstract class AbstractPathFinder<G extends BaseGraph<V,E>,V,E extends Edge<V>> {
 	protected G graph;
 
 	protected AbstractPathFinder(G graph) {

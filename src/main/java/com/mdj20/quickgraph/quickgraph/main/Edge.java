@@ -1,7 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.main;
 import java.util.List;
 
-/** A pair of type V vertex used in the Graph hierarchy. Denotes a connection between to vertices. 
+/** A pair of type V vertex used in the BaseGraph hierarchy. Denotes a connection between to vertices. 
  * 
  * @author Matthew D. Jeffreys
  *

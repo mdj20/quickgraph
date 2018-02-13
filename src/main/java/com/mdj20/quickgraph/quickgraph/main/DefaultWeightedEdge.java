@@ -16,7 +16,7 @@ public class DefaultWeightedEdge<V,W> extends DefaultEdge<V> implements Weighted
 	DefaultWeightedEdge(V v0, V v1) {
 		super(v0, v1);
 	}
-	DefaultWeightedEdge(V v0, V v1, W weight){
+	public DefaultWeightedEdge(V v0, V v1, W weight){
 		this(v0,v1);
 		this.weight = weight;
 	}

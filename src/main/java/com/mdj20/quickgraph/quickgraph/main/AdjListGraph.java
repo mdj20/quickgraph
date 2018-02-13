@@ -9,7 +9,7 @@ import java.util.Set;
  * @param <V> Type of Vertex
  */
 
-public class AdjListGraph<V> extends AbstractAdjListGraph<V, Edge<V>> {
+public class AdjListGraph<V> extends AbstractAdjListGraph<V, Edge<V>> implements Graph<V> {
 	
 	public AdjListGraph() {
 		super(GraphType.SIMPLE);

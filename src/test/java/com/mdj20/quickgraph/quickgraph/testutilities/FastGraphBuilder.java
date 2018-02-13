@@ -168,4 +168,75 @@ public class FastGraphBuilder {
 	}
 	
 	
+	// Utility method that creates a saturated test graph according to a specified number of vertices. 
+	// The edge weights are determined by source - sink.
+	public static AdjListGraph<Integer> completeSimpleIntegerGraph(int nVertices){
+		AdjListGraph<Integer > graph = new AdjListGraph<Integer >();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = i; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j);
+				}
+			}
+		}
+		return graph;
+	}
+	
+	// Utility method that creates a saturated test graph according to a specified number of vertices. 
+	// The edge weights are determined by source - sink.
+	public static WeightedAdjListGraph<Integer,Integer> createSaturatedWeightedGraph(int nVertices){
+		WeightedAdjListGraph<Integer,Integer> graph = new WeightedAdjListGraph<Integer,Integer>();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = i; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j,i-j);
+				}
+			}
+		}
+		return graph;
+	}
+	
+	// Utility method that creates a saturated test graph according to a specified number of vertices. 
+	// The edge weights are determined by source - sink.
+	public static AdjListDiGraph<Integer> createCompleteDiGraph(int nVertices){
+		AdjListDiGraph<Integer > graph = new AdjListDiGraph<Integer >();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = 0; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j);
+					
+				}
+			}
+		}
+		return graph;
+	}
+	
+	// The edge weights are determined by source - sink.
+	public static WeightedAdjListDiGraph<Integer,Integer> createSaturatedWeightedDiGraph(int nVertices){
+		WeightedAdjListDiGraph<Integer,Integer> graph = new WeightedAdjListDiGraph<Integer,Integer>();
+		for (int i = 0; i < nVertices ; i++) {
+			graph.addVertex(i);
+		}
+		
+		for (int i = 0; i < nVertices ; i++) {
+			for (int j = 0; j < nVertices ; j++) {
+				if(i!=j) {
+					graph.addEdge(i,j,i-j);
+				}
+			}
+		}
+		return graph;
+	}
+	
+	
 }

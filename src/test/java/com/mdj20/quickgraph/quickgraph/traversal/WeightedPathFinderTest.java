@@ -11,7 +11,7 @@ import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListDiGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedAdjListGraph;
 import com.mdj20.quickgraph.quickgraph.main.WeightedDirectedEdge;
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
+import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 

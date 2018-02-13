@@ -249,8 +249,6 @@ public class AdjListGraphTest {
 			}
 			
 			assertArrayEquals(expected,actual);
-
-			System.out.println(adjacent.size()+" "+(nVert-1));
 			assertTrue(nConnectingEdge==nVert-1);
 		}
 	}
@@ -274,8 +272,6 @@ public class AdjListGraphTest {
 			}
 			
 			assertArrayEquals(expected,actual);
-
-			System.out.println(adjacent.size()+" "+(nVert-1));
 			assertTrue(nConnectingEdge==nVert-1);
 		}
 	}

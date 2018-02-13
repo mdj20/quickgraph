@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
+import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 import com.mdj20.quickgraph.quickgraph.testutilities.FastGraphBuilder;
 import com.mdj20.quickgraph.quickgraph.testutilities.TestGraphData;
 
@@ -29,7 +29,7 @@ public class Dikstras{
 	 * The weight type in the graph must extend Number, and will calculate the weights as their Integer representation. 
 	 * 
 	 * 
-	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param graph BaseWeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting vertex.
 	 * @param sink Target vertex.
 	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
@@ -37,11 +37,11 @@ public class Dikstras{
 	
 	
 
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source, V sink){
+	public static <G extends BaseWeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source, V sink){
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
-			throw new IllegalArgumentException("Graph must contain both source and sink");
+			throw new IllegalArgumentException("BaseGraph must contain both source and sink");
 		}
 		
 		PriorityQueue<WeightedPathChain<V,E,W,Integer>> pq = new PriorityQueue<WeightedPathChain<V,E,W,Integer>>(); 
@@ -90,17 +90,17 @@ public class Dikstras{
 	 * The weight type in the graph must extend Number, and will calculate the weights as their Double representation. 
 	 * 
 	 * 
-	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param graph BaseWeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting vertex.
 	 * @param sink Target vertex.
 	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
 	 */
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source, V sink){
+	public static <G extends BaseWeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source, V sink){
 		// check graph contains source and sink
 		Set<V> vertecies = graph.getVertices();
 		if( !(vertecies.contains(source) && vertecies.contains(sink)) ){
-			throw new IllegalArgumentException("Graph must contain both source and sink");
+			throw new IllegalArgumentException("BaseGraph must contain both source and sink");
 		}
 		
 		PriorityQueue<WeightedPathChain<V,E,W,Double>> pq = new PriorityQueue<WeightedPathChain<V,E,W,Double>>(); 

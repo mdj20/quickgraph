@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 import com.mdj20.quickgraph.quickgraph.main.WeightedEdge;
-import com.mdj20.quickgraph.quickgraph.main.WeightedGraph;
+import com.mdj20.quickgraph.quickgraph.main.BaseWeightedGraph;
 
 
 /**
@@ -25,12 +25,12 @@ public class BellmanFord {
 	 *<p>
 	 * This will work for any type of weight that extends number. The algorithm will treat every weight as it's integer representation.
 	 * 
-	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param graph BaseWeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting/source vertex
 	 * @return Map<V,Integer> vertices mapped to their respective distances
 	 */
 
-	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Integer> findDistancesInt(WeightedGraph<V,E,W> graph, V source){
+	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Integer> findDistancesInt(BaseWeightedGraph<V,E,W> graph, V source){
 
 		
 		
@@ -62,12 +62,12 @@ public class BellmanFord {
 	 *<p>
 	 * The weight type in the graph must extend Number, The algorithm will treat every weight as it's double representation.
 	 * 
-	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param graph BaseWeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting vertex
 	 * @return Map<V,Double> vertex mapped to their respective distances
 	 */
 	
-	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Double> findDistancesDouble(WeightedGraph<V,E,W> graph, V source){
+	public static <V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> Map<V,Double> findDistancesDouble(BaseWeightedGraph<V,E,W> graph, V source){
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
 		int nVertex = vertices.size();
 		HashMap<V,Double>  distanceMap = new HashMap<V,Double>();
@@ -96,13 +96,13 @@ public class BellmanFord {
 	 * The weight type in the graph must extend Number, and will calculate the weights as their Integer representation. 
 	 * 
 	 * 
-	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param graph BaseWeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting vertex.
 	 * @param sink Target vertex.
 	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
 	 */
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source,V sink){
+	public static <G extends BaseWeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathInt(G graph, V source,V sink){
 		checkArgument(graph, source, sink); // throws IllegalArgumentException
 		
 		ArrayList<V> vertices = new ArrayList<V>(graph.getVertices());
@@ -157,13 +157,13 @@ public class BellmanFord {
 	 * The weight type in the graph must extend Number, and will calculate the weights as their Double representation. 
 	 * 
 	 * 
-	 * @param graph WeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
+	 * @param graph BaseWeightedGraph<?,WeightedEdge<V,W>> W weight must extends Number & Comparable<W>
 	 * @param source Starting vertex.
 	 * @param sink Target vertex.
 	 * @return List<E extends Edge> list of edges in the order that represents a path, null if no path is found.
 	 */
 	
-	public static <G extends WeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source,V sink){
+	public static <G extends BaseWeightedGraph<V,E,W>,V,E extends WeightedEdge<V,W>, W extends Number & Comparable<W>> List<E> findShortestPathDouble(G graph, V source,V sink){
 		checkArgument(graph, source, sink); // throws IllegalArgumentException
 		
 		
@@ -220,7 +220,7 @@ public class BellmanFord {
 		if (source.equals(sink))
 			throw new IllegalArgumentException("source and sink must not be equal");
 	}
-	private static <G extends WeightedGraph<V,?,?>,V> void checkVerts(G graph, V source, V sink){
+	private static <G extends BaseWeightedGraph<V,?,?>,V> void checkVerts(G graph, V source, V sink){
 		if( ! (graph.getVertices().contains(source) && graph.getVertices().contains(sink)) )
 				throw new IllegalArgumentException("source and sink must be vertices in graph");
 	}
@@ -229,7 +229,7 @@ public class BellmanFord {
 			throw new IllegalArgumentException("Argument can't be null");
 		}
 	}
-	private static <G extends WeightedGraph<V,?,?>,V> void checkArgument(G graph, V source, V sink){
+	private static <G extends BaseWeightedGraph<V,?,?>,V> void checkArgument(G graph, V source, V sink){
 		checkSS(source,sink);
 		checkVerts(graph,source,sink);
 		checkNull(source,sink);

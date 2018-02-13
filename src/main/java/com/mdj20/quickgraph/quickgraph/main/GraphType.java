@@ -1,5 +1,12 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
+/**
+ * enum aggregates several instances of default GraphParameters.
+ * 
+ * @author Matthew D. Jeffreys
+ *
+ */
+
 public enum GraphType implements GraphParameters {
 	// (weighted,directed)
 	SIMPLE(false,false),
