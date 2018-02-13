@@ -29,7 +29,7 @@ Java source code:
 www.github.com/mdj20/quickgraph
 
 Javadoc
-www.github.com/mdj20/quickgraph/doc
+https://mdj20.github.io/quickgraph/apidocs/index.html
 
 
 #### Version History 
