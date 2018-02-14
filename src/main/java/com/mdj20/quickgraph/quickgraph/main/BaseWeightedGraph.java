@@ -16,7 +16,7 @@ public interface BaseWeightedGraph<V, E extends WeightedEdge<V,W>, W> extends Ba
 	/**
 	 * Creates and adds edge with the weight specified by weight.
 	 *  <p>
-	 *  Note: the non weighted addEdge(V,V) is unsupported in weighted graph hierarchy. 
+	 * 
 	 * @param vertex1 First vertex connected by edge.
 	 * @param vertex2 Second vertex connected by edge
 	 * @param weight Weight of the edge.

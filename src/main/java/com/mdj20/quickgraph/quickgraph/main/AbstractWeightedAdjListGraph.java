@@ -1,12 +1,12 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
-/**Abstract based class used in the Weighted Graph heirarchy
+/**Abstract based class used in the Weighted Graph hierarchy.
  * 
  * @author Matthew D. Jeffreys
  *
- * @param <V>
- * @param <E>
- * @param <W>
+ * @param <V> Vertex type.
+ * @param <E> Edge type must extend WeightedEdge<V,W>.
+ * @param <W> Weight type.
  */
 
 public abstract class AbstractWeightedAdjListGraph<V, E extends WeightedEdge<V,W>, W> extends AbstractAdjListGraph<V,E> implements BaseWeightedGraph<V,E,W>{

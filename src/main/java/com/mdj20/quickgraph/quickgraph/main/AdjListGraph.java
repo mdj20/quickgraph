@@ -3,7 +3,7 @@ package com.mdj20.quickgraph.quickgraph.main;
 import java.util.Set;
 
 /**
- * Concrete implementation of a non-directed (and non weighted) graph. DefaultEdge<V>   
+ * Concrete implementation of a graph that is neither weighted or directed.    
  * 
  * @author Matthew D. Jeffreys
  * @param <V> Type of Vertex
@@ -16,7 +16,7 @@ public class AdjListGraph<V> extends AbstractAdjListGraph<V, Edge<V>> implements
 	}
 
 	/**
-	 *  Overridden method creates returns an edge compatible with AdjListGraph.java internal structure. 
+	 *  Method creates and returns an Edge class that connects vertex1 and vertex2.
 	 */
 	
 	@Override

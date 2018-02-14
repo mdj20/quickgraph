@@ -1,7 +1,7 @@
 package com.mdj20.quickgraph.quickgraph.main;
 
 /**
- * Interface implemented in WeightedEdge<W> defines an object with a weight.
+ * Interface implemented defines an object with a weight.
  *  
  * @author Matthew D. Jeffreys
  *

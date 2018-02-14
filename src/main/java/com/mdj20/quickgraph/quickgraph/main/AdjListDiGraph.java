@@ -15,6 +15,10 @@ public class AdjListDiGraph<V> extends AbstractAdjListDiGraph<V,DirectedEdge<V>>
 		super(GraphType.DIRECTED);
 	}
 	
+	/**
+	 *  Method returns a DirectedEdge connecting vertex1 to vertex2 as the respective source and sink of the edge.
+	 */
+	
 	@Override
 	public DirectedEdge<V> createEdge(V vertex1, V vertex2) {
 		return new DefaultDirectedEdge<V>(vertex1,vertex2);
