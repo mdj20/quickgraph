@@ -23,7 +23,7 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
  * @param <E> type of Edge
  */
 
-abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> /*implements BaseGraph<V,E>*/{
+abstract class AbstractSubGraph<G extends BaseGraph<V,E>,V,E extends Edge<V>> implements BaseGraph<V,E>{
 
 	protected G parentGraph;
 	protected Set<V> subVertex;
