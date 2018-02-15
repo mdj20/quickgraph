@@ -39,11 +39,16 @@ public interface Path<V,E extends Edge<V>> {
 	public V getSink();
 	
 	/** 
-	 * @param i
-	 * @return
+	 * @param i returns the vertex at location i, or null if i is outside of the vertex parameter.
+	 * @return V vertex.
 	 */
 	
 	public V getVertexAt(int i);
+	
+	/**Returns number of vertices in the path.
+	 * 
+	 * @return
+	 */
 	
 	public int getNumVertices();
 }
