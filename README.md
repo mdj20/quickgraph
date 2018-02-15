@@ -10,14 +10,14 @@ Vertices and weights can be any type the developer requires, and path finding an
 #### Version 0.5.0 (initial public release)
 
 * Implementations of Weighted/Non-weighted and Directed/Undirected graphs.
-* Path/Walk algorithms including DFS/BFS
+* Sub graphing for all graph types.
+* Path/Walk algorithms including DFS/BF
 * Shortest Path distance finding algorithms based on Dikstra's and Bellman-Ford 
 
 ####Upcoming features:
 
-sub-graphing capabilities 
 path/walk classes that are based off of subgraphs. 
-
+expanded path/walk features 
 
 #### Installations:
 
@@ -25,11 +25,13 @@ Maven build:
 [Github]( https://github.com/mdj20/quickgraph )  
 www.github.com/mdj20/quickgraph/
 
+Note: jar is currently unavailable, at v0.5.0 
+
 Java source code:
 www.github.com/mdj20/quickgraph
 
 Javadoc
-www.github.com/mdj20/quickgraph/doc
+https://mdj20.github.io/quickgraph/apidocs/index.html
 
 
 #### Version History 

@@ -1,7 +1,11 @@
 package com.mdj20.quickgraph.quickgraph.main;
 import java.util.Set;
 
-/**
+/**BaseGraph defines a collection of Vertices and Edges.
+ * 
+ *<p>
+ *
+ *
  * 
  * @author Matthew D. Jeffreys 
  *

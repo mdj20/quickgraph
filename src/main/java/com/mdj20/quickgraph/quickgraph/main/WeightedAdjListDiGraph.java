@@ -19,12 +19,19 @@ public class WeightedAdjListDiGraph<V, W> extends AbstractAdjListDiGraph<V,Weigh
 	protected WeightedAdjListDiGraph(GraphParameters params) {
 		super(GraphType.WEIGHTED_DIRECTED);
 	}
+	
+	/**Creates a directed edge with vertex1 and vertex2 as the respective source and sink,
+	 *  and uses the default weight as its weighted value. 
+	 * 
+	 * 
+	 */
 
 	@Override
 	public WeightedDirectedEdge<V, W> createEdge(V vertex1, V vertex2) {
 		return new DefaultWeightedDirectedEdge<V,W>(vertex1,vertex2,defaultWeight);
 	}
 
+	
 	@Override
 	public WeightedDirectedEdge<V,W> addEdge(V vertex1, V vertex2, W weight) {
 		WeightedDirectedEdge<V,W> ret = null;
@@ -36,6 +43,7 @@ public class WeightedAdjListDiGraph<V, W> extends AbstractAdjListDiGraph<V,Weigh
 		}
 		return ret;
 	}
+	
 	@Override
 	public W setDefaultWeight(W weight) {
 		W temp = defaultWeight;
