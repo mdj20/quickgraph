@@ -11,13 +11,15 @@ Vertices and weights can be any type the developer requires, and path finding an
 
 * Implementations of Weighted/Non-weighted and Directed/Undirected graphs.
 * Sub graphing for all graph types.
-* Path/Walk algorithms including DFS/BF
-* Shortest Path distance finding algorithms based on Dikstra's and Bellman-Ford 
+* Path/Walk algorithms including DFS/BFS.
+* Shortest Path distance finding algorithms based on Dikstra's and Bellman-Ford's algorithms.
 
 ####Upcoming features:
 
-path/walk classes that are based off of subgraphs. 
-expanded path/walk features 
+*Utilities for automatic graph manipulation, including graph type transposition.  
+*path/walk classes that are based off of subgraphs. 
+*expanded path/walk features 
+
 
 #### Installations:
 
