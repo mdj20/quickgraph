@@ -5,11 +5,11 @@ Created and developed by Matthew D. Jeffreys
 
 #### About:
 GraphLib is a free/MIT license Java library that provides lightweight implementations of commonly used graphs. Graphs are implemented as simple abstract data types and can be modified and accessed without the use of builder/factory classes. 
-Vertices and weights can be any type the developer requires, and path finding and graph walking algorithms are designed to work with the complete Java Number hierarchy.
+Vertices and weights can be any type the developer requires, and path finding and graph walking algorithms are designed to work with the entire Java Number hierarchy.
 
 #### Version 0.5.0 (initial public release)
 
-* Implementations of Weighted/Non-weighted and Directed/Undirected graphs.
+* Implementations of weighted/non-weighted and directed/undirected graphs.
 * Sub graphing for all graph types.
 * Path/Walk algorithms including DFS/BFS.
 * Shortest Path distance finding algorithms based on Dikstra's and Bellman-Ford's algorithms.
