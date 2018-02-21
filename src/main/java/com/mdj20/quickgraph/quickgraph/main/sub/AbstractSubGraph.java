@@ -9,9 +9,10 @@ import com.mdj20.quickgraph.quickgraph.main.Edge;
 
 
 /**
- * Sub Graph decorator. 
+ * Base class for the Sub-Graph hierarchy, and defines a subgraph based on a sub set of vertices.  
  * <p>
- * Will act as any section of a graph defined by a subset of vertices of said graph. 
+ * Will act as any section of a graph defined by a subset of vertices of said graph. Sub graphs are backed by the actual graphs and actions performed
+ * on a subgraph will effect the backing graph, in most cases.
  * 
  * 
  * 
