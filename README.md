@@ -14,11 +14,11 @@ Vertices and weights can be any type the developer requires, and path finding an
 * Path/Walk algorithms including DFS/BFS.
 * Shortest Path distance finding algorithms based on Dikstra's and Bellman-Ford's algorithms.
 
-####Upcoming features:
+#### Upcoming features:
 
-*Utilities for automatic graph manipulation, including graph type transposition.  
-*path/walk classes that are based off of subgraphs. 
-*expanded path/walk features 
+* Utilities for automatic graph manipulation, including graph type transposition.  
+* path/walk classes that are based off of subgraphs. 
+* expanded path/walk features 
 
 
 #### Installations:
